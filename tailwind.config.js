@@ -6,8 +6,9 @@ export default {
   ],
   theme: {
     extend: {
-      extends : {
-        archivo : ['Archivo Narrow', 'sans-serif']
+      fontFamily : {
+        archivo : ['Archivo Narrow', 'sans-serif'],
+        kanit : ['Kanit', 'sans-serif']
       }
     },
   },
