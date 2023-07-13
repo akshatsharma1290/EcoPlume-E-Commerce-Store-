@@ -8,7 +8,12 @@ export default {
     extend: {
       fontFamily : {
         archivo : ['Archivo Narrow', 'sans-serif'],
-        kanit : ['Kanit', 'sans-serif']
+        kanit : ['Kanit', 'sans-serif'],
+        outfit : ['Outfit', 'sans-serif']
+      },
+      spacing : {
+        17 : "4.5rem",
+        100 : "30rem"
       }
     },
   },
