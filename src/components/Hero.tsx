@@ -13,16 +13,16 @@ const Hero = () => {
         </figure>
         <section className="absolute top-[30vh] text-center bottom-10 text-white font-outfit flex flex-col items-baseline px-4 font-semibold">
           <div className=" flex justify-center flex-col gap-y-4">
-            <h1 className="text-4xl">Chase Views In Breezy Shoes</h1>
+            <h1 className="text-3xl">Chase Views In Breezy Shoes</h1>
             <h2 className="text-base">
               The Lightweight Tree Runner is ready for anything summer throws at
               you.
             </h2>
             <div className="buttons space-x-3 flex">
-              <button className="bg-white text-black px-4 py-3 w-2/4 cursor-pointer">
+              <button className="bg-white text-black px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase">
                 Shop Men
               </button>
-              <button className="bg-white text-black px-4 py-3 w-2/4 cursor-pointer">
+              <button className="bg-white text-black px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase">
                 Shop Women
               </button>
             </div>
