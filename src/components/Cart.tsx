@@ -7,7 +7,7 @@ const Cart = () => {
 
   return (
     <>
-      <section className="cart text-4xl relative">
+      <section className="cart text-4xl relative cursor-pointer">
         <span className="absolute text-sm font-kanit font-bold w-[2.4rem] text-center top-[0.37rem] left-0">
           {cartValue}
         </span>
