@@ -1,17 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
+import apiService from "../apiService";
+
 const Hero = () => {
+  const query = useQuery({
+    queryKey: ["products", { category: "shoes", location: "mountains" }],
+    queryFn: () => apiService("shoes in mountains", 1), 
+  });
+
   return (
     <>
       <section className="hero relative mt-16">
         <figure className="absolute top-0">
           <img
-            src={
-              "https://images.unsplash.com/photo-1512507073059-e987cb5dfce9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHNob2VzJTIwb24lMjBtb3VudGFpbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-            }
+            src={query.data?.results[0].urls.full}
             className="w-screen h-100 object-cover"
             alt="Hero Section Shoes And Clothing Image."
           />
         </figure>
-        <section className="absolute top-[30vh] text-center bottom-10 text-white font-outfit flex flex-col items-baseline px-4 font-semibold">
+        <section className="absolute top-64 text-center bottom-10 text-white font-outfit flex flex-col items-baseline px-4 font-semibold">
           <div className=" flex justify-center flex-col gap-y-4">
             <h1 className="text-3xl">Chase Views In Breezy Shoes</h1>
             <h2 className="text-base">

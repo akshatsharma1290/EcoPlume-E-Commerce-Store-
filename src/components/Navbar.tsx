@@ -5,13 +5,6 @@ import { Link } from "react-router-dom";
 import Cart from "./Cart";
 
 const Navbar = () => {
-  // Accessing The Access Key From Environment Variable
-  // interface ImportMetaEnvWithUnsplashAccessKey extends ImportMetaEnv {
-  //   VITE_UNSPLASH_ACCESS_KEY: string;
-  // }
-
-  // const accessKey = import.meta.env as ImportMetaEnvWithUnsplashAccessKey;
-  // const unsplashAccessKey: string = accessKey.VITE_UNSPLASH_ACCESS_KEY;
 
   return (
     <>

@@ -12,8 +12,8 @@ export default {
         outfit : ['Outfit', 'sans-serif']
       },
       spacing : {
-        17 : "4.5rem",
-        100 : "30rem"
+        100 : "32rem",
+        106 : "39rem"
       }
     },
   },
