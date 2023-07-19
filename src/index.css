@@ -1,7 +1,4 @@
 @tailwind base;
-body{
-  height: 1000rem;
-}
 *::-webkit-scrollbar {
   display: none;
 }

@@ -4,7 +4,7 @@
       <section className="hero relative">
         <figure>
           <img
-            src="https://images.unsplash.com/photo-1474576099083-ee3652c691d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHNob2VzJTIwaW4lMjBtb3VudGFpbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+            src="https://images.unsplash.com/photo-1489914169085-9b54fdd8f2a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             className="w-screen h-100 object-cover"
             alt="Hero Section Shoes And Clothing Image."
           />

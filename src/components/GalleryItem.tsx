@@ -16,8 +16,8 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
           />
         </picture>
         <div className="shadow-lg shadow-slate-300 mb-4 px-5 py-6 rounded-bl-md rounded-br-md flex flex-col items-baseline font-outfit">
-          <p className="font-medium text-xl text-slate-800 leading-7">
-            {title}
+          <p className="font-medium text-xl text-slate-800 leading-7 whitespace-nowrap">
+           {title}
           </p>
           <div className="buttons space-y-2 flex flex-col items-center w-full mt-3">
             <button className="bg-black text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase">
