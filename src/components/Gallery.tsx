@@ -21,7 +21,7 @@ const Gallery = ({queryText , perPage , orientation , defaultText , galleryName}
 
   return (
     <>
-      <section className="favourites mt-7 flex flex-col items-center w-screen">
+      <section className="favourites mt-10 flex flex-col items-center w-screen">
         <h2 className="font-outfit font-bold text-3xl tracking-wide  ">
           {galleryName}
         </h2>

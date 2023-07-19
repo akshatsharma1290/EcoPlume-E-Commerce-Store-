@@ -3,9 +3,12 @@ import { CiUser } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
+import CartPage from "../pages/CartPage";
+import { useAppDispatch } from "../hooks";
+import { showCart } from "../store/cartPageTransform";
 
 const Navbar = () => {
-
+  const dispatch = useAppDispatch()
   return (
     <>
       <header className="fixed w-screen top-0 bg-white z-10">
@@ -20,9 +23,12 @@ const Navbar = () => {
             <span className="user-account text-4xl cursor-pointer">
               <CiUser strokeWidth={1} />
             </span>
+            <span onClick={()=>{dispatch(showCart())}}>
             <Cart />
+            </span>
           </div>
         </nav>
+        <CartPage />
       </header>
     </>
   );
