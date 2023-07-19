@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Gallery from "../components/Gallery";
 import Hero from "../components/Hero";
 import JoinList from "../components/JoinList";
@@ -12,6 +13,7 @@ const Home = () => {
         <ShoeAd />
         <Gallery queryText="T-Shirts" perPage={6} orientation="landscape" defaultText="Men's Sea Tee" galleryName="Best Clothes"/>
         <JoinList/>
+        <Footer/>
       </main>
     </>
   );
