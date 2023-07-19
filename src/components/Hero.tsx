@@ -1,18 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import apiService from "../apiService";
-
-const Hero = () => {
-  const query = useQuery({
-    queryKey: ["products", { category: "shoes", location: "mountains" }],
-    queryFn: () => apiService("shoes in mountains", 1), 
-  });
-
+  const Hero = () => {
   return (
     <>
-      <section className="hero relative mt-16">
-        <figure className="absolute top-0">
+      <section className="hero relative">
+        <figure>
           <img
-            src={query.data?.results[0].urls.full}
+            src="https://images.unsplash.com/photo-1474576099083-ee3652c691d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHNob2VzJTIwaW4lMjBtb3VudGFpbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
             className="w-screen h-100 object-cover"
             alt="Hero Section Shoes And Clothing Image."
           />
@@ -31,7 +23,7 @@ const Hero = () => {
               <button className="bg-white text-black px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase">
                 Shop Women
               </button>
-            </div>
+            </div>{" "}
           </div>
         </section>
       </section>
