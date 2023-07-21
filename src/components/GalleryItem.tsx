@@ -7,10 +7,10 @@ type GalleryItemProps = {
 const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
   return (
     <>
-      <div className="item w-80 mx-1">
+      <div className="item w-80 mx-1 overflow-hidden">
         <picture>
           <img
-            className="w-80 h-56 rounded-tr-md rounded-tl-md"
+            className="w-80 h-56 rounded-tr-md rounded-tl-md transition-all"
             src={imageUrl}
             alt={altText}
           />
@@ -20,10 +20,10 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
            {title}
           </p>
           <div className="buttons space-y-2 flex flex-col items-center w-full mt-3">
-            <button className="bg-black text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase">
+            <button className="bg-slate-900 btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase">
               Shop Men
             </button>
-            <button className="bg-black text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase">
+            <button className="bg-slate-900 btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase">
               Shop Women
             </button>
           </div>

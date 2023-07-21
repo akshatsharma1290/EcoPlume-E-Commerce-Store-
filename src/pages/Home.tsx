@@ -3,17 +3,49 @@ import Gallery from "../components/Gallery";
 import Hero from "../components/Hero";
 import JoinList from "../components/JoinList";
 import ShoeAd from "../components/ShoeAd";
+import { useQuery } from "@tanstack/react-query";
+import getImages from "../apiService";
+import Loader from "../components/Loader";
 
 const Home = () => {
+  const perPage = 6;
+  const orientation = "landscape";
+
+  const shoesQuery = useQuery({
+    queryKey: ["images", "Sneakers", perPage, orientation],
+    queryFn: () => getImages("Sneakers", perPage, orientation),
+    refetchOnWindowFocus: false,
+    retry: 2,
+  });
+
+  const shirtQuery = useQuery({
+    queryKey: ["images", "T-Shirts", perPage, orientation],
+    queryFn: () => getImages("T-Shirts", perPage, orientation),
+    refetchOnWindowFocus: false,
+    retry: 2,
+  });
+
+  if (shoesQuery.isFetching || shirtQuery.isFetching) {
+    return <Loader />;
+  }
+
   return (
     <>
       <main>
         <Hero />
-        <Gallery queryText="Shoes" perPage={6} orientation="landscape" defaultText="Men's Tree Runner" galleryName="Best Shoes"/>
+        <Gallery
+          data={shoesQuery.data}
+          defaultText="Tree Runner"
+          galleryName="Best Shoes"
+        />
         <ShoeAd />
-        <Gallery queryText="T-Shirts" perPage={6} orientation="landscape" defaultText="Men's Sea Tee" galleryName="Best Clothes"/>
-        <JoinList/>
-        <Footer/>
+        <Gallery
+          data={shirtQuery.data}
+          defaultText="Sea Tee"
+          galleryName="Best Clothes"
+        />
+        <JoinList />
+        <Footer />
       </main>
     </>
   );

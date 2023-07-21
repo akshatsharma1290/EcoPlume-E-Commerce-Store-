@@ -1,12 +1,20 @@
 @tailwind base;
-*::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .btn-hover{
+    @apply hover:bg-white hover:text-slate-800
+  }
+}

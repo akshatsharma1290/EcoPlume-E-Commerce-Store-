@@ -1,23 +1,13 @@
 import GalleryItem from "./GalleryItem";
-import { useQuery } from "@tanstack/react-query";
-import getImages from "../apiService";
+import { ApiResponse } from "../apiService";
 
 type GalleryProps = {
-  queryText : string
-  perPage : number
-  orientation : "portrait" | "landscape" | "squarish"
+  data ?: ApiResponse
   defaultText : string
   galleryName : string
 }
 
-const Gallery = ({queryText , perPage , orientation , defaultText , galleryName} : GalleryProps) => {
-
-  const query = useQuery({
-    queryKey: ["images", queryText, perPage, orientation],
-    queryFn: () => getImages(queryText, perPage, orientation),
-    refetchOnWindowFocus: false,
-    retry: 2,
-  });
+const Gallery = ({data , galleryName , defaultText} : GalleryProps) => {
 
   return (
     <>
@@ -28,7 +18,7 @@ const Gallery = ({queryText , perPage , orientation , defaultText , galleryName}
         <hr className="border-2 border-slate-300 my-3 w-screen" />
         <div className="w-screen overflow-auto mt-5">
           <div className="flex w-fit mx-4">
-            {query.data?.results.map((data) => {
+            {data?.results.map((data) => {
               return (
                 <GalleryItem
                   key={data.id}

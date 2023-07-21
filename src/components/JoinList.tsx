@@ -10,6 +10,7 @@ const JoinList = () => {
         <div className="w-screen">
           <input
             type="email"
+            name="email-Address"
             placeholder="Enter Your Email Address"
             className="font-outfit font-medium outline-none p-3 mt-4 w-3/4 border-b-2 border-black"
           />
