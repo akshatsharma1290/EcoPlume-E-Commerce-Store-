@@ -1,14 +1,13 @@
+import { useSearchParams } from "react-router-dom"
 
-type ProductPreviewProps = {
-    category : string
-    product : string
-    productName : string
-}
 
-const ProductPreview = ({category , product , productName} : ProductPreviewProps) => {
+const ProductPreview = () => {
+   const [searchParams] = useSearchParams()
+   const url = searchParams.get("imageUrl")
+  
   return (
     <>
-    <div>Product Preview</div>
+    <img src={url || ""} alt="" />
     </>
   )
 }
