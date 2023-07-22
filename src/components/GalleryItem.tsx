@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import toTitleCase from "../utilities/titleCase";
 
 type GalleryItemProps = {
   imageUrl: string;
@@ -7,6 +8,17 @@ type GalleryItemProps = {
 };
 
 const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
+  const renderLinks = (category: string) => {
+    return (
+      <Link
+        to={`/products/${title}?category=${category}&type=shoes&product=sneakers&productName=${title}&imageUrl=${imageUrl}`}
+        className="bg-slate-900 text-center btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase"
+      >
+        Shop {toTitleCase(category)}
+      </Link>
+    );
+  };
+
   return (
     <>
       <div className="item w-80 mx-1 overflow-hidden">
@@ -22,18 +34,8 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
             {title}
           </p>
           <div className="buttons space-y-2 flex flex-col items-center w-full mt-3">
-            <Link
-              to={`/products/${title}?category=men&product=sneakers&productName=${title}&imageUrl=${imageUrl}`}
-              className="bg-slate-900 text-center btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase"
-            >
-              Shop Men
-            </Link>
-            <Link
-              to={`/products/${title}?category=women&product=sneakers&productName=${title}&imageUrl=${imageUrl}`}
-              className="bg-slate-900 text-center btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase"
-            >
-              Shop Women
-            </Link>
+            {renderLinks("men")}
+            {renderLinks("women")}
           </div>
         </div>
       </div>

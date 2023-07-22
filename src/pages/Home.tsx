@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import JoinList from "../components/JoinList";
 import ShoeAd from "../components/ShoeAd";
 import { useQuery } from "@tanstack/react-query";
-import getImages from "../apiService";
+import getImages from "../utilities/apiService";
 import Loader from "../components/Loader";
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
     queryFn: () => getImages("Sneakers", perPage, orientation),
     refetchOnWindowFocus: false,
     retry: 2,
+    staleTime : 300000
   });
 
   const shirtQuery = useQuery({
@@ -23,6 +24,7 @@ const Home = () => {
     queryFn: () => getImages("T-Shirts", perPage, orientation),
     refetchOnWindowFocus: false,
     retry: 2,
+    staleTime : 300000
   });
 
   if (shoesQuery.isFetching || shirtQuery.isFetching) {

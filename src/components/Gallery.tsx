@@ -1,5 +1,5 @@
 import GalleryItem from "./GalleryItem";
-import { ApiResponse } from "../apiService";
+import { ApiResponse } from "../utilities/apiService";
 
 type GalleryProps = {
   data ?: ApiResponse
