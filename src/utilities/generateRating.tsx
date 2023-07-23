@@ -30,13 +30,18 @@ const generateRating = () => {
 
   const stars = Array.from({ length: 5 }, (_, index) => getStar(index));
 
+  const randomReviews = Math.floor(Math.random() * 10000 + 100);
+
   return (
     <>
-      <span className="flex gap-1">
-        {stars.map((star, index) => (
-          <React.Fragment key={index}>{star}</React.Fragment>
-        ))}
-      </span>
+      <div className="flex items-center gap-2">
+        <span className="flex gap-1 text-base">
+          {stars.map((star, index) => (
+            <React.Fragment key={index}>{star}</React.Fragment>
+          ))}
+        </span>
+        <span className="text-sm underline">{`(${randomReviews})`}</span>
+      </div>
     </>
   );
 };
