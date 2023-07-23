@@ -9,7 +9,7 @@ import { productImageSelector } from "../store/productImageSlice";
 const ProductPage = () => {
 
   const shoesSizes = [5 , 6 , 7 , 8 , 9 , 10 , 11]
-  const clothesSizes = ["xs" , "s" , "m", "l" , "xl" , "xxl" , "xxxl"]
+  const clothesSizes = ["XS" , "S" , "M", "L" , "XL" , "XXL" , "XXXL"]
 
   
   const productImage = useAppSelector(productImageSelector)
@@ -60,19 +60,20 @@ const ProductPage = () => {
           <img src={productImage} alt={productName} />
         </div>
         <div>
-          <div className="sizes">
-            <p>Select Size : </p>
-            <div>
+          <div className="mt-4 px-4 font-outfit flex flex-col">
+            <p className="font-bold uppercase tracking-wide">Select Size : </p>
+            <div className="flex gap-2 mt-2">
             {
               activeSize.map(item => {
                 return (
-                  <div key={item}>
+                  <div className="border border-slate-900 text-lg w-1/4 h-[11vw] flex justify-center items-center" key={item}>
                     {item}
                   </div>
                 )
               })
             }
             </div>
+            <button className="bg-black w-[93vw] text-white h-12 mt-4 self-center">Select Size</button>
           </div>
         </div>
       </section>

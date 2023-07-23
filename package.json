@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@grpc/proto-loader": "^0.7.8",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.25",
     "axios": "^1.4.0",
+    "firebase": "^10.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
