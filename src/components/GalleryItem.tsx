@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import toTitleCase from "../utilities/titleCase";
-import { useAppDispatch } from "../hooks";
-import { activeProductImage } from "../store/productImageSlice";
 
 type GalleryItemProps = {
   imageUrl: string;
@@ -11,13 +9,10 @@ type GalleryItemProps = {
 
 const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
 
-  const dispatch = useAppDispatch()
-
   const renderLinks = (category: string) => {
     return (
       <Link
-        to={`/products/${title}?category=${category}&type=shoes&product=sneakers&productName=${title}`}
-        onClick={()=>{dispatch(activeProductImage(imageUrl))}}
+        to={`/products/${title}?category=${category}`}
         className="bg-slate-900 text-center btn-hover border-2 border-black transition-all text-white px-4 py-3 w-full cursor-pointer rounded-md uppercase"
       >
         Shop {toTitleCase(category)}

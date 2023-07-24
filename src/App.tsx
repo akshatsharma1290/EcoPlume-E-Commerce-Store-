@@ -11,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/:productName" element={<ProductPage/>}></Route>
-
       </Routes>
     </>
   );

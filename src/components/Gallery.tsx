@@ -1,13 +1,26 @@
 import GalleryItem from "./GalleryItem";
 import { ApiResponse } from "../utilities/apiService";
+import { useAppDispatch } from "../hooks";
+import { setProductItems } from "../store/productSlice";
 
 type GalleryProps = {
-  data ?: ApiResponse
-  defaultText : string
-  galleryName : string
-}
+  data?: ApiResponse;
+  defaultText: string;
+  galleryName: string;
+  type: string;
+  product: string;
+};
 
-const Gallery = ({data , galleryName , defaultText} : GalleryProps) => {
+const Gallery = ({
+  data,
+  galleryName,
+  defaultText,
+  type,
+  product,
+}: GalleryProps) => {
+  const dispatch = useAppDispatch();
+
+  const title = `${defaultText} ${Math.floor(Math.random() * 100 + 1)}`;
 
   return (
     <>
@@ -20,12 +33,25 @@ const Gallery = ({data , galleryName , defaultText} : GalleryProps) => {
           <div className="flex w-fit mx-4">
             {data?.results.map((data) => {
               return (
-                <GalleryItem
+                <div
                   key={data.id}
-                  imageUrl={data.urls.regular}
-                  altText={data.alt_description}
-                  title={`${defaultText} ${Math.floor(Math.random()*100 + 1)}`}
-                />
+                  onClick={() => {
+                    dispatch(
+                      setProductItems({
+                        url: data.urls.regular,
+                        type: type,
+                        product: product,
+                        title: title,
+                      })
+                    );
+                  }}
+                >
+                  <GalleryItem
+                    imageUrl={data.urls.regular}
+                    altText={data.alt_description}
+                    title={title}
+                  />
+                </div>
               );
             })}
           </div>
