@@ -8,21 +8,30 @@ type ProductState = {
   title: string;
 };
 
-const initialState: ProductState = {
-  url: "",
-  type: "",
-  product: "",
-  title: "",
+const getInitialProductState = (): ProductState => {
+  const storedState = localStorage.getItem("productState");
+  if (storedState) {
+    return JSON.parse(storedState) as ProductState;
+  }
+  return {
+    url: "",
+    type: "",
+    product: "",
+    title: "",
+  };
 };
+
+const initialState: ProductState = getInitialProductState();
 
 const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    setProductItems: (state, action: PayloadAction<ProductState>) => ({
-      ...state,
-      ...action.payload,
-    }),
+    setProductItems: (state, action: PayloadAction<ProductState>) => {
+      const newState = { ...state, ...action.payload };
+      localStorage.setItem("productState", JSON.stringify(newState));
+      return newState;
+    },
   },
 });
 
