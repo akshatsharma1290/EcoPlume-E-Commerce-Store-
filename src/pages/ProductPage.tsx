@@ -25,14 +25,14 @@ const ProductPage = () => {
 
   return (
     <>
-      <section className="productPreview mt-20">
+      <section className="productPreview mt-20 pb-10">
         <Breadcrumb
           product={product}
           productCategory={productCategory}
           category={category}
         />
         <ProductDescription category={category} title={title} Imgurl={url} price={price} />
-        <SizeAndCartPanel type={type} price={price}/>
+        <SizeAndCartPanel price={price}/>
       </section>
     </>
   );
