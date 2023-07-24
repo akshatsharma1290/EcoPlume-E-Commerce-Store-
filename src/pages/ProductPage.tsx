@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import ProductDescription from "../components/ProductDescription";
 import SizeAndCartPanel from "../components/SizeAndCartPanel";
+import generatePrice from "../utilities/generatePrice";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const ProductPage = () => {
 
 
   const productCategory = `${toTitleCase(category)}'s ${toTitleCase(type)}`;
+  const price = generatePrice()
 
   return (
     <>
@@ -29,8 +31,8 @@ const ProductPage = () => {
           productCategory={productCategory}
           category={category}
         />
-        <ProductDescription category={category} title={title} Imgurl={url} />
-        <SizeAndCartPanel type={type}/>
+        <ProductDescription category={category} title={title} Imgurl={url} price={price} />
+        <SizeAndCartPanel type={type} price={price}/>
       </section>
     </>
   );

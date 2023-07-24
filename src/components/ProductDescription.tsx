@@ -1,4 +1,3 @@
-import generatePrice from "../utilities/generatePrice";
 import generateRating from "../utilities/generateRating";
 import toTitleCase from "../utilities/titleCase";
 
@@ -6,14 +5,15 @@ type ProductDescriptionProps = {
     category : string
     title : string 
     Imgurl : string
+    price : string
 }
 
-const ProductDescription = ({category , title , Imgurl} : ProductDescriptionProps) => {
+const ProductDescription = ({category , title , Imgurl , price} : ProductDescriptionProps) => {
   return (
     <>
       <div className="font-outfit flex justify-between items-center px-5 mt-3 text-xl">
         <h1 className="font-bold">{`${toTitleCase(category)} ${title}`}</h1>
-        <h2>{generatePrice()}</h2>
+        <h2>{price}</h2>
       </div>
       <div className="font-outfit flex justify-between items-center gap-2 px-5 mt-2">
         {generateRating()}
