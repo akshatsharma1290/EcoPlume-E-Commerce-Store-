@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import toTitleCase from "../utilities/titleCase";
 import generatePrice from "../utilities/generatePrice";
 import generateRating from "../utilities/generateRating";
@@ -15,6 +14,8 @@ const ProductPage = () => {
 
   const productItems = useAppSelector(productSelector);
   const { url, type, product, title } = productItems;
+
+  const activeSize = type === "shoes" ? shoesSizes : clothesSizes
 
   const productCategory = `${toTitleCase(category)}'s ${toTitleCase(type)}`;
 
@@ -55,7 +56,7 @@ const ProductPage = () => {
           <div className="mt-4 px-4 font-outfit flex flex-col">
             <p className="font-bold uppercase tracking-wide">Select Size : </p>
             <div className="flex gap-2 mt-2">
-              {shoesSizes.map((item) => {
+              {activeSize.map((item) => {
                 return (
                   <div
                     className="border border-slate-900 text-lg w-1/4 h-[11vw] flex justify-center items-center"
