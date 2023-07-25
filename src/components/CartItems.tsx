@@ -13,28 +13,44 @@ import {
   decrementCart,
   incrementCart,
 } from "../store/cartSlice";
+import {
+  decrementCheckoutPrice,
+  incrementCheckoutPrice,
+} from "../store/checkoutPriceSlice";
 
 const CartItems = () => {
   const cartItemDetails = useAppSelector(cartItemsSelector);
   const dispatch = useAppDispatch();
 
-  const handleCartItemDecrement = (title: string, size: string | number) => {
+  const handleCartItemDecrement = (
+    title: string,
+    size: string | number,
+    price: number
+  ) => {
     dispatch(removeCartItem({ title, size, removeAll: false }));
     dispatch(decrementCart());
+    dispatch(decrementCheckoutPrice(price));
   };
 
-  const handleCartItemIncrement = (title: string, size: string | number) => {
+  const handleCartItemIncrement = (
+    title: string,
+    size: string | number,
+    price: number
+  ) => {
     dispatch(addCartItem({ title, size }));
     dispatch(incrementCart());
+    dispatch(incrementCheckoutPrice(price));
   };
 
   const handleRemoveCartItem = (
     title: string,
     size: string | number,
-    quantity: number
+    quantity: number,
+    totalPrice: number
   ) => {
     dispatch(removeCartItem({ title, size, removeAll: true }));
     dispatch(decrementByNumber(quantity));
+    dispatch(decrementCheckoutPrice(totalPrice));
   };
 
   return (
@@ -60,7 +76,11 @@ const CartItems = () => {
                       <a
                         className="text-lg"
                         onClick={() => {
-                          handleCartItemDecrement(title, size);
+                          handleCartItemDecrement(
+                            title,
+                            size,
+                            Number(price?.slice(1))
+                          );
                         }}
                       >
                         <AiOutlineMinus />
@@ -69,7 +89,11 @@ const CartItems = () => {
                       <a
                         className="text-lg"
                         onClick={() => {
-                          handleCartItemIncrement(title, size);
+                          handleCartItemIncrement(
+                            title,
+                            size,
+                            Number(price?.slice(1))
+                          );
                         }}
                       >
                         <AiOutlinePlus />
@@ -81,7 +105,12 @@ const CartItems = () => {
                       className="text-sm"
                       onClick={() => {
                         quantity
-                          ? handleRemoveCartItem(title, size, quantity)
+                          ? handleRemoveCartItem(
+                              title,
+                              size,
+                              quantity,
+                              Number(price?.slice(1)) * quantity
+                            )
                           : null;
                       }}
                     >

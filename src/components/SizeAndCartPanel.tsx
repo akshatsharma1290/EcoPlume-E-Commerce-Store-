@@ -5,6 +5,7 @@ import { useAppSelector } from "../hooks";
 import { productSelector } from "../store/productSlice";
 import { showCart } from "../store/cartPageTransform";
 import { incrementCart } from "../store/cartSlice";
+import { incrementCheckoutPrice } from "../store/checkoutPriceSlice";
 
 type SizeAndCartPanelProps = {
   price: string;
@@ -19,6 +20,7 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
   const shoesSizes = [5, 6, 7, 8, 9, 10, 11];
   const clothesSizes = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
   const suitableSize = type === "shoes" ? shoesSizes : clothesSizes;
+  const priceValue = Number(price.slice(1))
 
   const [activeSize, setActiveSize] = useState<number | string | null>(null);
 
@@ -42,11 +44,13 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
         })
       );
       dispatch(incrementCart());
+      dispatch(incrementCheckoutPrice(priceValue))
       dispatch(showCart());
       e.currentTarget.blur();
     }
   };
 
+  
   return (
     <>
       <div>

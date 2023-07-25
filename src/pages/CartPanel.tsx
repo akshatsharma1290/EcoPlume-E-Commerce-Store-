@@ -1,13 +1,14 @@
 import AdditionalLinks from "../components/AdditionalLinks";
 import CartHeader from "../components/CartHeader";
 import CartItems from "../components/CartItems";
+import CheckoutPanel from "../components/CheckoutPanel";
 import { useAppSelector } from "../hooks";
 import { cartPageTransformSelector } from "../store/cartPageTransform";
 import { cartSelector } from "../store/cartSlice";
 
 const CartPanel = () => {
   const transformValue = useAppSelector(cartPageTransformSelector);
-  const cartValue = useAppSelector(cartSelector)
+  const cartValue = useAppSelector(cartSelector);
   return (
     <>
       <section
@@ -15,7 +16,8 @@ const CartPanel = () => {
         style={{ transform: `translateX(${transformValue}%)` }}
       >
         <CartHeader />
-        <CartItems/>
+        <CartItems />
+        {cartValue > 0 ? <CheckoutPanel /> : null}
         <AdditionalLinks cartValue={cartValue} />
       </section>
     </>

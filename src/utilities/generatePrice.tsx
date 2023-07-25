@@ -1,5 +1,5 @@
 const generatePrice = ()=>{
-    return `$${Math.floor(Math.random() * 200 + 30)}`
+    return `$${Math.floor(Math.random() * 150 + 5 )}`
 }
 
 export default generatePrice
