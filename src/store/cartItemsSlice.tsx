@@ -9,6 +9,9 @@ type CartItemsType = {
   quantity?: number;
 };
 
+type RemoveCart = CartItemsType & {
+  removeAll: boolean;
+};
 
 const initialState: CartItemsType[] = [];
 
@@ -27,22 +30,23 @@ const cartItemsSlice = createSlice({
         state.push(action.payload);
       }
     },
-    removeCartItem(state, action: PayloadAction<CartItemsType>) {
-      const { title, size } = action.payload;
+    removeCartItem(state, action: PayloadAction<RemoveCart>) {
+      const { title, size, removeAll } = action.payload;
       const itemToDelete = state.find(
         (item) => item.title === title && item.size === size
       );
-      if(itemToDelete){
-        const index = state.indexOf(itemToDelete)
-        if(index !== -1){
-          state.splice(index , 1)
+      if (itemToDelete && itemToDelete.quantity) {
+        const index = state.indexOf(itemToDelete);
+        if (index !== -1) {
+          removeAll || itemToDelete.quantity === 1
+            ? state.splice(index, 1)
+            : (itemToDelete.quantity -= 1);
         }
       }
-
     },
   },
 });
 
-export const { addCartItem , removeCartItem } = cartItemsSlice.actions;
+export const { addCartItem, removeCartItem } = cartItemsSlice.actions;
 export const cartItemsSelector = (state: RootState) => state.cartItems;
 export default cartItemsSlice.reducer;

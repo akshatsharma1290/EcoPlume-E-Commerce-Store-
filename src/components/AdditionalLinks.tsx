@@ -7,7 +7,7 @@ const AdditionalLinks = ({cartValue} : AdditionalLinksProps) => {
     <>
       <div className="flex flex-col gap-4 items-center mt-7 font-bold tracking-wide">
         <p className="text-lg">
-          {cartValue < 0 ? "Your Cart Is Empty" : null}
+          {cartValue === 0 ? "Your Cart Is Empty" : null}
         </p>
         <button className="border-black border-2 p-2 text-base w-2/4 uppercase">
           Shop Men's
