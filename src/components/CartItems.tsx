@@ -11,7 +11,6 @@ const CartItems = () => {
     <>
       <section className="flex flex-col items-center">
         {cartItemDetails.map((item, index) => {
-          console.log(item.price);
           return index === 0 || item !== cartItemDetails[index - 1] ? (
             <React.Fragment key={String(item.title) + String(item.size)}>
               <div className="flex items-center w-11/12 mt-6 gap-4 font-outfit relative border-b border-slate-400 pb-3">
