@@ -3,6 +3,8 @@ import { addCartItem } from "../store/cartItemsSlice";
 import { useAppDispatch } from "../hooks";
 import { useAppSelector } from "../hooks";
 import { productSelector } from "../store/productSlice";
+import { showCart } from "../store/cartPageTransform";
+import { incrementCart } from "../store/cartSlice";
 
 type SizeAndCartPanelProps = {
   price: string;
@@ -28,8 +30,7 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
     }
   };
 
-  const handleAddToCart = () => {
-    console.log(activeSize);
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (activeSize) {
       dispatch(
         addCartItem({
@@ -40,6 +41,9 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
           quantity: 1,
         })
       );
+      dispatch(incrementCart());
+      dispatch(showCart());
+      e.currentTarget.blur();
     }
   };
 

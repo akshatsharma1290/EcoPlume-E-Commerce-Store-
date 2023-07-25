@@ -25,7 +25,7 @@ const ProductPage = () => {
 
   return (
     <>
-      <section className="productPreview mt-20 pb-10">
+      <section className="productPreview mt-20 pb-5">
         <Breadcrumb
           product={product}
           productCategory={productCategory}
