@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { setSearchQuery } from "../store/searchQuerySlice";
+import { BsSearch } from "react-icons/bs";
 
 type FormInput = {
   searchQuery: string;
@@ -33,18 +34,15 @@ const SearchForm = () => {
           type="text"
           autoComplete="off"
           placeholder="Enter Search Term"
-          {...register("searchQuery", { required: true, maxLength: 15 })}
+          {...register("searchQuery", { required: true, maxLength: 40 })}
         />
-      <p
-        onClick={() => {
-          reset();
-        }}
-        className="text-slate-600 cursor-pointer"
+      <button
+        type="submit"
+        className="bg-slate-200 text-black cursor-pointer w-12 text-lg h-12 rounded-md grid place-content-center"
       >
-        cancel
-      </p>
+        <BsSearch/>
+      </button>
       </form>
-
 
       <div className="err px-9 mt-1">
         {errors.searchQuery?.type === "required" && (
