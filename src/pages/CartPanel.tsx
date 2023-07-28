@@ -1,4 +1,3 @@
-import AdditionalLinks from "../components/AdditionalLinks";
 import CartHeader from "../components/CartHeader";
 import CartItems from "../components/CartItems";
 import CheckoutPanel from "../components/CheckoutPanel";
@@ -18,7 +17,6 @@ const CartPanel = () => {
         <CartHeader />
         <CartItems />
         {cartValue > 0 ? <CheckoutPanel /> : null}
-        <AdditionalLinks cartValue={cartValue} />
       </section>
     </>
   );
