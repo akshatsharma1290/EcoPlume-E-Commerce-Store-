@@ -5,7 +5,7 @@ import toTitleCase from "../utilities/titleCase";
 
 type ProductDescriptionProps = {
     category : string
-    title : string 
+    title : string
     Imgurl : string
     price : string
 }
@@ -14,10 +14,11 @@ const ProductDescription = ({category , title , Imgurl , price} : ProductDescrip
   const checkoutPrice = useAppSelector(checkoutPriceSelector)
   const priceValue = Number(price.slice(1))
   const freeShippingPrice = 75
+
   return (
     <>
       <div className="font-outfit flex justify-between items-center px-5 mt-3 text-xl">
-        <h1 className="font-bold">{`${toTitleCase(category)} ${title}`}</h1>
+        <h1 className="font-bold">{`${toTitleCase(category)}'s ${title}`}</h1>
         <h2>{price}</h2>
       </div>
       <div className="font-outfit flex justify-between items-center gap-2 px-5 mt-2">
