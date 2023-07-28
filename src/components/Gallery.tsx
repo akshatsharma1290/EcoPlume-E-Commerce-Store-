@@ -24,12 +24,12 @@ const Gallery = ({
 
   return (
     <>
-      <section className="favourites mt-10 flex flex-col items-center w-screen">
+      <section className="mt-10 flex flex-col items-center w-screen">
         <h2 className="font-outfit font-bold text-3xl tracking-wide  ">
           {galleryName}
         </h2>
         <hr className="border-2 border-slate-300 my-3 w-screen" />
-        <div className="w-screen overflow-auto mt-5">
+        <div className=" gallery w-screen overflow-auto mt-5">
           <div className="flex w-fit mx-4">
             {data?.results.map((data) => {
               return (

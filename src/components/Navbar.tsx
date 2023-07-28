@@ -17,15 +17,15 @@ const Navbar = () => {
             <img src={BrandLogo} className="h-14" alt="Logo Of EcoPlume" />
           </Link>
           <div className="icons flex gap-2">
-            <span className="search text-3xl cursor-pointer">
+            <Link to={"/search"} className="search text-3xl cursor-pointer">
               <CiSearch strokeWidth={1} />
-            </span>
-            <span className="user-account text-4xl cursor-pointer">
+            </Link>
+            <button className="user-account text-4xl cursor-pointer">
               <CiUser strokeWidth={1} />
-            </span>
-            <span onClick={()=>{dispatch(showCart())}}>
+            </button>
+            <button onClick={()=>{dispatch(showCart())}}>
             <Cart />
-            </span>
+            </button>
           </div>
         </nav>
         <CartPanel />
