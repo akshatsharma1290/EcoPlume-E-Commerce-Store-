@@ -19,7 +19,7 @@ export default async function getImages(
   query: string,
   perPage: number,
   orientation: Orientation,
-  page ?: number
+  pagination?: number
 ) {
   interface ImportMetaEnvWithUnsplashAccessKey extends ImportMetaEnv {
     VITE_UNSPLASH_ACCESS_KEY: string;
@@ -30,7 +30,7 @@ export default async function getImages(
   const apiUrl = "https://api.unsplash.com/search/photos";
 
   try {
-    const currentPage = page || Math.floor(Math.random() * 30 + 1);
+    const currentPage = pagination || Math.floor(Math.random() * 30 + 1);
 
     const response: AxiosResponse<ApiResponse> = await axios.get(
       `${apiUrl}?query=${encodeURIComponent(
