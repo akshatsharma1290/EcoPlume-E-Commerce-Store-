@@ -1,3 +1,5 @@
+import Buttons from "./Buttons";
+
 const ShoeAd = () => {
   return (
     <>
@@ -14,12 +16,7 @@ const ShoeAd = () => {
             We've got you covered 10,000 steps covered , easy.
           </p>
           <div className="buttons space-x-3 flex w-full">
-            <button className="bg-slate-900 btn-hover border-2 border-black transition-all text-white px-4 py-3 w-1/2 cursor-pointer rounded-md uppercase">
-              Shop Men
-            </button>
-            <button className="bg-slate-900 btn-hover border-2 border-black transition-all text-white px-4 py-3 w-1/2 cursor-pointer rounded-md uppercase">
-              Shop Women
-            </button>
+          <Buttons color={"black"} text={"white"}/>
           </div>
         </div>
       </section>

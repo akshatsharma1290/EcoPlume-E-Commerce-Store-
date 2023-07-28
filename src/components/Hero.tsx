@@ -1,4 +1,6 @@
-  const Hero = () => {
+import Buttons from "./Buttons";
+
+const Hero = () => {
   return (
     <>
       <section className="hero relative">
@@ -17,13 +19,8 @@
               you.
             </h2>
             <div className="buttons space-x-3 flex">
-              <button className="bg-white text-black hover:bg-slate-900 hover:text-white px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all">
-                Shop Men
-              </button>
-              <button className="bg-white text-black hover:bg-slate-900 hover:text-white  px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all">
-                Shop Women
-              </button>
-            </div>{" "}
+              <Buttons color={"white"} text={"black"}/>
+            </div>
           </div>
         </section>
       </section>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/apiService";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { searchQuerySelector } from "../store/searchQuerySlice";
+import { searchQuerySelector, setSearchQuery } from "../store/searchQuerySlice";
 import Loader from "./Loader";
 import {
   generateTitle,
@@ -18,6 +18,7 @@ const SearchItems = () => {
   const dispatch = useAppDispatch();
   const pagination = useAppSelector(paginationSelector);
 
+
   useEffect(() => {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [pagination]);
@@ -25,6 +26,9 @@ const SearchItems = () => {
   useEffect(() => {
     dispatch(setPagination(1));
   }, [dispatch]);
+
+
+
 
   const perPage = 10;
   const orientation = "squarish";
