@@ -15,11 +15,9 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
   const dispatch = useAppDispatch();
 
   const productItems = useAppSelector(productSelector);
-  const { url, type, title } = productItems;
+  const { url, title } = productItems;
 
-  const shoesSizes = [5, 6, 7, 8, 9, 10, 11];
-  const clothesSizes = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
-  const suitableSize = type === "shoes" ? shoesSizes : clothesSizes;
+  const size = [5, 6, 7, 8, 9, 10, 11]
   const priceValue = Number(price.slice(1))
 
   const [activeSize, setActiveSize] = useState<number | string | null>(null);
@@ -50,14 +48,14 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
     }
   };
 
-  
+
   return (
     <>
       <div>
         <div className="mt-4 px-4 font-outfit flex flex-col">
           <p className="font-bold uppercase tracking-wide">Select Size : </p>
           <div className="flex gap-2 mt-2">
-            {suitableSize.map((item) => {
+            {size.map((item) => {
               return (
                 <div
                   className={`border text-lg w-1/4 h-[11vw] flex justify-center items-center transition-all ${

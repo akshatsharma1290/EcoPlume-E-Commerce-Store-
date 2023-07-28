@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 const initialState = {
-  query: "",
+  query: "Sneaker",
 };
 
 const searchQuerySlice = createSlice({

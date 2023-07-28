@@ -18,7 +18,8 @@ type Orientation = "landscape" | "portrait" | "squarish";
 export default async function getImages(
   query: string,
   perPage: number,
-  orientation: Orientation
+  orientation: Orientation,
+  page ?: number
 ) {
   interface ImportMetaEnvWithUnsplashAccessKey extends ImportMetaEnv {
     VITE_UNSPLASH_ACCESS_KEY: string;
@@ -29,11 +30,12 @@ export default async function getImages(
   const apiUrl = "https://api.unsplash.com/search/photos";
 
   try {
-    const page = Math.floor(Math.random() * 40 + 1);
+    const currentPage = page || Math.floor(Math.random() * 30 + 1);
+
     const response: AxiosResponse<ApiResponse> = await axios.get(
       `${apiUrl}?query=${encodeURIComponent(
         query
-      )}&per_page=${perPage}&page=${page}&orientation=${orientation}&client_id=${unsplashAccessKey}`
+      )}&per_page=${perPage}&page=${currentPage}&orientation=${orientation}&client_id=${unsplashAccessKey}`
     );
     return response.data;
   } catch (error) {

@@ -13,7 +13,6 @@ const SearchForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<FormInput>();
 
