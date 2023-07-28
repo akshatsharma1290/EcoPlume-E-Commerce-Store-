@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/apiService";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { searchQuerySelector, setSearchQuery } from "../store/searchQuerySlice";
+import { searchQuerySelector } from "../store/searchQuerySlice";
 import Loader from "./Loader";
 import {
   generateTitle,
