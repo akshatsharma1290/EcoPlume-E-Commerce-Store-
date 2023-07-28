@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/apiService";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -11,19 +12,29 @@ import {
 import generatePrice from "../utilities/generatePrice";
 import { Link } from "react-router-dom";
 import { setProductItems } from "../store/productSlice";
+import { paginationSelector, setPagination } from "../store/paginationSlice";
 
 const SearchItems = () => {
   const dispatch = useAppDispatch();
+  const pagination = useAppSelector(paginationSelector);
+
+  useEffect(() => {
+    window.scroll({ top: 0, behavior: "smooth" });
+  }, [pagination]);
+
+  useEffect(() => {
+    dispatch(setPagination(1));
+  }, [dispatch]);
 
   const perPage = 10;
   const orientation = "squarish";
-  const page = 1;
 
   const searchQueryValue = useAppSelector(searchQuerySelector);
 
   const searchQuery = useQuery({
-    queryKey: ["product", searchQueryValue, perPage, orientation, page],
-    queryFn: () => getImages(searchQueryValue, perPage, orientation, page),
+    queryKey: ["product", searchQueryValue, perPage, orientation, pagination],
+    queryFn: () =>
+      getImages(searchQueryValue, perPage, orientation, pagination),
     refetchOnWindowFocus: false,
     retry: 2,
     staleTime: 300000,
@@ -57,11 +68,7 @@ const SearchItems = () => {
                 }}
               >
                 <div>
-                  <img
-                    className="w-48"
-                    src={data.urls.regular}
-                    alt={data.alt_description}
-                  />
+                  <img src={data.urls.regular} alt={data.alt_description} />
                 </div>
                 <div className="p-2 pb-5">
                   <p className="font-bold">{generateTitle(category, title)}</p>
