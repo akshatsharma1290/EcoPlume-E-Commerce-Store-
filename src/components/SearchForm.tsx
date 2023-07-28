@@ -1,87 +1,59 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useAppDispatch} from "../hooks";
+import { useAppDispatch } from "../hooks";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { setSearchQuery } from "../store/searchQuerySlice";
+
+type FormInput = {
+  searchQuery: string;
+};
 
 const SearchForm = () => {
   const dispatch = useAppDispatch();
-  const [searchValidItems, setsearchValidItems] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInput>();
 
-  useEffect(() => {
-    if (inputValue.length > 0) {
-      const validItems = [
-        "Shoes",
-        "T-Shirts",
-        "Shirts",
-        "Pants",
-        "Socks",
-        "Pajamas",
-        "Hoodies",
-      ];
-
-      const items = validItems.filter((value) => {
-        return value.toLowerCase().includes(inputValue.toLowerCase());
-      });
-
-      setsearchValidItems(items);
-    } else {
-      setsearchValidItems([]);
-    }
-  }, [inputValue]);
-
-  const handleSubmit = (searchQueryValue: string) => {
-    dispatch(setSearchQuery(searchQueryValue));
-    setInputValue("");
-    setsearchValidItems([]);
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
+    const { searchQuery } = data;
+    dispatch(setSearchQuery(searchQuery));
   };
 
   return (
     <>
-      <section className="flex flex-col justify-center items-center gap-1">
-        <div className="flex items-center gap-2">
-          <input
-            className="w-[75vw] h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
-            type="text"
-            autoComplete="off"
-            placeholder="Enter Search Term"
-            value={inputValue}
-            onChange={handleSearch}
-            ref={inputRef}
-          />
-          <p
-            onClick={() => {
-              setInputValue("");
-            }}
-            className="text-slate-600 cursor-pointer"
-          >
-            cancel
-          </p>
-        </div>
-        <section className="flex mt-1 justify-center items-center gap-3">
-          <div className="w-[74vw] flex flex-col bg-slate-200 text-lg overflow-scroll">
-            {searchValidItems.map((value, index) => {
-              return (
-                <button
-                  key={index}
-                  className="h-12 border border-black"
-                  type="submit"
-                  onClick={() => {
-                    handleSubmit(value);
-                  }}
-                >
-                  {value}
-                </button>
-              );
-            })}
-          </div>
-          <p className="invisible">Cancel</p>
-        </section>
-      </section>
+      <form
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex justify-center items-center gap-3"
+      >
+        <input
+          className="w-[75vw] h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
+          type="text"
+          autoComplete="off"
+          placeholder="Enter Search Term"
+          {...register("searchQuery", { required: true, maxLength: 15 })}
+        />
+      <p
+        onClick={() => {
+          reset();
+        }}
+        className="text-slate-600 cursor-pointer"
+      >
+        cancel
+      </p>
+      </form>
+
+
+      <div className="err px-9 mt-1">
+        {errors.searchQuery?.type === "required" && (
+          <span className="text-red-500">This field is required.</span>
+        )}
+        {errors.searchQuery?.type === "maxLength" && (
+          <span className="text-red-500">Maximum length exceeded.</span>
+        )}
+      </div>
     </>
   );
 };
