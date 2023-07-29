@@ -37,6 +37,7 @@ export default async function getImages(
         query
       )}&per_page=${perPage}&page=${currentPage}&orientation=${orientation}&client_id=${unsplashAccessKey}`
     );
+
     return response.data;
   } catch (error) {
     // Handle error appropriately

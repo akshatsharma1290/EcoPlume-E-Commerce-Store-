@@ -26,6 +26,7 @@ const SearchFilters = () => {
 
   const toggleFilterPanel = () => {
     if (filterPanel.current) {
+      filterPanel.current.style.display = isPanelVisible ? "none" : "flex";
       filterPanel.current.style.right = isPanelVisible ? "-160vw" : "0";
       document.body.style.overflow = isPanelVisible ? "visible" : "hidden";
     }
@@ -62,7 +63,7 @@ const SearchFilters = () => {
     <>
       <section className="my-3 px-6 flex justify-between">
         <p className="text-lg font-medium">
-          {filtersCount > 0 ? filtersCount : "No"} Filters Applied
+          {filtersCount} Filters Applied
         </p>
         <div
           className="flex uppercase border-2 border-black rounded-full p-1 w-28 gap-3 justify-center text-sm font-bold cursor-pointer"
@@ -73,7 +74,7 @@ const SearchFilters = () => {
         </div>
       </section>
       <div
-        className="filterPanel absolute w-screen h-screen bg-transparent top-0 z-50  right-[-160vw] transition-all duration-75 flex justify-end"
+        className={`filterPanel fixed w-screen h-screen bg-transparent top-0 z-50  right-[-160vw] transition-all hidden duration-75 justify-end`}
         ref={filterPanel}
       >
         <div className="bg-white w-2/3 px-4 h-screen shadow-cover space-y-4 font-medium overflow-y-auto">
