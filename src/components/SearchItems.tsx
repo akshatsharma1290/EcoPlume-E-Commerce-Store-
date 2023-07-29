@@ -25,6 +25,8 @@ const SearchItems = () => {
   const filters = useAppSelector(filterSelector);
   const { category, price, shipping } = filters;
 
+
+
   useEffect(() => {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [pagination]);
@@ -38,6 +40,7 @@ const SearchItems = () => {
   const orientation = "squarish";
 
   const searchQueryValue = useAppSelector(searchQuerySelector);
+
 
   const searchQuery = useQuery({
     queryKey: ["product", searchQueryValue, perPage, orientation, pagination],

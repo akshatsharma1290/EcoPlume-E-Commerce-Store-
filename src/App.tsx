@@ -12,10 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/:productName" element={<ProductPage />}></Route>
-        <Route path="/search">
-          <Route index element={<Search />}></Route>
-          <Route path=":product" element={<Search />}></Route>
-        </Route>
+        <Route path="/search" element={<Search/>}></Route>
       </Routes>
     </>
   );
