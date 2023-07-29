@@ -7,7 +7,7 @@ type FilterTypes = {
     shipping? : "Free" | ""
 }
 
-const initialState : FilterTypes = {
+export const initialState : FilterTypes = {
     category : "",
     price : [],
     shipping : ""
