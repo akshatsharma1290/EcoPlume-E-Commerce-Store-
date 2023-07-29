@@ -27,6 +27,9 @@ export default {
       },
       animation : {
         load : 'load 2s cubic-bezier(.62,.05,.37,.61) infinite'
+      },
+      boxShadow : {
+        "cover" : "0px 0px 0px 53vw #1514148a"
       }
     },
   },
