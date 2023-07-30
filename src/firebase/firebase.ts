@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore} from "firebase/firestore";
+
 
 interface ImportMetaEnvWithFirebase extends ImportMetaEnv {
   VITE_FIREBASE_API_KEY: string;
@@ -21,4 +24,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export default app;
+
+export const auth = getAuth(app)
+export const firestore = getFirestore(app)
+
+

@@ -22,10 +22,14 @@ const cartSlice = createSlice({
     decrementByNumber: (state, action: PayloadAction<number>) => {
       state.value -= action.payload;
     },
+    setCartValue: (state, action: PayloadAction<number>) => {
+      state.value = action.payload;
+    },
   },
 });
 
-export const { incrementCart, decrementCart, decrementByNumber } =
+export const { incrementCart, decrementCart, decrementByNumber , setCartValue } =
   cartSlice.actions;
 export const cartSelector = (state: RootState) => state.cart.value;
 export default cartSlice.reducer;
+
