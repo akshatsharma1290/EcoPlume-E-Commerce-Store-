@@ -4,8 +4,6 @@ import { useAppDispatch } from "../hooks";
 import { useAppSelector } from "../hooks";
 import { productSelector } from "../store/productSlice";
 import { showCart } from "../store/cartPageTransform";
-import { incrementCart } from "../store/cartSlice";
-import { incrementCheckoutPrice } from "../store/checkoutPriceSlice";
 
 type SizeAndCartPanelProps = {
   price: string;
@@ -41,8 +39,6 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
           quantity: 1,
         })
       );
-      dispatch(incrementCart());
-      dispatch(incrementCheckoutPrice(priceValue))
       dispatch(showCart());
       e.currentTarget.blur();
     }

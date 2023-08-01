@@ -6,6 +6,7 @@ type ProductState = {
   type: string;
   product: string;
   title: string;
+  price : string
 };
 
 const getInitialProductState = (): ProductState => {
@@ -18,6 +19,7 @@ const getInitialProductState = (): ProductState => {
     type: "",
     product: "",
     title: "",
+    price : ""
   };
 };
 

@@ -25,8 +25,6 @@ const SearchItems = () => {
   const filters = useAppSelector(filterSelector);
   const { category, price, shipping } = filters;
 
-
-
   useEffect(() => {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [pagination]);
@@ -35,12 +33,10 @@ const SearchItems = () => {
     dispatch(setPagination(1));
   }, [dispatch]);
 
-
   const perPage = 10;
   const orientation = "squarish";
 
   const searchQueryValue = useAppSelector(searchQuerySelector);
-
 
   const searchQuery = useQuery({
     queryKey: ["product", searchQueryValue, perPage, orientation, pagination],
@@ -92,8 +88,7 @@ const SearchItems = () => {
             const category = randomCategory();
             const title = randomTitle();
             const price = generatePrice();
-            if(validItem(toTitleCase(category), Number(price.slice(1)))){
-
+            if (validItem(toTitleCase(category), Number(price.slice(1)))) {
               return (
                 <Link
                   to={`/products/${title}?category=${category}`}
@@ -106,6 +101,7 @@ const SearchItems = () => {
                         type: searchQueryValue,
                         product: searchQueryValue,
                         title: title,
+                        price: price,
                       })
                     );
                   }}
@@ -114,11 +110,13 @@ const SearchItems = () => {
                     <img src={data.urls.regular} alt={data.alt_description} />
                   </div>
                   <div className="p-2 pb-5">
-                    <p className="font-bold">{generateTitle(category, title)}</p>
+                    <p className="font-bold">
+                      {generateTitle(category, title)}
+                    </p>
                     <p>{price}</p>
                   </div>
                 </Link>
-              )
+              );
             }
           })
         ) : (

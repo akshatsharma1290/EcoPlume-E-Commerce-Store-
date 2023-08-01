@@ -1,14 +1,25 @@
+import { useEffect } from "react";
 import AdditionalLinks from "../components/AdditionalLinks";
 import CartHeader from "../components/CartHeader";
 import CartItems from "../components/CartItems";
 import CheckoutPanel from "../components/CheckoutPanel";
-import { useAppSelector } from "../hooks";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { cartItemsSelector } from "../store/cartItemsSlice";
 import { cartPageTransformSelector } from "../store/cartPageTransform";
-import { cartSelector } from "../store/cartSlice";
+import { cartSelector, setCartValue } from "../store/cartSlice";
 
 const CartPanel = () => {
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(cartItemsSelector);
   const transformValue = useAppSelector(cartPageTransformSelector);
   const cartValue = useAppSelector(cartSelector);
+  useEffect(() => {
+    let totalCartItems = 0;
+    cartItems.map((item) => {
+      item.quantity ? (totalCartItems += item.quantity) : 0;
+    });
+    dispatch(setCartValue(totalCartItems));
+  }, [cartItems, dispatch]);
   return (
     <>
       <section

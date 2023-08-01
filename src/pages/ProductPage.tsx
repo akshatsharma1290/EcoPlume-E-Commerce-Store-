@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import ProductDescription from "../components/ProductDescription";
 import SizeAndCartPanel from "../components/SizeAndCartPanel";
-import generatePrice from "../utilities/generatePrice";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -17,11 +16,10 @@ const ProductPage = () => {
   const category = searchParam.get("category") || "";
 
   const productItems = useAppSelector(productSelector);
-  const { url, type, product, title } = productItems;
+  const { url, type, product, title , price} = productItems;
 
 
   const productCategory = `${toTitleCase(category)}'s ${toTitleCase(type)}`;
-  const price = generatePrice()
 
   return (
     <>

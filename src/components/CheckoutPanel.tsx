@@ -1,9 +1,28 @@
-import { useAppSelector } from "../hooks";
-import { checkoutPriceSelector } from "../store/checkoutPriceSlice";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { cartItemsSelector } from "../store/cartItemsSlice";
+import {
+  checkoutPriceSelector,
+  setCheckoutPrice,
+} from "../store/checkoutPriceSlice";
 
 const CheckoutPanel = () => {
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
   const shippingPrice = checkoutPrice > 75 ? "Free" : "$10";
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(cartItemsSelector);
+
+  useEffect(() => {
+    let totalPrice = 0;
+    cartItems.map((item) => {
+      if (item.price && item.quantity) {
+        const price = Number(item.price.slice(1));
+        totalPrice += price * item.quantity;
+      }
+    });
+
+    dispatch(setCheckoutPrice(totalPrice));
+  }, [cartItems , dispatch]);
   return (
     <>
       <section className="flex flex-col items-center">

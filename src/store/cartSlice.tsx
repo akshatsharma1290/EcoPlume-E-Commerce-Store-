@@ -13,22 +13,13 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    incrementCart: (state) => {
-      state.value += 1;
-    },
-    decrementCart: (state) => {
-      state.value -= 1;
-    },
-    decrementByNumber: (state, action: PayloadAction<number>) => {
-      state.value -= action.payload;
-    },
     setCartValue: (state, action: PayloadAction<number>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { incrementCart, decrementCart, decrementByNumber , setCartValue } =
+export const { setCartValue } =
   cartSlice.actions;
 export const cartSelector = (state: RootState) => state.cart.value;
 export default cartSlice.reducer;

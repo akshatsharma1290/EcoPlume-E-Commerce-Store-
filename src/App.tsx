@@ -19,6 +19,7 @@ function App() {
       console.log("Retrieving data for user with ID:", userId);
     }
   }, []);
+
   return (
     <>
       <Navbar />
