@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import toTitleCase from "../utilities/titleCase";
+import toTitleCase from "../../utilities/SmallFunctions/titleCase";
 
 type GalleryItemProps = {
   imageUrl: string;

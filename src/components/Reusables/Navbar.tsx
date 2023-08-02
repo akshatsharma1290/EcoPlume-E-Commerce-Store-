@@ -1,11 +1,11 @@
-import BrandLogo from "../assets/ecoplumeLogo.png";
+import BrandLogo from "../../assets/ecoplumeLogo.png";
 import { CiUser } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import Cart from "./Cart";
-import CartPanel from "../pages/CartPanel"
-import { useAppDispatch } from "../hooks";
-import { showCart } from "../store/cartPageTransform";
+import Cart from "../CartComponents/Cart";
+import CartPanel from "../../pages/CartPanel"
+import { useAppDispatch } from "../../store/hooks";
+import { showCart } from "../../store/slices/cartPageTransform";
 
 const Navbar = () => {
   const dispatch = useAppDispatch()

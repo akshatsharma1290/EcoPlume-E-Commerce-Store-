@@ -1,4 +1,4 @@
-import toTitleCase from "./titleCase";
+import toTitleCase from "../SmallFunctions/titleCase";
 
 export const randomCategory = () => {
   const num = Math.floor(Math.random() * 100 + 1);

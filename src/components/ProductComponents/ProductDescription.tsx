@@ -1,7 +1,7 @@
-import { useAppSelector } from "../hooks";
-import { checkoutPriceSelector } from "../store/checkoutPriceSlice";
-import generateRating from "../utilities/generateRating";
-import toTitleCase from "../utilities/titleCase";
+import { useAppSelector } from "../../store/hooks";
+import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
+import generateRating from "../../utilities/RandomGenerators/generateRating";
+import toTitleCase from "../../utilities/SmallFunctions/titleCase";
 
 type ProductDescriptionProps = {
     category : string

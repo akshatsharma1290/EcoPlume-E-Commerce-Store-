@@ -3,7 +3,7 @@ import { signInAnonymous } from "./firebase/auth/anonymousAuth";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./index.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Reusables/Navbar";
 import ProductPage from "./pages/ProductPage";
 import Search from "./pages/Search";
 

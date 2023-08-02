@@ -1,7 +1,7 @@
-import PaginationBoxes from "../components/PaginationBoxes";
-import SearchFilters from "../components/SearchFilters";
-import SearchForm from "../components/SearchForm";
-import SearchItems from "../components/SearchItems";
+import PaginationBoxes from "../components/SearchComponents/PaginationBoxes";
+import SearchFilters from "../components/SearchComponents/SearchFilters";
+import SearchForm from "../components/SearchComponents/SearchForm";
+import SearchItems from "../components/SearchComponents/SearchItems";
 
 const Search = () => {
   return (

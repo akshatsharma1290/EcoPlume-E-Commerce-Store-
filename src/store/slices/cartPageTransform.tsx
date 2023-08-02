@@ -14,7 +14,7 @@ const cartPageTransformSlice = createSlice({
     initialState,
     reducers : {
         showCart : (state)=>{
-            state.transform = 0 
+            state.transform = 0
         },
         hideCart : (state) => {
             state.transform = 100

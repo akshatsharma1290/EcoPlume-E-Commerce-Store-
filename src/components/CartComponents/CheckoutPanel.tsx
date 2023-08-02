@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { cartItemsSelector } from "../store/cartItemsSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { cartItemsSelector } from "../../store/slices/cartItemsSlice";
 import {
   checkoutPriceSelector,
   setCheckoutPrice,
-} from "../store/checkoutPriceSlice";
+} from "../../store/slices/checkoutPriceSlice";
 
 const CheckoutPanel = () => {
   const checkoutPrice = useAppSelector(checkoutPriceSelector);

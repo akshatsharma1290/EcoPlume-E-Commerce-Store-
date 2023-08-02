@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import AdditionalLinks from "../components/AdditionalLinks";
-import CartHeader from "../components/CartHeader";
-import CartItems from "../components/CartItems";
-import CheckoutPanel from "../components/CheckoutPanel";
-import { useAppSelector, useAppDispatch } from "../hooks";
-import { cartItemsSelector } from "../store/cartItemsSlice";
-import { cartPageTransformSelector } from "../store/cartPageTransform";
-import { cartSelector, setCartValue } from "../store/cartSlice";
+import AdditionalLinks from "../components/CartComponents/AdditionalLinks";
+import CartHeader from "../components/CartComponents/CartHeader";
+import CartItems from "../components/CartComponents/CartItems";
+import CheckoutPanel from "../components/CartComponents/CheckoutPanel";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { cartItemsSelector } from "../store/slices/cartItemsSlice";
+import { cartPageTransformSelector } from "../store/slices/cartPageTransform";
+import { cartSelector, setCartValue } from "../store/slices/cartSlice";
 
 const CartPanel = () => {
   const dispatch = useAppDispatch();

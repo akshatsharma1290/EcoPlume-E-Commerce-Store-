@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import getImages from "../utilities/apiService";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { searchQuerySelector } from "../store/searchQuerySlice";
-import Loader from "./Loader";
+import getImages from "../../utilities/api/apiService";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { searchQuerySelector } from "../../store/slices/searchQuerySlice";
+import Loader from "../Reusables/Loader";
 import {
   generateTitle,
   randomCategory,
   randomTitle,
-} from "../utilities/generateTitle";
-import generatePrice from "../utilities/generatePrice";
+} from "../../utilities/RandomGenerators/generateTitle";
+import generatePrice from "../../utilities/RandomGenerators/generatePrice";
 import { Link } from "react-router-dom";
-import { setProductItems } from "../store/productSlice";
-import { paginationSelector, setPagination } from "../store/paginationSlice";
-import { filterSelector, initialState } from "../store/filterSlice";
-import { checkoutPriceSelector } from "../store/checkoutPriceSlice";
-import toTitleCase from "../utilities/titleCase";
+import { setProductItems } from "../../store/slices/productSlice";
+import { paginationSelector, setPagination } from "../../store/slices/paginationSlice";
+import { filterSelector, initialState } from "../../store/slices/filterSlice";
+import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
+import toTitleCase from "../../utilities/SmallFunctions/titleCase";
 
 const SearchItems = () => {
   const dispatch = useAppDispatch();

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { addCartItem } from "../store/cartItemsSlice";
-import { useAppDispatch } from "../hooks";
-import { useAppSelector } from "../hooks";
-import { productSelector } from "../store/productSlice";
-import { showCart } from "../store/cartPageTransform";
+import { addCartItem } from "../../store/slices/cartItemsSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { useAppSelector } from "../../store/hooks";
+import { productSelector } from "../../store/slices/productSlice";
+import { showCart } from "../../store/slices/cartPageTransform";
 
 type SizeAndCartPanelProps = {
   price: string;
@@ -16,7 +16,6 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
   const { url, title } = productItems;
 
   const size = [5, 6, 7, 8, 9, 10, 11]
-  const priceValue = Number(price.slice(1))
 
   const [activeSize, setActiveSize] = useState<number | string | null>(null);
 

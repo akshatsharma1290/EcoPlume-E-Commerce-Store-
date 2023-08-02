@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { paginationSelector, setPagination } from "../store/paginationSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { paginationSelector, setPagination } from "../../store/slices/paginationSlice";
 
 const PaginationBoxes = () => {
   const pagination = useAppSelector(paginationSelector);

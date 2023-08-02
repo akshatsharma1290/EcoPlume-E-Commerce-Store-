@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import toTitleCase from "../utilities/titleCase";
-import { useAppDispatch } from "../hooks";
-import { setSearchQuery } from "../store/searchQuerySlice";
-import { setFilters } from "../store/filterSlice";
+import toTitleCase from "../../utilities/SmallFunctions/titleCase";
+import { useAppDispatch } from "../../store/hooks";
+import { setSearchQuery } from "../../store/slices/searchQuerySlice";
+import { setFilters } from "../../store/slices/filterSlice";
 
 type BreadcrumbProps = {
   product: string;
@@ -44,7 +44,7 @@ const Breadcrumb = ({
           className="underline"
           onClick={() => {
             dispatch(setSearchQuery(product));
-            dispatch(setFilters({category : ""}))
+            dispatch(setFilters({ category: "" }));
           }}
         >
           {toTitleCase(product)}

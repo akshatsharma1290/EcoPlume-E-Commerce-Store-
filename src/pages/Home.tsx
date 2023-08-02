@@ -1,11 +1,11 @@
-import Footer from "../components/Footer";
-import Gallery from "../components/Gallery";
-import Hero from "../components/Hero";
-import JoinList from "../components/JoinList";
-import ShoeAd from "../components/ShoeAd";
+import Footer from "../components/HomeComponents/Footer";
+import Gallery from "../components/GalleryComponents/Gallery";
+import Hero from "../components/HomeComponents/Hero";
+import JoinList from "../components/HomeComponents/JoinList";
+import ShoeAd from "../components/HomeComponents/ShoeAd";
 import { useQuery } from "@tanstack/react-query";
-import getImages from "../utilities/apiService";
-import Loader from "../components/Loader";
+import getImages from "../utilities/api/apiService";
+import Loader from "../components/Reusables/Loader";
 
 const Home = () => {
   const perPage = 6;

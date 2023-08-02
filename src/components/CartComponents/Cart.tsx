@@ -1,6 +1,6 @@
 import { BsCart } from "react-icons/bs";
-import { cartSelector } from "../store/cartSlice";
-import { useAppSelector } from "../hooks";
+import { cartSelector } from "../../store/slices/cartSlice";
+import { useAppSelector } from "../../store/hooks";
 
 const Cart = () => {
   const cartValue = useAppSelector(cartSelector);

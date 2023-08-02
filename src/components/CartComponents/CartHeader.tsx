@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { hideCart } from "../store/cartPageTransform";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { hideCart } from "../../store/slices/cartPageTransform";
 import { RxCross1 } from "react-icons/rx";
 import Cart from "./Cart";
-import { checkoutPriceSelector } from "../store/checkoutPriceSlice";
+import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
 import { useEffect, useState } from "react";
 
 const CartHeader = () => {

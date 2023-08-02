@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
-import toTitleCase from "../utilities/titleCase";
-import { useAppSelector } from "../hooks";
-import { productSelector } from "../store/productSlice";
+import toTitleCase from "../utilities/SmallFunctions/titleCase";
+import { useAppSelector } from "../store/hooks";
+import { productSelector } from "../store/slices/productSlice";
 import { useEffect } from "react";
-import Breadcrumb from "../components/Breadcrumb";
-import ProductDescription from "../components/ProductDescription";
-import SizeAndCartPanel from "../components/SizeAndCartPanel";
+import Breadcrumb from "../components/ProductComponents/Breadcrumb";
+import ProductDescription from "../components/ProductComponents/ProductDescription";
+import SizeAndCartPanel from "../components/ProductComponents/SizeAndCartPanel";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -16,10 +16,11 @@ const ProductPage = () => {
   const category = searchParam.get("category") || "";
 
   const productItems = useAppSelector(productSelector);
-  const { url, type, product, title , price} = productItems;
+  const { url, product, title , price} = productItems;
 
 
-  const productCategory = `${toTitleCase(category)}'s ${toTitleCase(type)}`;
+  const productCategory = `${toTitleCase(category)}'s ${toTitleCase(title)}`;
+
 
   return (
     <>

@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { setSearchQuery } from "../store/searchQuerySlice";
+import { setSearchQuery } from "../../store/slices/searchQuerySlice";
 import { BsSearch } from "react-icons/bs";
 
 type FormInput = {

@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import FilterIcon from "../assets/filters.svg";
+import FilterIcon from "../../assets/filters.svg";
 import { BsArrowRight } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { filterSelector, setFilters } from "../store/filterSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { filterSelector, setFilters } from "../../store/slices/filterSlice";
 import { RxCross1 } from "react-icons/rx";
 
 const SearchFilters = () => {

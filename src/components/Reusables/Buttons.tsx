@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../hooks";
-import { setSearchQuery } from "../store/searchQuerySlice";
+import { useAppDispatch } from "../../store/hooks";
+import { setSearchQuery } from "../../store/slices/searchQuerySlice";
 
 type ButtonsProps = {
   color: string;

@@ -1,7 +1,8 @@
 import GalleryItem from "./GalleryItem";
-import { ApiResponse } from "../utilities/apiService";
-import { useAppDispatch } from "../hooks";
-import { setProductItems } from "../store/productSlice";
+import { ApiResponse } from "../../utilities/api/apiService";
+import { useAppDispatch } from "../../store/hooks";
+import { setProductItems } from "../../store/slices/productSlice";
+import generatePrice from "../../utilities/RandomGenerators/generatePrice";
 
 type GalleryProps = {
   data?: ApiResponse;
@@ -42,6 +43,7 @@ const Gallery = ({
                         type: type,
                         product: product,
                         title: title,
+                        price : generatePrice()
                       })
                     );
                   }}

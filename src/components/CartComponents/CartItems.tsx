@@ -1,13 +1,13 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "../../store/hooks";
 import React from "react";
 import {
   addCartItem,
   cartItemsSelector,
   removeCartItem,
-} from "../store/cartItemsSlice";
-import { useAppDispatch } from "../hooks";
+} from "../../store/slices/cartItemsSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 const CartItems = () => {
   const cartItemDetails = useAppSelector(cartItemsSelector);

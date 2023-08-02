@@ -1,4 +1,4 @@
-import Buttons from "./Buttons";
+import Buttons from "../Reusables/Buttons";
 
 const ShoeAd = () => {
   return (
