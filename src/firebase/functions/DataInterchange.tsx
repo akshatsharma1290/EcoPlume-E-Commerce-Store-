@@ -1,12 +1,18 @@
 import { firestore } from "../firebase";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { CartItemsType } from "../../store/slices/cartItemsSlice";
 
-export const storeData = async (userId: string, data: any) => {
+type UserData = {
+  cartItems : CartItemsType[]
+}
+
+export const storeData = async (userId: string, data: UserData) => {
   try {
     const userDocRef = doc(
-      collection(firestore, "anonymous_users_data"),
+      collection(firestore, "users_data"),
       userId
     );
+
 
     await setDoc(userDocRef, data);
   } catch (error) {
@@ -14,11 +20,12 @@ export const storeData = async (userId: string, data: any) => {
   }
 };
 
+
 export const retrieveData = async (userId: string) => {
   try {
     // Get the reference to the document in the collection using the anonymous user ID
     const userDocRef = doc(
-      collection(firestore, "anonymous_users_data"),
+      collection(firestore, "users_data"),
       userId
     );
 
