@@ -1,24 +1,33 @@
 import { firestore } from "../firebase";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { CartItemsType } from "../../store/slices/cartItemsSlice";
 
-export const storeData = async (userId: string, data: any) => {
+
+type UserData = {
+  cartItems : CartItemsType[]
+}
+
+export const storeData = async (userId: string, data: UserData) => {
+
   try {
     const userDocRef = doc(
-      collection(firestore, "anonymous_users_data"),
+      collection(firestore, "users_data"),
       userId
     );
 
+
     await setDoc(userDocRef, data);
   } catch (error) {
-    console.log("Error storting data");
+    console.log("Error storting data" , error);
   }
 };
+
 
 export const retrieveData = async (userId: string) => {
   try {
     // Get the reference to the document in the collection using the anonymous user ID
     const userDocRef = doc(
-      collection(firestore, "anonymous_users_data"),
+      collection(firestore, "users_data"),
       userId
     );
 
@@ -28,7 +37,6 @@ export const retrieveData = async (userId: string) => {
     if (docSnapshot.exists()) {
       // Document exists, so you can access the data
       const userData = docSnapshot.data();
-      console.log("Retrieved data:", userData);
       return userData;
     } else {
       // Document doesn't exist
