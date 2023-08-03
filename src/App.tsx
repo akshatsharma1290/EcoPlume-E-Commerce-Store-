@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef  } from "react";
 import { signInAnonymous } from "./firebase/auth/anonymousAuth";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -13,6 +13,7 @@ import {
   setCartItem,
 } from "./store/slices/cartItemsSlice";
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
+import { dataRetrieved } from "./store/slices/booleanSlices";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -47,6 +48,7 @@ function App() {
         .then((data) => {
           const retrievedCartItems = data?.cartItems as CartItemsType[];
           dispatch(setCartItem(retrievedCartItems));
+          dispatch(dataRetrieved())
         })
         .catch((err) => {
           console.log(err);

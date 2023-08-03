@@ -44,7 +44,7 @@ const cartItemsSlice = createSlice({
         }
       }
     },
-    setCartItem : (state , action : PayloadAction<CartItemsType[]>) => {
+    setCartItem : (_ , action : PayloadAction<CartItemsType[]>) => {
       return action.payload
     }
   },
