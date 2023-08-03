@@ -19,7 +19,7 @@ const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
   reducers: {
-    addCartItem(state, action: PayloadAction<CartItemsType>) {
+    addCartItem : (state, action: PayloadAction<CartItemsType>) => {
       const { title, size } = action.payload;
       const itemToUpdate = state.find(
         (item) => item.title === title && item.size === size
@@ -30,7 +30,7 @@ const cartItemsSlice = createSlice({
         state.push(action.payload);
       }
     },
-    removeCartItem(state, action: PayloadAction<RemoveCart>) {
+    removeCartItem : (state, action: PayloadAction<RemoveCart>) => {
       const { title, size, removeAll } = action.payload;
       const itemToDelete = state.find(
         (item) => item.title === title && item.size === size
@@ -44,9 +44,12 @@ const cartItemsSlice = createSlice({
         }
       }
     },
+    setCartItem : (state , action : PayloadAction<CartItemsType[]>) => {
+      return action.payload
+    }
   },
 });
 
-export const { addCartItem, removeCartItem } = cartItemsSlice.actions;
+export const { addCartItem, removeCartItem , setCartItem} = cartItemsSlice.actions;
 export const cartItemsSelector = (state: RootState) => state.cartItems;
 export default cartItemsSlice.reducer;

@@ -6,13 +6,18 @@ import "./index.css";
 import Navbar from "./components/Reusables/Navbar";
 import ProductPage from "./pages/ProductPage";
 import Search from "./pages/Search";
-import { useAppSelector } from "./store/hooks";
-import { cartItemsSelector } from "./store/slices/cartItemsSlice";
-import { storeData } from "./firebase/functions/DataInterchange";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import {
+  CartItemsType,
+  cartItemsSelector,
+  setCartItem,
+} from "./store/slices/cartItemsSlice";
+import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
   const initialRender = useRef(true);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     // Check if the user ID is already stored in local storage
     const userId = localStorage.getItem("UserId");
@@ -26,20 +31,29 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-      return;
-    }
-    const userId = localStorage.getItem("UserId") || "";
-
-    storeData(userId, { cartItems })
-      .then(() => {
-        console.log("Data Stored");
-      })
-      .catch((err) => {
+    if (!initialRender.current) {
+      const userId = localStorage.getItem("UserId") || "";
+      storeData(userId, { cartItems }).catch((err) => {
         console.log(err);
       });
+    }
   }, [cartItems]);
+
+  useEffect(() => {
+    // The effect for retrieving data
+    const userId = localStorage.getItem("UserId") || "";
+    if (initialRender.current) {
+      retrieveData(userId)
+        .then((data) => {
+          const retrievedCartItems = data?.cartItems as CartItemsType[];
+          dispatch(setCartItem(retrievedCartItems));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      initialRender.current = false;
+    }
+  }, [dispatch]);
 
   return (
     <>

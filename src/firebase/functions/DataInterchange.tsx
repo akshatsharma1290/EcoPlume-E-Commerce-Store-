@@ -2,11 +2,13 @@ import { firestore } from "../firebase";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 import { CartItemsType } from "../../store/slices/cartItemsSlice";
 
+
 type UserData = {
   cartItems : CartItemsType[]
 }
 
 export const storeData = async (userId: string, data: UserData) => {
+
   try {
     const userDocRef = doc(
       collection(firestore, "users_data"),
@@ -16,7 +18,7 @@ export const storeData = async (userId: string, data: UserData) => {
 
     await setDoc(userDocRef, data);
   } catch (error) {
-    console.log("Error storting data");
+    console.log("Error storting data" , error);
   }
 };
 
@@ -35,7 +37,6 @@ export const retrieveData = async (userId: string) => {
     if (docSnapshot.exists()) {
       // Document exists, so you can access the data
       const userData = docSnapshot.data();
-      console.log("Retrieved data:", userData);
       return userData;
     } else {
       // Document doesn't exist
