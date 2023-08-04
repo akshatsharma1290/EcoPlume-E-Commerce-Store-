@@ -2,7 +2,6 @@ import Footer from "../components/HomeComponents/Footer";
 import Gallery from "../components/GalleryComponents/Gallery";
 import Hero from "../components/HomeComponents/Hero";
 import JoinList from "../components/HomeComponents/JoinList";
-import ShoeAd from "../components/HomeComponents/ShoeAd";
 import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/api/apiService";
 import Loader from "../components/Reusables/Loader";
@@ -45,7 +44,6 @@ const Home = () => {
           type="shoes"
           product="sneaker"
         />
-        <ShoeAd />
         <Gallery
           data={shirtQuery.data}
           defaultText="Sea Tee"
