@@ -49,11 +49,11 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
       <div>
         <div className="mt-4 px-4 font-outfit flex flex-col">
           <p className="font-bold uppercase tracking-wide">Select Size : </p>
-          <div className="flex gap-2 mt-2">
+          <div className="flex gap-2 mt-2 ">
             {size.map((item) => {
               return (
                 <div
-                  className={`border text-lg w-1/4 h-[11vw] flex justify-center items-center transition-all ${
+                  className={`border-2 text-lg w-1/4 md:w-52 h-[11vw] md:h-[7vw] cursor-pointer flex justify-center items-center transition-all ${
                     activeSize === item
                       ? "bg-slate-900 text-white"
                       : "bg-transparent text-black"

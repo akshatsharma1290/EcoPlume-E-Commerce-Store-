@@ -32,13 +32,13 @@ const ProductPage = () => {
           productCategory={productCategory}
           category={category}
         />
-        <ProductDescription
-          category={category}
-          title={title}
-          Imgurl={url}
-          price={price}
-        />
-        <SizeAndCartPanel price={price} />
+          <ProductDescription
+            category={category}
+            title={title}
+            Imgurl={url}
+            price={price}
+          />
+          <SizeAndCartPanel price={price} />
       </section>
     </>
   );

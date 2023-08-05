@@ -61,7 +61,7 @@ const SearchFilters = () => {
 
   return (
     <>
-      <section className="my-3 px-6 flex justify-between">
+      <section className="my-3 px-6 sm:px-[10%] flex justify-between">
         <p className="text-lg font-medium">
           {filtersCount} Filters Applied
         </p>
@@ -74,12 +74,12 @@ const SearchFilters = () => {
         </div>
       </section>
       <div
-        className={`filterPanel fixed w-screen h-screen bg-transparent top-0 z-50  right-[-160vw] transition-all hidden duration-75 justify-end`}
+        className={`filterPanel fixed w-screen h-screen bg-transparent top-0 z-50 right-[-160vw] transition-all hidden duration-75 justify-end`}
         ref={filterPanel}
       >
         <div className="bg-white w-2/3 px-4 h-screen shadow-cover space-y-4 font-medium overflow-y-auto">
           <div
-            className="text-4xl py-3 border-b border-slate-500"
+            className="text-4xl py-3 border-b border-slate-500 cursor-pointer"
             onClick={toggleFilterPanel}
           >
             <BsArrowRight />
@@ -87,7 +87,7 @@ const SearchFilters = () => {
           <div className="border-b border-slate-500 pb-4">
             <div className="flex justify-between mb-1">
               <p className="text-xl font-bold">Filter By:</p>
-             {filtersCount > 0 ? <p className="underline flex items-center gap-1 text-base"
+             {filtersCount > 0 ? <p className="underline cursor-pointer flex items-center gap-1 text-base"
              onClick={()=>(dispatch(setFilters({category : "" , price : [] , shipping : ""})))}
              >Clear All</p> : null}
             </div>
@@ -96,7 +96,7 @@ const SearchFilters = () => {
                 <span className="flex items-center gap-2 p-2 border border-slate-500">
                   {category}{" "}
                   <span
-                    className="p-1 rounded-full bg-slate-300"
+                    className="p-1 rounded-full bg-slate-300 cursor-pointer"
                     onClick={removeCategory}
                   >
                     <RxCross1 />
@@ -112,7 +112,7 @@ const SearchFilters = () => {
                       >
                         {item}{" "}
                         <span
-                          className="p-1 rounded-full bg-slate-300"
+                          className="p-1 rounded-full bg-slate-300 cursor-pointer"
                           onClick={() => {
                             removePriceFilter(index);
                           }}
@@ -127,7 +127,7 @@ const SearchFilters = () => {
                 <span className="flex items-center gap-2 p-2 border border-slate-500">
                   {shipping}{" "}
                   <span
-                    className="p-1 rounded-lg bg-slate-400"
+                    className="p-1 rounded-full bg-slate-300 cursor-pointer"
                     onClick={removeShipping}
                   >
                     <RxCross1 />

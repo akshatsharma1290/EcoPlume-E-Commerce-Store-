@@ -3,6 +3,7 @@ import { ApiResponse } from "../../utilities/api/apiService";
 import { useAppDispatch } from "../../store/hooks";
 import { setProductItems } from "../../store/slices/productSlice";
 import generatePrice from "../../utilities/RandomGenerators/generatePrice";
+import { FaChevronRight , FaChevronLeft } from "react-icons/fa";
 
 type GalleryProps = {
   data?: ApiResponse;
