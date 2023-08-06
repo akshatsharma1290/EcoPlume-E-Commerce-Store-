@@ -19,7 +19,7 @@ const PaginationBoxes = () => {
           key={i}
           className={`${
             pagination === i ? "bg-white text-black" : "bg-black text-white"
-          } px-5 py-2 font-bold text-lg border-2 border-black transition-all`}
+          } px-5 py-2 font-bold text-lg border-2 cursor-pointer border-black transition-all`}
           onClick={() => {
             updatePagination(i);
           }}

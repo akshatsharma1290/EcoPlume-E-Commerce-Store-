@@ -25,7 +25,7 @@ const CheckoutPanel = () => {
   }, [cartItems , dispatch]);
   return (
     <>
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center px-3">
         <div className="border-b w-11/12 my-5 pb-5 border-slate-500 flex flex-col gap-3">
           <div className="flex justify-between text-base tracking-wide font-medium">
             <p>Subtotal</p>

@@ -93,7 +93,7 @@ const SearchItems = () => {
                 <Link
                   to={`/products/${title}?category=${category}`}
                   key={data.id}
-                  className="flex flex-col w-[42%] shadow-lg shadow-slate-300"
+                  className="flex flex-col w-40 sm:w-52 md:w-60 xl:w-72 shadow-lg shadow-slate-300"
                   onClick={() => {
                     dispatch(
                       setProductItems({

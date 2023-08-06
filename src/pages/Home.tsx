@@ -39,16 +39,14 @@ const Home = () => {
         <Hero />
         <Gallery
           data={shoesQuery.data}
-          defaultText="Tree Runner"
           galleryName="Best Shoes"
           type="shoes"
           product="sneaker"
         />
         <Gallery
           data={shirtQuery.data}
-          defaultText="Sea Tee"
           galleryName="Best Clothes"
-          type="clothes"
+          type="T-Shirts"
           product="t-shirts"
         />
         <JoinList />

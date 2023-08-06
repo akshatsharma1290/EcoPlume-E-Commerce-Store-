@@ -23,7 +23,7 @@ const CartPanel = () => {
   return (
     <>
       <section
-        className="cartPage h-screen w-screen bg-white absolute top-0 z-40 font-outfit transition-all"
+        className="cartPage h-screen overflow-auto w-screen bg-white absolute top-0 z-40 font-outfit transition-all pb-5"
         style={{ transform: `translateX(${transformValue}%)` }}
       >
         <CartHeader />

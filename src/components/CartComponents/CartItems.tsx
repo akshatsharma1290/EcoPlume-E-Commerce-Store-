@@ -36,7 +36,7 @@ const CartItems = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center text-lg">
         {cartItemDetails.map((item, index) => {
           const { title, size, imgUrl, price, quantity } = item;
           return index === 0 || item !== cartItemDetails[index - 1] ? (
@@ -55,7 +55,7 @@ const CartItems = () => {
                     <h3 className="">Size : {size}</h3>
                     <div className="mt-1 flex justify-between items-center px-2 w-28 h-7 border-[3px] border-slate-300">
                       <a
-                        className="text-lg"
+                        className="text-lg cursor-pointer"
                         onClick={() => {
                           handleCartItemDecrement(
                             title,
@@ -67,7 +67,7 @@ const CartItems = () => {
                       </a>
                       <p className="font-bold">{quantity}</p>
                       <a
-                        className="text-lg"
+                        className="text-lg cursor-pointer"
                         onClick={() => {
                           handleCartItemIncrement(
                             title,

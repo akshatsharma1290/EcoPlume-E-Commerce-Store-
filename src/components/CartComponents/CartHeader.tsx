@@ -24,21 +24,21 @@ const CartHeader = () => {
   return (
     <>
       <span
-        className="cross absolute top-8 left-5 text-3xl"
+        className="cross absolute top-8 left-5 text-3xl cursor-pointer"
         onClick={() => {
           dispatch(hideCart());
         }}
       >
         <RxCross1 strokeWidth={1} />
       </span>
-      <div className="mt-7 gap-4 text-sm flex flex-col items-center w-screen">
+      <div className="mt-7 gap-4 text-sm md:text-base flex flex-col items-center w-screen">
         <Cart />
         <p>
           {checkoutPrice < freeShippingPrice
             ? `You're $${shippingPrice} away from shipping`
             : `Congrats! You got free standard shipping.`}
         </p>
-        <div className="range bg-slate-200 w-5/6 h-2 rounded-lg">
+        <div className="range bg-slate-200 w-11/12 h-2 rounded-lg">
           <div
             className="bg-slate-500 rounded-lg h-full transition-all duration-700"
             style={{ width: `${shippingPriceInPercent}%` }}

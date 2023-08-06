@@ -22,7 +22,7 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
 
   return (
     <>
-      <div className="item w-80 mx-1 overflow-hidden">
+      <div className="item w-80 mx-1 overflow-hidden select-none">
         <picture>
           <img
             className="w-80 h-56 rounded-tr-md rounded-tl-md transition-all"
