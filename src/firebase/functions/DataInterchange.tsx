@@ -24,6 +24,10 @@ export const storeData = async (userId: string, data: UserData) => {
 
 
 export const retrieveData = async (userId: string) => {
+  if (!userId) {
+    console.log("Error: User ID is empty.");
+    return;
+  }
   try {
     // Get the reference to the document in the collection using the anonymous user ID
     const userDocRef = doc(
