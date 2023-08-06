@@ -19,13 +19,10 @@ const CarouselArrow = ({ transformValue, setTransformValue }: ArrowProps) => {
     const itemsVisible = Math.floor(windowWidth / itemSize);
     itemsCanScroll.current = Math.ceil(totalItems / itemsVisible);
     visibleItems.current = itemsVisible;
-    console.log(itemsVisible, itemsCanScroll.current);
   }, []);
 
   const handleLeftArrow = () => {
     if (currentItem === 0) return;
-    console.log("Left");
-
     setTransformValue(transformValue + itemSize);
     setCurrentItem(currentItem - 1);
   };
@@ -34,7 +31,6 @@ const CarouselArrow = ({ transformValue, setTransformValue }: ArrowProps) => {
     console.log(currentItem);
     if (itemsCanScroll.current) {
       if (currentItem > itemsCanScroll.current) return;
-      console.log("Right");
       setTransformValue(transformValue - itemSize);
       setCurrentItem(currentItem + 1);
     }

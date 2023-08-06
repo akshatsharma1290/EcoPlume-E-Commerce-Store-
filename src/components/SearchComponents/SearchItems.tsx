@@ -23,20 +23,21 @@ const SearchItems = () => {
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
   const freeShippingPrice = 75;
   const filters = useAppSelector(filterSelector);
+  const searchQueryValue = useAppSelector(searchQuerySelector);
   const { category, price, shipping } = filters;
 
   useEffect(() => {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [pagination]);
 
-  useEffect(() => {
-    dispatch(setPagination(1));
-  }, [dispatch]);
+  useEffect(()=>{
+  dispatch(setPagination(1))
+  } , [searchQueryValue , dispatch])
 
   const perPage = 10;
   const orientation = "squarish";
 
-  const searchQueryValue = useAppSelector(searchQuerySelector);
+
 
   const searchQuery = useQuery({
     queryKey: ["product", searchQueryValue, perPage, orientation, pagination],
