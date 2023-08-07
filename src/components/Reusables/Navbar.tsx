@@ -20,9 +20,9 @@ const Navbar = () => {
             <Link to={"/search"} className="search text-3xl cursor-pointer">
               <CiSearch strokeWidth={1} />
             </Link>
-            <button className="user-account text-4xl cursor-pointer">
+            <Link to={"/auth"} className="user-account text-4xl cursor-pointer">
               <CiUser strokeWidth={1} />
-            </button>
+            </Link>
             <button onClick={()=>{dispatch(showCart())}}>
             <Cart />
             </button>

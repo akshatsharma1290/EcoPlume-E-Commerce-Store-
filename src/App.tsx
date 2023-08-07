@@ -14,6 +14,8 @@ import {
 } from "./store/slices/cartItemsSlice";
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
 import { dataRetrieved } from "./store/slices/booleanSlices";
+import AuthPage from "./pages/AuthPage";
+
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -64,6 +66,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/:productName" element={<ProductPage />}></Route>
         <Route path="/search" element={<Search />}></Route>
+        <Route path="/auth" element={<AuthPage />}></Route>
       </Routes>
     </>
   );
