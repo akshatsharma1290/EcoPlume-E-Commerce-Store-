@@ -15,6 +15,8 @@ import {
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
 import { dataRetrieved } from "./store/slices/booleanSlices";
 import AuthPage from "./pages/AuthPage";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebase";
 
 
 function App() {
@@ -32,6 +34,13 @@ function App() {
       console.log("Retrieving data for user with ID:", userId);
     }
   }, []);
+
+  useEffect(()=>{
+  onAuthStateChanged(auth , (user)=>{
+    console.log(user);
+  })
+  }, [])
+
 
   useEffect(() => {
     if (!initialRender.current) {
