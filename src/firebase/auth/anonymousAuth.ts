@@ -6,7 +6,7 @@ export const signInAnonymous = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         // Store the user ID in local storage
-        localStorage.setItem('anonymousUserId', user.uid);
+        localStorage.setItem('UserId', user.uid);
       })
       .catch((error) => {
         console.error('Anonymous sign-in failed:', error);
