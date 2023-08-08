@@ -11,7 +11,6 @@ export const createNewUserWithEmailAndPass = async (
         email,
         password
       );
-      localStorage.setItem("UserId", userCredential.user.uid);
       return userCredential.user;
     } catch (error) {
       console.log(error, "Sign Up Failed");

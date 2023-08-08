@@ -1,8 +1,9 @@
-import { useEffect, useRef  } from "react";
+import { useEffect, useRef } from "react";
 import { signInAnonymous } from "./firebase/auth/anonymousAuth";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./index.css";
+import { useState } from "react";
 import Navbar from "./components/Reusables/Navbar";
 import ProductPage from "./pages/ProductPage";
 import Search from "./pages/Search";
@@ -18,55 +19,53 @@ import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 
-
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
   const initialRender = useRef(true);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    // Check if the user ID is already stored in local storage
-    const userId = localStorage.getItem("UserId");
-    if (!userId) {
-      // If the user ID is not in local storage, sign in anonymously
-      signInAnonymous();
-    } else {
-      // If the user ID is available, you can use it to retrieve the user's data from Firebase
-      console.log("Retrieving data for user with ID:", userId);
-    }
-  }, []);
-
-  useEffect(()=>{
-  onAuthStateChanged(auth , (user)=>{
-    console.log(user);
-  })
-  }, [])
-
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    if (!initialRender.current) {
-      const userId = localStorage.getItem("UserId") || "";
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userId = auth.currentUser?.uid;
+        userId ? setUserId(userId) : null;
+        console.log(user);
+      } else {
+        const AccountProcessing = "AccountProcessing" in sessionStorage;
+        if (!AccountProcessing) {
+          signInAnonymous();
+        }
+      }
+    });
+  }, [userId]);
+
+  useEffect(() => {
+    if (!initialRender.current && userId) {
       storeData(userId, { cartItems }).catch((err) => {
-        console.log(err);
+        console.log(err, "Data Not Stored.");
       });
     }
-  }, [cartItems]);
+  }, [cartItems, userId]);
 
   useEffect(() => {
-    // The effect for retrieving data
-    const userId = localStorage.getItem("UserId") || "";
-    if (initialRender.current) {
+    if (initialRender.current && userId) {
       retrieveData(userId)
         .then((data) => {
           const retrievedCartItems = data?.cartItems as CartItemsType[];
           dispatch(setCartItem(retrievedCartItems));
-          dispatch(dataRetrieved())
+          dispatch(dataRetrieved());
         })
         .catch((err) => {
           console.log(err);
         });
       initialRender.current = false;
     }
-  }, [dispatch]);
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   return (
     <>
