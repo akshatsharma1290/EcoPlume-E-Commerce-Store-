@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { ShiftDataInNewAccount, deleteAnonymousAccount, signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useAppSelector } from "../../store/hooks";
 import { cartItemsSelector } from "../../store/slices/cartItemsSlice";
+import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
 
 export type AuthInput = {
   email: string;
@@ -11,7 +11,7 @@ export type AuthInput = {
 };
 
 const AuthForm = () => {
-  const cartItems = useAppSelector(cartItemsSelector)
+  const cartItems = useAppSelector(cartItemsSelector);
   const {
     register,
     handleSubmit,
@@ -21,25 +21,19 @@ const AuthForm = () => {
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
     console.log(email, password);
-    deleteAnonymousAccount()
-    signUpWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log(user);
-        ShiftDataInNewAccount(cartItems)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    signUpWithEmailAndPassword(email, password, cartItems).catch((err)=>{console.log(err , "Sign Up Failed.");
+    })
   };
 
   const handleSignOut = () => {
     signOut(auth)
-    .then(()=>{
-      console.log("signed Out");
-
-    }).catch((err) => {console.log(err , "Not signed out.");
-    })
-  }
+      .then(() => {
+        console.log("signed Out");
+      })
+      .catch((err) => {
+        console.log(err, "Not signed out.");
+      });
+  };
 
   return (
     <>
