@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
 
 export type AuthInput = {
   email: string;
@@ -14,8 +17,18 @@ const AuthForm = () => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-    console.log(email , password);
+    signUpWithEmailAndPassword(email, password).catch((err)=>{console.log(err , "Sign Up Failed.");
+    })
+  };
 
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("signed Out");
+      })
+      .catch((err) => {
+        console.log(err, "Not signed out.");
+      });
   };
 
   return (
@@ -55,6 +68,7 @@ const AuthForm = () => {
             </button>
           </div>
         </form>
+        <button onClick={handleSignOut}>SignOut</button>
         <div className="err px-9 mt-1 flex flex-col items-center text-lg">
           {errors.email?.type === "required" && (
             <span className="text-red-500">Email is required.</span>
