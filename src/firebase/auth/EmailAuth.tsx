@@ -6,6 +6,7 @@ export const signUpWithEmailAndPassword = async (email : string , password : str
   createNewUserWithEmailAndPass(email, password)
     .then((user) => {
       console.log(user);
+      sessionStorage.clear()
     })
     .catch((err) => {
       console.log(err);

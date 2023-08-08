@@ -17,7 +17,6 @@ const AuthForm = () => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-    console.log(email, password);
     signUpWithEmailAndPassword(email, password).catch((err)=>{console.log(err , "Sign Up Failed.");
     })
   };
