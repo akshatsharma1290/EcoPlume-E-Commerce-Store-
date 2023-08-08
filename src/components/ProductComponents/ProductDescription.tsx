@@ -27,7 +27,7 @@ const ProductDescription = ({category , title , Imgurl , price} : ProductDescrip
           Free Shipping
         </span> : null}
       </div>
-      <div className="mt-5 pl-2 md:flex md:justify-center">
+      <div className="mt-5 md:flex md:justify-center">
         <img className="md:w-2/4" src={Imgurl} alt={title} />
       </div>
     </>
