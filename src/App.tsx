@@ -21,49 +21,47 @@ import { setLoading } from "./store/slices/loadingSlice";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
-  const initialRender = useRef(true);
   const dispatch = useAppDispatch();
   const [userId, setUserId] = useState("");
-  const firstSession = useRef(true)
+  const firstSession = useRef(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
-        firstSession.current = false
-        console.log(user , firstSession.current);
+        firstSession.current = false;
+        console.log(user);
       } else {
         if (firstSession.current) {
           signInAnonymous();
-          firstSession.current = false
+          firstSession.current = false;
         }
       }
     });
   }, [userId]);
 
   useEffect(() => {
-    if (!initialRender.current && userId) {
+    if (userId) {
+      retrieveData(userId)
+        .then((data) => {
+          const retrievedCartItems = data?.cartItems as CartItemsType[];
+          dispatch(setCartItem(retrievedCartItems));
+          dispatch(setLoading(false));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (userId && cartItems.length > 0) {
       storeData(userId, { cartItems }).catch((err) => {
         console.log(err, "Data Not Stored.");
       });
     }
   }, [cartItems, userId]);
-
-  useEffect(() => {
-    if (initialRender.current && userId) {
-      retrieveData(userId)
-        .then((data) => {
-          const retrievedCartItems = data?.cartItems as CartItemsType[];
-          dispatch(setCartItem(retrievedCartItems));
-          dispatch(setLoading(false))
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      initialRender.current = false;
-    }
-  }, [dispatch, userId]);
 
   useEffect(() => {
     localStorage.clear();

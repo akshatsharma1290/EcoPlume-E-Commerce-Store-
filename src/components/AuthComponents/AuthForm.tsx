@@ -1,25 +1,20 @@
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
-import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
-import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
-import Loader from "../Reusables/Loader";
+import {
+  logInWithEmailAndPassword,
+  signUpWithEmailAndPassword,
+} from "../../firebase/auth/EmailAuth";
 
 export type AuthInput = {
   email: string;
   password: string;
 };
 
-const AuthForm = () => {
-  const [accountProcessing, setAccountProcessing] = useState(false);
+type AuthenticationForm = {
+  authMode: string;
+};
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      user ? setAccountProcessing(false) : setAccountProcessing(true);
-    });
-  }, []);
-
+const AuthForm = ({ authMode }: AuthenticationForm) => {
   const {
     register,
     handleSubmit,
@@ -29,32 +24,28 @@ const AuthForm = () => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-    signUpWithEmailAndPassword(email, password)
-      .then(() => {
-        reset();
-      })
-      .catch((err) => {
-        console.log(err, "Sign Up Failed.");
-      });
-  };
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Signed Out");
-        signInAnonymous();
-      })
-      .catch((err) => {
-        console.log(err, "Not signed out.");
-      });
+    authMode === "Sign Up"
+      ? signUpWithEmailAndPassword(email, password)
+          .then(() => {
+            reset();
+          })
+          .catch((err) => {
+            console.log(err, "Sign Up Failed.");
+          })
+      : logInWithEmailAndPassword(email, password)
+          .then(() => {
+            reset();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   };
 
   return (
     <>
-    {accountProcessing ? <Loader/> : null}
       {auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
-          <h1 className="font-bold text-2xl">Sign Up</h1>
+          <h1 className="font-bold text-2xl">{authMode}</h1>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col w-[90vw] gap-3 mt-3">
@@ -84,7 +75,7 @@ const AuthForm = () => {
                 type="submit"
                 className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2"
               >
-                Sign Up
+                {authMode}
               </button>
             </div>
           </form>
@@ -97,22 +88,7 @@ const AuthForm = () => {
             )}
           </div>
         </section>
-      ) : (
-        <>
-          <section className="flex flex-col text-center px-5">
-            <p className="text-lg">
-              You Are Currently Logged In As{" "}
-              <span className="underline">{auth.currentUser?.email}</span>.
-            </p>
-            <button
-              onClick={handleSignOut}
-              className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2"
-            >
-              SignOut
-            </button>
-          </section>
-        </>
-      )}
+      ) : null}
     </>
   );
 };
