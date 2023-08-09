@@ -27,6 +27,7 @@ const AuthForm = () => {
     signOut(auth)
       .then(() => {
         console.log("Signed Out");
+        signInAnonymous()
       })
       .catch((err) => {
         console.log(err, "Not signed out.");
