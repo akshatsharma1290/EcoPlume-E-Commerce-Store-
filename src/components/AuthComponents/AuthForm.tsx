@@ -10,6 +10,7 @@ export type AuthInput = {
 };
 
 const AuthForm = () => {
+
   const {
     register,
     handleSubmit,
@@ -27,7 +28,7 @@ const AuthForm = () => {
     signOut(auth)
       .then(() => {
         console.log("Signed Out");
-        signInAnonymous()
+        signInAnonymous();
       })
       .catch((err) => {
         console.log(err, "Not signed out.");

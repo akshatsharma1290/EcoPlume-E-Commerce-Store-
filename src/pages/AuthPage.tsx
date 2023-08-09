@@ -1,11 +1,24 @@
-import AuthForm from "../components/AuthComponents/AuthForm"
+import AuthForm from "../components/AuthComponents/AuthForm";
+import Loader from "../components/Reusables/Loader";
+import { useAppSelector } from "../store/hooks";
+import { loadingSelector } from "../store/slices/loadingSlice";
 
 const AuthPage = () => {
-  return (
-   <section className="mt-24 font-outfit flex justify-center">
-    <AuthForm/>
-   </section>
-  )
-}
+  const isLoading = useAppSelector(loadingSelector);
 
-export default AuthPage
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <section className="mt-24 font-outfit flex justify-center">
+            <AuthForm />
+          </section>
+        </>
+      )}
+    </>
+  );
+};
+
+export default AuthPage;

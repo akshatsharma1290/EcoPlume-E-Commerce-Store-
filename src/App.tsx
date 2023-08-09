@@ -14,10 +14,10 @@ import {
   setCartItem,
 } from "./store/slices/cartItemsSlice";
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
-import { dataRetrieved } from "./store/slices/booleanSlices";
 import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
+import { setLoading } from "./store/slices/loadingSlice";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -56,7 +56,7 @@ function App() {
         .then((data) => {
           const retrievedCartItems = data?.cartItems as CartItemsType[];
           dispatch(setCartItem(retrievedCartItems));
-          dispatch(dataRetrieved());
+          dispatch(setLoading(false))
         })
         .catch((err) => {
           console.log(err);
