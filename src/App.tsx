@@ -24,17 +24,19 @@ function App() {
   const initialRender = useRef(true);
   const dispatch = useAppDispatch();
   const [userId, setUserId] = useState("");
+  const firstSession = useRef(true)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
-        console.log(user);
+        firstSession.current = false
+        console.log(user , firstSession.current);
       } else {
-        const AccountProcessing = "AccountProcessing" in sessionStorage;
-        if (!AccountProcessing) {
+        if (firstSession.current) {
           signInAnonymous();
+          firstSession.current = false
         }
       }
     });

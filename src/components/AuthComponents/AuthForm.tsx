@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
+import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 
 export type AuthInput = {
   email: string;
