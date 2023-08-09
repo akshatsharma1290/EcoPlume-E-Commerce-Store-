@@ -15,8 +15,6 @@ type AuthenticationForm = {
 };
 
 const AuthForm = ({ authMode }: AuthenticationForm) => {
-
-
   const {
     register,
     handleSubmit,
@@ -42,7 +40,6 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             console.log(err);
           });
   };
-
 
   return (
     <>

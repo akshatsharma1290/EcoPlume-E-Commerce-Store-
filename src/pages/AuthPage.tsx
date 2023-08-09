@@ -16,11 +16,7 @@ const AuthPage = () => {
     onAuthStateChanged(auth, (user) => {
       !user ? dispatch(setLoading(true)) : null;
     });
-  }, []);
-
-  useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
+  }, [dispatch]);
 
   return (
     <>
