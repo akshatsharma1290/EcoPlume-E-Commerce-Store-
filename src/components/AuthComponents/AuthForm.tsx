@@ -11,7 +11,11 @@ export type AuthInput = {
   password: string;
 };
 
-const AuthForm = () => {
+type AuthenticationForm = {
+  authMode : string
+}
+
+const AuthForm = ({authMode} : AuthenticationForm) => {
   const [accountProcessing, setAccountProcessing] = useState(false);
 
   useEffect(() => {
@@ -29,13 +33,13 @@ const AuthForm = () => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-    signUpWithEmailAndPassword(email, password)
+   authMode === "Sign In" ?  signUpWithEmailAndPassword(email, password)
       .then(() => {
         reset();
       })
       .catch((err) => {
         console.log(err, "Sign Up Failed.");
-      });
+      }) : null;
   };
 
   const handleSignOut = () => {
@@ -54,7 +58,7 @@ const AuthForm = () => {
     {accountProcessing ? <Loader/> : null}
       {auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
-          <h1 className="font-bold text-2xl">Sign Up</h1>
+          <h1 className="font-bold text-2xl">{authMode}</h1>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col w-[90vw] gap-3 mt-3">
@@ -84,7 +88,7 @@ const AuthForm = () => {
                 type="submit"
                 className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2"
               >
-                Sign Up
+                {authMode}
               </button>
             </div>
           </form>
