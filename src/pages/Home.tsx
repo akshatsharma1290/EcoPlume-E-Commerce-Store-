@@ -6,12 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/api/apiService";
 import Loader from "../components/Reusables/Loader";
 import { useAppSelector } from "../store/hooks";
-import { booleanSliceSelector } from "../store/slices/booleanSlices";
+import { loadingSelector } from "../store/slices/loadingSlice";
 
 const Home = () => {
   const perPage = 6;
   const orientation = "landscape";
-  const { isDataRetrieved } = useAppSelector(booleanSliceSelector);
+  const isLoading = useAppSelector(loadingSelector);
 
   const shoesQuery = useQuery({
     queryKey: ["images", "Sneakers", perPage, orientation],
@@ -29,7 +29,7 @@ const Home = () => {
     staleTime: 300000,
   });
 
-  if (!isDataRetrieved || shoesQuery.isFetching || shirtQuery.isFetching) {
+  if (isLoading || shoesQuery.isFetching || shirtQuery.isFetching) {
     return <Loader />;
   }
 

@@ -8,7 +8,6 @@ export const deleteAnonymousAccount = async () => {
 
   if (anonymousUser && anonymousUser.isAnonymous) {
     try {
-      sessionStorage.setItem("AccountProcessing" , "ongoing")
       const oldDocRef = doc(firestore, "users_data", anonymousUser.uid);
       await deleteDoc(oldDocRef); // Wait for Firestore document deletion
 

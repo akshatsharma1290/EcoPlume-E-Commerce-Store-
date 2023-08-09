@@ -7,7 +7,7 @@ import checkoutPriceReducer from "./slices/checkoutPriceSlice";
 import searchQueryReducer from "./slices/searchQuerySlice";
 import paginationReducer from "./slices/paginationSlice";
 import filterReducer from "./slices/filterSlice";
-import booleanReducer from "./slices/booleanSlices";
+import loadingReducer from "./slices/loadingSlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +19,7 @@ export const store = configureStore({
     searchQuery: searchQueryReducer,
     pagination: paginationReducer,
     filter: filterReducer,
-    boolean: booleanReducer,
+    loading: loadingReducer,
   },
 });
 

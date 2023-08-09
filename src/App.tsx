@@ -14,27 +14,29 @@ import {
   setCartItem,
 } from "./store/slices/cartItemsSlice";
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
-import { dataRetrieved } from "./store/slices/booleanSlices";
 import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
+import { setLoading } from "./store/slices/loadingSlice";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
   const initialRender = useRef(true);
   const dispatch = useAppDispatch();
   const [userId, setUserId] = useState("");
+  const firstSession = useRef(true)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
-        console.log(user);
+        firstSession.current = false
+        console.log(user , firstSession.current);
       } else {
-        const AccountProcessing = "AccountProcessing" in sessionStorage;
-        if (!AccountProcessing) {
+        if (firstSession.current) {
           signInAnonymous();
+          firstSession.current = false
         }
       }
     });
@@ -54,7 +56,7 @@ function App() {
         .then((data) => {
           const retrievedCartItems = data?.cartItems as CartItemsType[];
           dispatch(setCartItem(retrievedCartItems));
-          dispatch(dataRetrieved());
+          dispatch(setLoading(false))
         })
         .catch((err) => {
           console.log(err);

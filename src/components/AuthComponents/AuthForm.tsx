@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
+import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
+import Loader from "../Reusables/Loader";
 
 export type AuthInput = {
   email: string;
@@ -9,23 +12,37 @@ export type AuthInput = {
 };
 
 const AuthForm = () => {
+  const [accountProcessing, setAccountProcessing] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      user ? setAccountProcessing(false) : setAccountProcessing(true);
+    });
+  }, []);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<AuthInput>();
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-    signUpWithEmailAndPassword(email, password).catch((err) => {
-      console.log(err, "Sign Up Failed.");
-    });
+    signUpWithEmailAndPassword(email, password)
+      .then(() => {
+        reset();
+      })
+      .catch((err) => {
+        console.log(err, "Sign Up Failed.");
+      });
   };
 
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         console.log("Signed Out");
+        signInAnonymous();
       })
       .catch((err) => {
         console.log(err, "Not signed out.");
@@ -34,6 +51,7 @@ const AuthForm = () => {
 
   return (
     <>
+    {accountProcessing ? <Loader/> : null}
       {auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
           <h1 className="font-bold text-2xl">Sign Up</h1>
