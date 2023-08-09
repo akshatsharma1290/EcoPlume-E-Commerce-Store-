@@ -32,7 +32,7 @@ function App() {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
         firstSession.current = false
-        console.log(user , firstSession.current);
+        console.log(user);
       } else {
         if (firstSession.current) {
           signInAnonymous();

@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
-import { signUpWithEmailAndPassword } from "../../firebase/auth/EmailAuth";
+import {
+  logInWithEmailAndPassword,
+  signUpWithEmailAndPassword,
+} from "../../firebase/auth/EmailAuth";
 import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 import Loader from "../Reusables/Loader";
 
@@ -12,10 +15,10 @@ export type AuthInput = {
 };
 
 type AuthenticationForm = {
-  authMode : string
-}
+  authMode: string;
+};
 
-const AuthForm = ({authMode} : AuthenticationForm) => {
+const AuthForm = ({ authMode }: AuthenticationForm) => {
   const [accountProcessing, setAccountProcessing] = useState(false);
 
   useEffect(() => {
@@ -33,13 +36,21 @@ const AuthForm = ({authMode} : AuthenticationForm) => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
-   authMode === "Sign In" ?  signUpWithEmailAndPassword(email, password)
-      .then(() => {
-        reset();
-      })
-      .catch((err) => {
-        console.log(err, "Sign Up Failed.");
-      }) : null;
+    authMode === "Sign Up"
+      ? signUpWithEmailAndPassword(email, password)
+          .then(() => {
+            reset();
+          })
+          .catch((err) => {
+            console.log(err, "Sign Up Failed.");
+          })
+      : logInWithEmailAndPassword(email, password)
+          .then(() => {
+            reset();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   };
 
   const handleSignOut = () => {
@@ -55,7 +66,7 @@ const AuthForm = ({authMode} : AuthenticationForm) => {
 
   return (
     <>
-    {accountProcessing ? <Loader/> : null}
+      {accountProcessing ? <Loader /> : null}
       {auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
           <h1 className="font-bold text-2xl">{authMode}</h1>
