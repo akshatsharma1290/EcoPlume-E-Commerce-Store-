@@ -18,13 +18,7 @@ type AuthenticationForm = {
 };
 
 const AuthForm = ({ authMode }: AuthenticationForm) => {
-  const [accountProcessing, setAccountProcessing] = useState(false);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      user ? setAccountProcessing(false) : setAccountProcessing(true);
-    });
-  }, []);
 
   const {
     register,
@@ -55,7 +49,6 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
 
   return (
     <>
-      {accountProcessing ? <Loader /> : null}
       {auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
           <h1 className="font-bold text-2xl">{authMode}</h1>

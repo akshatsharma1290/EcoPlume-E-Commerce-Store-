@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import AuthForm from "../components/AuthComponents/AuthForm";
 import Loader from "../components/Reusables/Loader";
 import { useAppSelector } from "../store/hooks";
 import { loadingSelector } from "../store/slices/loadingSlice";
 import { auth } from "../firebase/firebase";
 import UserDetails from "../components/AuthComponents/UserDetails";
+import { onAuthStateChanged } from "firebase/auth";
+
 
 const AuthPage = () => {
   const isLoading = useAppSelector(loadingSelector);
   const [authMode, setAuthMode] = useState("Sign Up");
+  const [accountProcessing, setAccountProcessing] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      user ? setAccountProcessing(false) : setAccountProcessing(true);
+    });
+  }, []);
 
   return (
     <>
-      {isLoading ? (
+      {isLoading || accountProcessing ? (
         <Loader />
       ) : (
         <>
