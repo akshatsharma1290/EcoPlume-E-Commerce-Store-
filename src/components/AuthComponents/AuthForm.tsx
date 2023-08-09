@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import {
   logInWithEmailAndPassword,
   signUpWithEmailAndPassword,
 } from "../../firebase/auth/EmailAuth";
-import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 import Loader from "../Reusables/Loader";
 
 export type AuthInput = {
@@ -53,16 +52,6 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
           });
   };
 
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Signed Out");
-        signInAnonymous();
-      })
-      .catch((err) => {
-        console.log(err, "Not signed out.");
-      });
-  };
 
   return (
     <>
@@ -112,22 +101,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             )}
           </div>
         </section>
-      ) : (
-        <>
-          <section className="flex flex-col text-center px-5">
-            <p className="text-lg">
-              You Are Currently Logged In As{" "}
-              <span className="underline">{auth.currentUser?.email}</span>.
-            </p>
-            <button
-              onClick={handleSignOut}
-              className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2"
-            >
-              SignOut
-            </button>
-          </section>
-        </>
-      )}
+      ) : null}
     </>
   );
 };
