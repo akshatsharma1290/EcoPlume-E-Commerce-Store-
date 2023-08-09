@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import {
   logInWithEmailAndPassword,
   signUpWithEmailAndPassword,
 } from "../../firebase/auth/EmailAuth";
-import Loader from "../Reusables/Loader";
 
 export type AuthInput = {
   email: string;
