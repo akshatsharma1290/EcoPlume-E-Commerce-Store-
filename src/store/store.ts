@@ -8,6 +8,7 @@ import searchQueryReducer from "./slices/searchQuerySlice";
 import paginationReducer from "./slices/paginationSlice";
 import filterReducer from "./slices/filterSlice";
 import loadingReducer from "./slices/loadingSlice";
+import themeReducer from "./slices/themeSlice"
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     pagination: paginationReducer,
     filter: filterReducer,
     loading: loadingReducer,
+    theme : themeReducer
   },
 });
 
