@@ -12,7 +12,10 @@ import {
 import generatePrice from "../../utilities/RandomGenerators/generatePrice";
 import { Link } from "react-router-dom";
 import { setProductItems } from "../../store/slices/productSlice";
-import { paginationSelector, setPagination } from "../../store/slices/paginationSlice";
+import {
+  paginationSelector,
+  setPagination,
+} from "../../store/slices/paginationSlice";
 import { filterSelector, initialState } from "../../store/slices/filterSlice";
 import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
 import toTitleCase from "../../utilities/SmallFunctions/titleCase";
@@ -30,14 +33,12 @@ const SearchItems = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [pagination]);
 
-  useEffect(()=>{
-  dispatch(setPagination(1))
-  } , [searchQueryValue , dispatch])
+  useEffect(() => {
+    dispatch(setPagination(1));
+  }, [searchQueryValue, dispatch]);
 
   const perPage = 10;
   const orientation = "squarish";
-
-
 
   const searchQuery = useQuery({
     queryKey: ["product", searchQueryValue, perPage, orientation, pagination],
@@ -94,7 +95,7 @@ const SearchItems = () => {
                 <Link
                   to={`/products/${title}?category=${category}`}
                   key={data.id}
-                  className="flex flex-col w-40 sm:w-52 md:w-60 xl:w-72 shadow-lg shadow-slate-300 dark:shadow-[#fff4f436] dark:bg-slate-900"
+                  className="flex flex-col w-40 sm:w-52 md:w-60 xl:w-72 shadow-normal shadow-slate-300 dark:shadow-[#6b6b6bc4] dark:bg-slate-900"
                   onClick={() => {
                     dispatch(
                       setProductItems({

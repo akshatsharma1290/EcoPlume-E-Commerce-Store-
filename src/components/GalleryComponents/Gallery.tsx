@@ -23,13 +23,13 @@ const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
 
   return (
     <>
-      <section className="mt-10 flex flex-col items-center w-screen relative dark:text-white">
+      <section className="mt-5 flex flex-col items-center w-screen relative dark:text-white">
         <h2 className="font-outfit font-bold text-3xl tracking-wide  ">
           {galleryName}
         </h2>
         <hr className="border-2 border-slate-300 my-3 w-screen" />
         <CarouselArrow transformValue={transformValue} setTransformValue={setTransformValue} />
-        <div className="gallery w-screen overflow-auto mt-5">
+        <div className="gallery w-screen overflow-auto mt-5 py-4">
           <div
             className="flex w-fit mx-4 transition-all"
             style={{ transform: `translateX(${transformValue}px)` }}

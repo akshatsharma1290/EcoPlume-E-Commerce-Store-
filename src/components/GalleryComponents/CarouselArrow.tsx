@@ -43,7 +43,7 @@ const CarouselArrow = ({ transformValue, setTransformValue }: ArrowProps) => {
         onClick={handleLeftArrow}
       >
         <aside className="left-arrow w-12 bg-white h-12 flex justify-center items-center shadow-xl shadow-slate-700 rounded-full">
-          <span>
+          <span className="dark:text-black">
             <BiSolidLeftArrow />
           </span>
         </aside>
@@ -53,7 +53,7 @@ const CarouselArrow = ({ transformValue, setTransformValue }: ArrowProps) => {
         onClick={handleRightArrow}
       >
         <aside className="right-arrow w-12 bg-white h-12 flex justify-center items-center shadow-xl shadow-slate-700 rounded-full">
-          <span>
+          <span className="dark:text-black">
             <BiSolidRightArrow />
           </span>
         </aside>

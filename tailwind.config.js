@@ -30,7 +30,8 @@ export default {
         load : 'load 2s cubic-bezier(.62,.05,.37,.61) infinite'
       },
       boxShadow : {
-        "cover" : "0px 0px 0px 53vw #1514148a"
+        "cover" : "0px 0px 0px 53vw #1514148a",
+        "normal" : "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);"
       }
     },
   },

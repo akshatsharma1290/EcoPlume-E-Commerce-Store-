@@ -38,7 +38,7 @@ const CartHeader = () => {
             ? `You're $${shippingPrice} away from shipping`
             : `Congrats! You got free standard shipping.`}
         </p>
-        <div className="range bg-slate-200 w-11/12 h-2 rounded-lg">
+        <div className="range bg-slate-200 dark:bg-slate-500 w-11/12 h-2 rounded-lg">
           <div
             className="bg-slate-500 rounded-lg h-full transition-all duration-700 dark:bg-white"
             style={{ width: `${shippingPriceInPercent}%` }}

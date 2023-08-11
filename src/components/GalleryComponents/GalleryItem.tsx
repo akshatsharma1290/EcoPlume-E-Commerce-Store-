@@ -21,15 +21,15 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
 
   return (
     <>
-      <div className="item w-80 mx-1 overflow-hidden select-none">
+      <div className="item w-80 mx-1 overflow-hidden select-none rounded-md shadow-normal shadow-slate-300 dark:shadow-[#6b6b6bc4]">
         <picture>
           <img
-            className="w-80 h-56 rounded-tr-md rounded-tl-md transition-all"
+            className="w-80 h-56 transition-all"
             src={imageUrl}
             alt={altText}
           />
         </picture>
-        <div className="shadow-lg shadow-slate-300 dark:shadow-[#fff4f436] dark:bg-slate-950 mb-4 px-5 py-6 rounded-bl-md rounded-br-md flex flex-col items-baseline font-outfit">
+        <div className="mb-4 px-5 py-6 flex flex-col items-baseline font-outfit">
           <p className="font-medium text-xl text-slate-800 dark:text-white leading-7 whitespace-nowrap">
             {title}
           </p>
