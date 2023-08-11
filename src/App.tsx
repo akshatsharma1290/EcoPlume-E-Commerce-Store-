@@ -18,11 +18,10 @@ import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 import { setLoading } from "./store/slices/loadingSlice";
-import { setTheme, themeSelector } from "./store/slices/themeSlice";
+import { setTheme } from "./store/slices/themeSlice";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
-  const theme = useAppSelector(themeSelector);
   const dispatch = useAppDispatch();
   const [userId, setUserId] = useState("");
   const firstSession = useRef(true);

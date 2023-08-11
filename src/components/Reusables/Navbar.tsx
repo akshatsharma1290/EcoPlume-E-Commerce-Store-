@@ -9,7 +9,6 @@ import { showCart } from "../../store/slices/cartPageTransform";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BsSunFill } from "react-icons/bs";
 import { setTheme, themeSelector } from "../../store/slices/themeSlice";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
