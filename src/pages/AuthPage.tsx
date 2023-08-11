@@ -24,7 +24,7 @@ const AuthPage = () => {
         <Loader />
       ) : (
         <>
-          <section className="mt-24 font-outfit flex flex-col justify-center">
+          <section className="mt-24 font-outfit text-black flex flex-col justify-center dark:text-white">
             <AuthForm authMode={authMode} />
             {!auth.currentUser?.isAnonymous ? (
               <UserDetails />
@@ -32,7 +32,7 @@ const AuthPage = () => {
               <>
                 <p className="text-center text-xl uppercase my-1">Or</p>
                 <a
-                  className="text-center text-xl text-blue-700 underline "
+                  className="text-center text-xl text-blue-700 underline dark:text-blue-400"
                   onClick={() => {
                     {
                       authMode === "Sign Up"
