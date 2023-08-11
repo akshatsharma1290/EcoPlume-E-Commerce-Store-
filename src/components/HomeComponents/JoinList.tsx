@@ -1,7 +1,7 @@
 const JoinList = () => {
   return (
     <>
-      <section className=" mt-8 bg-[#f8f7f5] p-11 flex flex-col items-center font-outfit text-center">
+      <section className=" mt-8 bg-[#f8f7f5] p-11 flex flex-col items-center font-outfit text-center dark:bg-slate-700 dark:text-white">
         <h2 className="font-bold text-3xl">Want First Dibs?</h2>
         <h3 className="font-medium text-base tracking-wide mt-5">
           Join our email list and be the first one to know about new limited

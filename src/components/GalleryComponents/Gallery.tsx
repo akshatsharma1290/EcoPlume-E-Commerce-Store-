@@ -23,7 +23,7 @@ const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
 
   return (
     <>
-      <section className="mt-10 flex flex-col items-center w-screen relative">
+      <section className="mt-10 flex flex-col items-center w-screen relative dark:text-white">
         <h2 className="font-outfit font-bold text-3xl tracking-wide  ">
           {galleryName}
         </h2>
