@@ -28,7 +28,7 @@ const ProductPage = () => {
         <Loader />
       ) : (
         <>
-          <section className="productPreview mt-20 pb-5">
+          <section className="productPreview mt-20 pb-5 transition-all duration-500 dark:bg-slate-900 dark:text-white">
             <Breadcrumb
               product={product}
               productCategory={productCategory}

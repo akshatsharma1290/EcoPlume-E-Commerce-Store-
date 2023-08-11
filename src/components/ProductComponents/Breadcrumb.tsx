@@ -24,7 +24,7 @@ const Breadcrumb = ({
   };
   return (
     <>
-      <div className="breadcrumb font-kanit text-sm flex gap-1 pl-5">
+      <div className="breadcrumb font-kanit text-sm flex gap-1 pl-5 dark:tracking-wide dark:font-light">
         <Link to={`/`} className="underline">
           Home
         </Link>

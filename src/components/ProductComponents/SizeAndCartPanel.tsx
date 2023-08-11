@@ -15,7 +15,7 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
   const productItems = useAppSelector(productSelector);
   const { url, title } = productItems;
 
-  const size = [5, 6, 7, 8, 9, 10, 11]
+  const size = [5, 6, 7, 8, 9, 10, 11];
 
   const [activeSize, setActiveSize] = useState<number | string | null>(null);
 
@@ -43,7 +43,6 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
     }
   };
 
-
   return (
     <>
       <div>
@@ -55,8 +54,8 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
                 <div
                   className={`border-2 text-lg w-1/4 md:w-52 h-[11vw] md:h-[7vw] cursor-pointer flex justify-center items-center transition-all ${
                     activeSize === item
-                      ? "bg-slate-900 text-white"
-                      : "bg-transparent text-black"
+                      ? "bg-slate-900 text-white dark:bg-white dark:text-black"
+                      : "bg-transparent text-black dark:text-white"
                   }`}
                   key={item}
                   onClick={() => handleSizeSelect(item)}
@@ -69,8 +68,8 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
           <button
             className={`w-[93vw] font-bold text-white h-12 mt-4 self-center uppercase tracking-wide  ${
               activeSize
-                ? "bg-slate-900 cursor-pointer"
-                : "bg-[#d3d4d5] cursor-not-allowed"
+                ? "bg-slate-900 cursor-pointer dark:bg-white dark:text-black"
+                : "bg-[#d3d4d5] cursor-not-allowed dark:text-black dark:bg-gray-500"
             }`}
             disabled={!activeSize}
             onClick={handleAddToCart}
