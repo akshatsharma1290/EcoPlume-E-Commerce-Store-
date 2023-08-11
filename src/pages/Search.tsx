@@ -14,7 +14,7 @@ const Search = () => {
         <Loader />
       ) : (
         <>
-          <section className="mt-24 font-outfit">
+          <section className="mt-24 text-black font-outfit dark:text-white">
             <SearchForm />
             <SearchFilters />
             <SearchItems />

@@ -62,22 +62,20 @@ const SearchFilters = () => {
   return (
     <>
       <section className="my-3 px-6 sm:px-[10%] flex justify-between">
-        <p className="text-lg font-medium">
-          {filtersCount} Filters Applied
-        </p>
+        <p className="text-lg font-medium">{filtersCount} Filters Applied</p>
         <div
-          className="flex uppercase border-2 border-black rounded-full p-1 w-28 gap-3 justify-center text-sm font-bold cursor-pointer"
+          className="flex uppercase border-2 border-black rounded-full p-1 w-28 gap-3 justify-center text-sm font-bold cursor-pointer dark:border-white"
           onClick={toggleFilterPanel}
         >
           Filters
-          <img src={FilterIcon} alt="filter" />
+          <img src={FilterIcon} className="dark:invert" alt="filter" />
         </div>
       </section>
       <div
         className={`filterPanel fixed w-screen h-screen bg-transparent top-0 z-50 right-[-160vw] transition-all hidden duration-75 justify-end`}
         ref={filterPanel}
       >
-        <div className="bg-white w-2/3 px-4 h-screen shadow-cover space-y-4 font-medium overflow-y-auto">
+        <div className="bg-white w-2/3 px-4 h-screen shadow-cover space-y-4 font-medium overflow-y-auto dark:bg-slate-800">
           <div
             className="text-4xl py-3 border-b border-slate-500 cursor-pointer"
             onClick={toggleFilterPanel}
@@ -87,16 +85,25 @@ const SearchFilters = () => {
           <div className="border-b border-slate-500 pb-4">
             <div className="flex justify-between mb-1">
               <p className="text-xl font-bold">Filter By:</p>
-             {filtersCount > 0 ? <p className="underline cursor-pointer flex items-center gap-1 text-base"
-             onClick={()=>(dispatch(setFilters({category : "" , price : [] , shipping : ""})))}
-             >Clear All</p> : null}
+              {filtersCount > 0 ? (
+                <p
+                  className="underline cursor-pointer flex items-center gap-1 text-base"
+                  onClick={() =>
+                    dispatch(
+                      setFilters({ category: "", price: [], shipping: "" })
+                    )
+                  }
+                >
+                  Clear All
+                </p>
+              ) : null}
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {category ? (
                 <span className="flex items-center gap-2 p-2 border border-slate-500">
                   {category}{" "}
                   <span
-                    className="p-1 rounded-full bg-slate-300 cursor-pointer"
+                    className="p-1 rounded-full bg-slate-300 cursor-pointer dark:bg-slate-600"
                     onClick={removeCategory}
                   >
                     <RxCross1 />
@@ -112,7 +119,7 @@ const SearchFilters = () => {
                       >
                         {item}{" "}
                         <span
-                          className="p-1 rounded-full bg-slate-300 cursor-pointer"
+                          className="p-1 rounded-full bg-slate-300 cursor-pointer dark:bg-slate-600"
                           onClick={() => {
                             removePriceFilter(index);
                           }}
@@ -127,7 +134,7 @@ const SearchFilters = () => {
                 <span className="flex items-center gap-2 p-2 border border-slate-500">
                   {shipping}{" "}
                   <span
-                    className="p-1 rounded-full bg-slate-300 cursor-pointer"
+                    className="p-1 rounded-full bg-slate-300 cursor-pointer dark:bg-slate-600"
                     onClick={removeShipping}
                   >
                     <RxCross1 />
@@ -141,7 +148,7 @@ const SearchFilters = () => {
             <button
               className={`p-2 border border-black ${
                 category === "Women"
-                  ? "bg-black text-white"
+                  ? "bg-black text-white dark:bg-violet-600 dark:text-white"
                   : "bg-white text-black"
               }`}
               onClick={() => {
@@ -153,7 +160,7 @@ const SearchFilters = () => {
             <button
               className={`p-2 border border-black ${
                 category === "Men"
-                  ? "bg-black text-white"
+                  ? "bg-black text-white dark:bg-violet-600 dark:text-white"
                   : "bg-white text-black"
               }`}
               onClick={() => {
@@ -171,7 +178,7 @@ const SearchFilters = () => {
                   key={item}
                   className={`p-1 border border-black ${
                     price && price.includes(item)
-                      ? "bg-black text-white"
+                      ? "bg-black text-white dark:bg-violet-600 dark:text-white"
                       : "bg-white text-black"
                   }`}
                   onClick={() => {
@@ -187,7 +194,9 @@ const SearchFilters = () => {
             <p className="uppercase">Shipping</p>
             <button
               className={`p-2 border border-black ${
-                shipping ? "bg-black text-white" : "bg-white text-black"
+                shipping
+                  ? "bg-black text-white dark:bg-violet-600 dark:text-white"
+                  : "bg-white text-black"
               }`}
               onClick={() => {
                 dispatch(setFilters({ shipping: "Free" }));
