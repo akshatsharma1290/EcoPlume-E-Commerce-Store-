@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed w-screen top-0 bg-white dark:bg-black z-10 transition-all duration-500">
+      <header className="fixed w-screen top-0 bg-white z-10 transition-all duration-500">
         <nav className="mt-2 flex justify-between items-center px-4 shadow-md border-b-0 border-b-slate-500">
           <Link to={"/"} className="brand-name cursor-pointer">
             <img src={BrandLogo} className="h-14" alt="Logo Of EcoPlume" />

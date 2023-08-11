@@ -23,7 +23,7 @@ const ProductDescription = ({category , title , Imgurl , price} : ProductDescrip
       </div>
       <div className="font-outfit flex justify-between items-center gap-2 px-5 mt-2">
         {generateRating()}
-       { priceValue > freeShippingPrice || checkoutPrice > freeShippingPrice ?  <span className="tag font-archivo uppercase bg-slate-200 px-2 py-1 text-sm tracking-wide rounded-sm">
+       { priceValue > freeShippingPrice || checkoutPrice > freeShippingPrice ?  <span className="tag font-archivo uppercase bg-slate-200 px-2 py-1 text-sm tracking-wide rounded-sm dark:bg-white dark:text-black dark:font-bold">
           Free Shipping
         </span> : null}
       </div>
