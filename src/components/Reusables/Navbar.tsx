@@ -31,7 +31,7 @@ const Navbar = () => {
     <>
       <header className="fixed w-screen top-0 bg-white z-10 transition-all duration-500 dark:bg-black dark:text-white dark:font-light">
         <nav className="mt-2 flex justify-between items-center px-4 shadow-md border-b-0 border-b-slate-500">
-          <Link to={"/"} className="brand-name cursor-pointer dark:invert">
+          <Link to={"/"} className="brand-name cursor-pointer transition-all duration-500 dark:invert">
             <img src={BrandLogo} className="h-14" alt="Logo Of EcoPlume" />
           </Link>
           <div className="icons flex gap-2">
