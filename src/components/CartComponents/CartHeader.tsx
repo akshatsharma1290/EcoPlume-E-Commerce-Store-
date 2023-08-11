@@ -40,7 +40,7 @@ const CartHeader = () => {
         </p>
         <div className="range bg-slate-200 w-11/12 h-2 rounded-lg">
           <div
-            className="bg-slate-500 rounded-lg h-full transition-all duration-700"
+            className="bg-slate-500 rounded-lg h-full transition-all duration-700 dark:bg-white"
             style={{ width: `${shippingPriceInPercent}%` }}
           ></div>
         </div>

@@ -21,7 +21,7 @@ const AdditionalLinks = ({ cartValue }: AdditionalLinksProps) => {
             <Link
               to={"/search"}
               key={value}
-              className="border-black text-center border-2 p-2 text-base w-2/4 sm:w-11/12 uppercase hover:bg-black hover:text-white transition-all duration-75 "
+              className="border-black text-center border-2 p-2 text-base w-2/4 sm:w-11/12 uppercase hover:bg-black hover:text-white transition-all duration-75 dark:border-white"
               onClick={() => {
                 dispatch(setSearchQuery(value));
                 dispatch(hideCart());
