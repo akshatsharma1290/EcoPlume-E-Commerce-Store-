@@ -42,7 +42,7 @@ const CheckoutPanel = () => {
             </p>
           </div>
         </div>
-        <button className="w-[93vw] font-bold bg-slate-900 rounded-md text-white h-12 mt-4 self-center uppercase tracking-wide cursor-pointer">
+        <button className="w-[93vw] font-bold bg-slate-900 rounded-md text-white h-12 mt-4 self-center uppercase tracking-wide cursor-pointer dark:bg-white dark:text-black">
           Proceed to checkout
         </button>
       </section>
