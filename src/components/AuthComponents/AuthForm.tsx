@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebase";
 import {
-  logInWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signUpWithEmailAndPassword,
 } from "../../firebase/auth/EmailAuth";
 import { useAppDispatch } from "../../store/hooks";
@@ -38,7 +38,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
           .catch((err) => {
             console.log(err, "Sign Up Failed.");
           })
-      : logInWithEmailAndPassword(email, password)
+      : signInWithEmailAndPassword(email, password)
           .then(() => {
             reset();
           })

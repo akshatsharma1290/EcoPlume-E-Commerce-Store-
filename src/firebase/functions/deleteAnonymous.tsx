@@ -1,11 +1,12 @@
-import { auth } from "../firebase";
 import { firestore } from "../firebase";
-import { deleteUser } from "firebase/auth";
+import { User, deleteUser } from "firebase/auth";
 import { deleteDoc, doc } from "firebase/firestore";
 
-export const deleteAnonymousAccount = async () => {
-  const anonymousUser = auth.currentUser;
+type Anonymous = {
+  anonymousUser: User;
+};
 
+export const deleteAnonymousAccount = async ({ anonymousUser }: Anonymous) => {
   if (anonymousUser && anonymousUser.isAnonymous) {
     try {
       const oldDocRef = doc(firestore, "users_data", anonymousUser.uid);
