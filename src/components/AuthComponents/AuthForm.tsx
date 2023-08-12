@@ -73,7 +73,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                 className="w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
                 type="password"
                 placeholder="Enter Password"
-                {...register("password", { required: true })}
+                {...register("password", { required: true , minLength : 6 })}
               />
             </div>
             <div className="flex justify-center">
@@ -91,6 +91,9 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             )}
             {errors.password?.type === "required" && (
               <span className="text-red-500">Password is required.</span>
+            )}
+            {errors.password?.type === "minLength" && (
+              <span className="text-red-500">Password must be 6 characters long.</span>
             )}
           </div>
         </section>
