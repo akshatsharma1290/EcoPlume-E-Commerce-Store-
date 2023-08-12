@@ -6,14 +6,10 @@ export const logInWithEmailAndPassword = async (
   email: string,
   password: string
 ) => {
-  try {
-    const anonymousCred = auth.currentUser;
-    await signInWithEmailAndPassword(auth, email, password);
+  const anonymousCred = auth.currentUser;
+  await signInWithEmailAndPassword(auth, email, password);
 
-    if (anonymousCred && anonymousCred.isAnonymous) {
-      await deleteAnonymousAccount({ anonymousUser: anonymousCred });
-    }
-  } catch (error) {
-    console.error("Log In Failed:", error);
+  if (anonymousCred && anonymousCred.isAnonymous) {
+    await deleteAnonymousAccount({ anonymousUser: anonymousCred });
   }
 };
