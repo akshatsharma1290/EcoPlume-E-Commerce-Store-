@@ -34,13 +34,15 @@ const Hero = () => {
         <picture className="flex overflow-hidden">{renderImages()}</picture>
         <section className="absolute top-64 text-center bottom-10 text-white font-outfit flex flex-col items-baseline px-4 md:px-7 xl:px-10 font-semibold">
           <div className=" flex justify-center flex-col gap-y-4">
-            <h1 className="text-3xl xl:text-4xl">Chase Views In Breezy Shoes</h1>
+            <h1 className="text-3xl xl:text-4xl">
+              Chase Views In Breezy Shoes
+            </h1>
             <h2 className="text-base xl:text-xl">
               The Lightweight Tree Runner is ready for anything summer throws at
               you.
             </h2>
             <div className="buttons space-x-3 flex">
-              <Buttons/>
+              <Buttons />
             </div>
           </div>
         </section>

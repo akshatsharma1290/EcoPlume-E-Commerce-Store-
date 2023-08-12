@@ -1,12 +1,10 @@
-import {useState} from "react"
+import { useState } from "react";
 import GalleryItem from "./GalleryItem";
 import { ApiResponse } from "../../utilities/api/apiService";
 import { setProductItems } from "../../store/slices/productSlice";
 import generatePrice from "../../utilities/RandomGenerators/generatePrice";
 import CarouselArrow from "./CarouselArrow";
-import {
-  randomTitle,
-} from "../../utilities/RandomGenerators/generateTitle";
+import { randomTitle } from "../../utilities/RandomGenerators/generateTitle";
 import { useAppDispatch } from "../../store/hooks";
 
 type GalleryProps = {
@@ -17,8 +15,8 @@ type GalleryProps = {
 };
 
 const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
-  const dispatch = useAppDispatch()
-  const [transformValue, setTransformValue] = useState(0)
+  const dispatch = useAppDispatch();
+  const [transformValue, setTransformValue] = useState(0);
   const title = randomTitle();
 
   return (
@@ -28,7 +26,10 @@ const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
           {galleryName}
         </h2>
         <hr className="border-2 border-slate-300 my-3 w-screen" />
-        <CarouselArrow transformValue={transformValue} setTransformValue={setTransformValue} />
+        <CarouselArrow
+          transformValue={transformValue}
+          setTransformValue={setTransformValue}
+        />
         <div className="gallery w-screen overflow-auto mt-5 py-4">
           <div
             className="flex w-fit mx-4 transition-all"

@@ -13,24 +13,15 @@ const CartItems = () => {
   const cartItemDetails = useAppSelector(cartItemsSelector);
   const dispatch = useAppDispatch();
 
-  const handleCartItemDecrement = (
-    title: string,
-    size: string | number,
-  ) => {
+  const handleCartItemDecrement = (title: string, size: string | number) => {
     dispatch(removeCartItem({ title, size, removeAll: false }));
   };
 
-  const handleCartItemIncrement = (
-    title: string,
-    size: string | number,
-  ) => {
+  const handleCartItemIncrement = (title: string, size: string | number) => {
     dispatch(addCartItem({ title, size }));
   };
 
-  const handleRemoveCartItem = (
-    title: string,
-    size: string | number,
-  ) => {
+  const handleRemoveCartItem = (title: string, size: string | number) => {
     dispatch(removeCartItem({ title, size, removeAll: true }));
   };
 
@@ -57,10 +48,7 @@ const CartItems = () => {
                       <a
                         className="text-lg cursor-pointer"
                         onClick={() => {
-                          handleCartItemDecrement(
-                            title,
-                            size
-                          );
+                          handleCartItemDecrement(title, size);
                         }}
                       >
                         <AiOutlineMinus />
@@ -69,10 +57,7 @@ const CartItems = () => {
                       <a
                         className="text-lg cursor-pointer"
                         onClick={() => {
-                          handleCartItemIncrement(
-                            title,
-                            size
-                          );
+                          handleCartItemIncrement(title, size);
                         }}
                       >
                         <AiOutlinePlus />
@@ -83,12 +68,7 @@ const CartItems = () => {
                     <span
                       className="text-sm"
                       onClick={() => {
-                        quantity
-                          ? handleRemoveCartItem(
-                              title,
-                              size
-                            )
-                          : null;
+                        quantity ? handleRemoveCartItem(title, size) : null;
                       }}
                     >
                       <RxCross1 strokeWidth={2} />

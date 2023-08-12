@@ -8,8 +8,8 @@ type AdditionalLinksProps = {
 };
 
 const AdditionalLinks = ({ cartValue }: AdditionalLinksProps) => {
-  const normalLinks = ["Socks", "Towels", "Cups" , "Shorts" , "Pants"];
-  const dispatch = useAppDispatch()
+  const normalLinks = ["Socks", "Towels", "Cups", "Shorts", "Pants"];
+  const dispatch = useAppDispatch();
   return (
     <>
       <div className="flex flex-col gap-4 items-center mt-7 font-bold tracking-wide">

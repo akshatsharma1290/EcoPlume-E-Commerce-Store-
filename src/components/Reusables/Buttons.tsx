@@ -3,7 +3,6 @@ import { useAppDispatch } from "../../store/hooks";
 import { setSearchQuery } from "../../store/slices/searchQuerySlice";
 import { setFilters } from "../../store/slices/filterSlice";
 
-
 const Buttons = () => {
   const dispatch = useAppDispatch();
 
@@ -14,7 +13,7 @@ const Buttons = () => {
         className="bg-white text-black hover:text-white hover:bg-slate-900 px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all text-center"
         onClick={() => {
           dispatch(setSearchQuery("men sneakers"));
-          dispatch(setFilters({category : "Men"}))
+          dispatch(setFilters({ category: "Men" }));
         }}
       >
         Shop Men
@@ -24,7 +23,7 @@ const Buttons = () => {
         className="bg-white text-black hover:text-white hover:bg-slate-900 px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all text-center"
         onClick={() => {
           dispatch(setSearchQuery("women sneakers"));
-          dispatch(setFilters({category : "Women"}))
+          dispatch(setFilters({ category: "Women" }));
         }}
       >
         Shop Women

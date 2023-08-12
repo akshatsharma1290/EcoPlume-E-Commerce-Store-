@@ -7,18 +7,14 @@
     display: none;
   }
 
-  *{
+  * {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 }
 
-
-
 @layer utilities {
-  .btn-hover{
-    @apply hover:bg-white hover:text-slate-800 dark:hover:bg-gray-300
+  .btn-hover {
+    @apply hover:bg-white hover:text-slate-800 dark:hover:bg-gray-300;
   }
 }
-
-

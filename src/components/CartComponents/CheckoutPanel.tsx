@@ -22,7 +22,7 @@ const CheckoutPanel = () => {
     });
 
     dispatch(setCheckoutPrice(totalPrice));
-  }, [cartItems , dispatch]);
+  }, [cartItems, dispatch]);
   return (
     <>
       <section className="flex flex-col items-center px-3">

@@ -14,4 +14,3 @@ export const signInWithEmailAndPassword = async (
 ) => {
   await logInWithEmailAndPassword(email, password);
 };
-

@@ -15,15 +15,14 @@ const Navbar = () => {
   const theme = useAppSelector(themeSelector);
 
   const toggleTheme = () => {
-
     if (theme === "light") {
       document.documentElement.className = "dark";
       localStorage.setItem("theme", "dark");
-      dispatch(setTheme("dark"))
+      dispatch(setTheme("dark"));
     } else {
       document.documentElement.className = "light";
       localStorage.setItem("theme", "light");
-      dispatch(setTheme("light"))
+      dispatch(setTheme("light"));
     }
   };
 
@@ -31,7 +30,10 @@ const Navbar = () => {
     <>
       <header className="fixed w-screen top-0 bg-white z-40 transition-all duration-500 dark:bg-black dark:text-white dark:font-light">
         <nav className="mt-2 flex justify-between items-center px-4 shadow-md border-b-0 border-b-slate-500">
-          <Link to={"/"} className="brand-name cursor-pointer transition-all duration-500 dark:invert">
+          <Link
+            to={"/"}
+            className="brand-name cursor-pointer transition-all duration-500 dark:invert"
+          >
             <img src={BrandLogo} className="h-14" alt="Logo Of EcoPlume" />
           </Link>
           <div className="icons flex gap-2">

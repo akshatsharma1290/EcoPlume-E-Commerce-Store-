@@ -35,12 +35,12 @@ const SearchForm = () => {
           placeholder="Enter Search Term"
           {...register("searchQuery", { required: true, maxLength: 40 })}
         />
-      <button
-        type="submit"
-        className="bg-slate-200 text-black cursor-pointer w-12 text-lg h-12 rounded-md grid place-content-center"
-      >
-        <BsSearch/>
-      </button>
+        <button
+          type="submit"
+          className="bg-slate-200 text-black cursor-pointer w-12 text-lg h-12 rounded-md grid place-content-center"
+        >
+          <BsSearch />
+        </button>
       </form>
 
       <div className="err px-9 mt-1">
