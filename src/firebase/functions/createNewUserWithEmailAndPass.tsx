@@ -9,11 +9,13 @@ export const createNewUserWithEmailAndPass = async (
   try {
     const anonymousCred = auth.currentUser;
     await createUserWithEmailAndPassword(auth, email, password);
-    anonymousCred &&
-      deleteAnonymousAccount({ anonymousUser: anonymousCred }).catch((err) => {
-        console.log(err);
-      });
+
+    if (anonymousCred && anonymousCred.isAnonymous) {
+      await deleteAnonymousAccount({ anonymousUser: anonymousCred });
+      console.log("Logged in successfully and anonymous account deleted.");
+    }
+
   } catch (error) {
-    console.log(error, "Sign Up Failed");
+    console.error(error, "Sign Up Failed");
   }
 };
