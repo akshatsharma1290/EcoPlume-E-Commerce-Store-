@@ -73,7 +73,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2 dark:border-white dark:bg-white dark:text-black"
+                className="w-3/5 rounded-md  mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2 dark:border-white dark:bg-white dark:text-black"
               >
                 {authMode}
               </button>

@@ -32,7 +32,7 @@ const AuthPage = () => {
               <>
                 <p className="text-center text-xl uppercase my-1">Or</p>
                 <a
-                  className="text-center text-xl text-blue-700 underline dark:text-blue-400"
+                  className="text-center text-xl text-blue-700 underline dark:text-blue-400 cursor-pointer"
                   onClick={() => {
                     {
                       authMode === "Sign Up"

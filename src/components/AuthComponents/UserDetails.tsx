@@ -21,7 +21,7 @@ const UserDetails = () => {
       </p>
       <button
         onClick={handleSignOut}
-        className="mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2 dark:border-white dark:bg-white dark:text-black"
+        className=" mt-4 tracking-wide text-xl font-medium bg-black text-white border-black border cursor-pointer px-6 py-2 dark:border-white dark:bg-white dark:text-black"
       >
         SignOut
       </button>
