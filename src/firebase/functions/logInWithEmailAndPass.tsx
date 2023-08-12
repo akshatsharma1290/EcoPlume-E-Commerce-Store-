@@ -1,13 +1,13 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { deleteAnonymousAccount } from "../functions/deleteAnonymous";
 
-export const createNewUserWithEmailAndPass = async (
+export const logInWithEmailAndPassword = async (
   email: string,
   password: string
 ) => {
   const anonymousCred = auth.currentUser;
-  await createUserWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(auth, email, password);
 
   if (anonymousCred && anonymousCred.isAnonymous) {
     await deleteAnonymousAccount({ anonymousUser: anonymousCred });

@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebase";
 import {
-  logInWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signUpWithEmailAndPassword,
 } from "../../firebase/auth/EmailAuth";
 import { useAppDispatch } from "../../store/hooks";
@@ -17,8 +18,7 @@ type AuthenticationForm = {
 };
 
 const AuthForm = ({ authMode }: AuthenticationForm) => {
-
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -27,24 +27,24 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     formState: { errors },
   } = useForm<AuthInput>();
 
-  const onSubmit = (data: AuthInput) => {
+  const onSubmit = async (data: AuthInput) => {
     const { email, password } = data;
-    dispatch(setLoading(true))
-    authMode === "Sign Up"
-      ? signUpWithEmailAndPassword(email, password)
-          .then(() => {
-            reset();
-          })
-          .catch((err) => {
-            console.log(err, "Sign Up Failed.");
-          })
-      : logInWithEmailAndPassword(email, password)
-          .then(() => {
-            reset();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    dispatch(setLoading(true));
+    try {
+      if (authMode === "Sign Up") {
+        await signUpWithEmailAndPassword(email, password);
+      } else {
+        await signInWithEmailAndPassword(email, password);
+      }
+
+      reset();
+    } catch (error) {
+      console.error("Authentication Failed.", error);
+      dispatch(setLoading(false));
+      setTimeout(() => {
+        alert("Authentication Failed.");
+      }, 300);
+    }
   };
 
   return (
@@ -73,7 +73,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                 className="w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
                 type="password"
                 placeholder="Enter Password"
-                {...register("password", { required: true })}
+                {...register("password", { required: true, minLength: 6 })}
               />
             </div>
             <div className="flex justify-center">
@@ -91,6 +91,11 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             )}
             {errors.password?.type === "required" && (
               <span className="text-red-500">Password is required.</span>
+            )}
+            {errors.password?.type === "minLength" && (
+              <span className="text-red-500">
+                Password must be 6 characters long.
+              </span>
             )}
           </div>
         </section>
