@@ -1,9 +1,13 @@
 import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { useAppDispatch } from "../../store/hooks";
+import { setLoading } from "../../store/slices/loadingSlice";
 
 const UserDetails = () => {
+  const dispatch = useAppDispatch();
   const handleSignOut = () => {
+    dispatch(setLoading(true));
     signOut(auth)
       .then(() => {
         console.log("Signed Out");
