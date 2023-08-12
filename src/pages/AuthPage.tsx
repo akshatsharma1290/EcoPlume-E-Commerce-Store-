@@ -1,22 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AuthForm from "../components/AuthComponents/AuthForm";
 import Loader from "../components/Reusables/Loader";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { loadingSelector, setLoading } from "../store/slices/loadingSlice";
+import { useAppSelector } from "../store/hooks";
+import { loadingSelector } from "../store/slices/loadingSlice";
 import { auth } from "../firebase/firebase";
 import UserDetails from "../components/AuthComponents/UserDetails";
-import { onAuthStateChanged } from "firebase/auth";
 
 const AuthPage = () => {
   const isLoading = useAppSelector(loadingSelector);
   const [authMode, setAuthMode] = useState("Sign Up");
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      !user ? dispatch(setLoading(true)) : null;
-    });
-  }, [dispatch]);
 
   return (
     <>

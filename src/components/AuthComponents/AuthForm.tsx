@@ -4,6 +4,8 @@ import {
   logInWithEmailAndPassword,
   signUpWithEmailAndPassword,
 } from "../../firebase/auth/EmailAuth";
+import { useAppDispatch } from "../../store/hooks";
+import { setLoading } from "../../store/slices/loadingSlice";
 
 export type AuthInput = {
   email: string;
@@ -15,6 +17,9 @@ type AuthenticationForm = {
 };
 
 const AuthForm = ({ authMode }: AuthenticationForm) => {
+
+  const dispatch = useAppDispatch()
+
   const {
     register,
     handleSubmit,
@@ -24,6 +29,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
 
   const onSubmit = (data: AuthInput) => {
     const { email, password } = data;
+    dispatch(setLoading(true))
     authMode === "Sign Up"
       ? signUpWithEmailAndPassword(email, password)
           .then(() => {
