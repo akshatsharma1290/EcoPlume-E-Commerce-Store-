@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebase";
 import {
@@ -6,6 +7,8 @@ import {
 } from "../../firebase/auth/EmailAuth";
 import { useAppDispatch } from "../../store/hooks";
 import { setLoading } from "../../store/slices/loadingSlice";
+import { BsFillEyeSlashFill } from "react-icons/bs";
+import { BsFillEyeFill } from "react-icons/bs";
 
 export type AuthInput = {
   email: string;
@@ -18,6 +21,7 @@ type AuthenticationForm = {
 
 const AuthForm = ({ authMode }: AuthenticationForm) => {
   const dispatch = useAppDispatch();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const {
     register,
@@ -46,6 +50,10 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((visibility) => !visibility);
+  };
+
   return (
     <>
       {auth.currentUser?.isAnonymous ? (
@@ -54,26 +62,36 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col w-[90vw] gap-3 mt-3">
-              <label className="font-medium" htmlFor="Email">
+              <label className="font-medium" htmlFor="email">
                 Email :{" "}
+                <input
+                  className="mt-3 w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
+                  type="email"
+                  placeholder="Enter Email Address"
+                  {...register("email", { required: true })}
+                />
               </label>
-              <input
-                className="w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
-                type="email"
-                placeholder="Enter Email Address"
-                {...register("email", { required: true })}
-              />
             </div>
-            <div className="flex flex-col w-[90vw] gap-3 mt-3">
-              <label className="font-medium" htmlFor="Password">
+            <div className="flex flex-col w-[90vw] gap-3 mt-3 relative">
+              <label className="font-medium" htmlFor="password">
                 Password :{" "}
+                <input
+                  className="mt-3 w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md pr-14"
+                  type={isPasswordVisible ? "text" : "password"}
+                  placeholder="Enter Password"
+                  {...register("password", { required: true, minLength: 6 })}
+                />
+                <span
+                  className="toggleVisibility absolute top-12 right-4 text-2xl cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  {isPasswordVisible ? (
+                    <BsFillEyeFill />
+                  ) : (
+                    <BsFillEyeSlashFill />
+                  )}
+                </span>
               </label>
-              <input
-                className="w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md"
-                type="password"
-                placeholder="Enter Password"
-                {...register("password", { required: true, minLength: 6 })}
-              />
             </div>
             <div className="flex justify-center">
               <button
