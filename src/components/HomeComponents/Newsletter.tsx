@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { subscribeToNewsletter } from "../../firebase/functions/SubscribeToNewsletter";
 
@@ -8,6 +9,8 @@ type SubscribeNewsletter = {
 };
 
 const Newsletter = () => {
+  const subscribeRef = useRef<HTMLButtonElement>(null);
+
   const {
     register,
     handleSubmit,
@@ -17,8 +20,15 @@ const Newsletter = () => {
 
   const onSubmit = async (data: SubscribeNewsletter) => {
     const { name, email, review } = data;
-    await subscribeToNewsletter(name, email, review).catch((err) => {console.log("Failed To Subscribe!")})
+    await subscribeToNewsletter(name, email, review).catch(() => {
+      console.log("Failed To Subscribe!");
+    });
     reset();
+    if (subscribeRef.current) {
+      subscribeRef.current.style.transform = "rotateX(360deg)";
+      subscribeRef.current.innerHTML = "Subscribed!!";
+      subscribeRef.current.disabled = true;
+    }
   };
 
   return (
@@ -50,7 +60,10 @@ const Newsletter = () => {
               rows={4}
               {...register("review")}
             />
-            <button className="bg-slate-900 font-bold uppercase tracking-wide text-white p-3 w-3/4 mt-2">
+            <button
+              className="bg-slate-900 font-bold uppercase tracking-wide text-white p-3 w-3/4 mt-2 transition-all duration-300 perspec"
+              ref={subscribeRef}
+            >
               Subscribe To Newsletter
             </button>
           </form>
