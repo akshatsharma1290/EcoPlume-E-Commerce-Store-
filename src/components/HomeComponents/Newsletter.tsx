@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 
 type SubscribeNewsletter = {
   email: string;
+  review : string
 };
 
 const Newsletter = () => {
@@ -13,7 +14,9 @@ const Newsletter = () => {
   } = useForm<SubscribeNewsletter>();
 
   const onSubmit = (data: SubscribeNewsletter) => {
-    const { email } = data;
+    const { email , review} = data;
+    console.log(email , review);
+
   };
 
   return (
@@ -32,6 +35,12 @@ const Newsletter = () => {
               placeholder="Enter Your Email Address"
               className="font-outfit font-medium outline-none p-3 mt-4 w-3/4 border-b-2 border-black dark:text-black"
               {...register("email", { required: true })}
+            />
+            <textarea
+              placeholder="Leave Your Honest Review About This E-Commerce Store. Try Reporting Any Bugs Or Enhancments To Help Me Improve This Web Application."
+              className="font-outfit font-medium outline-none p-3 mt-4 w-3/4 border-b-2 border-black dark:text-black"
+              rows={4}
+              {...register("review")}
             />
             <button className="bg-slate-900 font-bold uppercase tracking-wide text-white p-3 w-3/4 mt-2">
              Subscribe To Newsletter
