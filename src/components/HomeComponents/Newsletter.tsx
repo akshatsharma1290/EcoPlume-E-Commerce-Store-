@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
+import { subscribeToNewsletter } from "../../firebase/functions/SubscribeToNewsletter";
 
 type SubscribeNewsletter = {
-  name : string
+  name: string;
   email: string;
-  review : string
+  review: string;
 };
 
 const Newsletter = () => {
@@ -14,10 +15,10 @@ const Newsletter = () => {
     formState: { errors },
   } = useForm<SubscribeNewsletter>();
 
-  const onSubmit = (data: SubscribeNewsletter) => {
-    const { email , review , name} = data;
-    console.log(email , review , name);
-
+  const onSubmit = async (data: SubscribeNewsletter) => {
+    const { name, email, review } = data;
+    await subscribeToNewsletter(name, email, review).catch((err) => {console.log("Failed To Subscribe!")})
+    reset();
   };
 
   return (
@@ -50,7 +51,7 @@ const Newsletter = () => {
               {...register("review")}
             />
             <button className="bg-slate-900 font-bold uppercase tracking-wide text-white p-3 w-3/4 mt-2">
-             Subscribe To Newsletter
+              Subscribe To Newsletter
             </button>
           </form>
           {errors.email?.type === "required" && (
