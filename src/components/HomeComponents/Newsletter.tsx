@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 
 type SubscribeNewsletter = {
+  name : string
   email: string;
   review : string
 };
@@ -14,8 +15,8 @@ const Newsletter = () => {
   } = useForm<SubscribeNewsletter>();
 
   const onSubmit = (data: SubscribeNewsletter) => {
-    const { email , review} = data;
-    console.log(email , review);
+    const { email , review , name} = data;
+    console.log(email , review , name);
 
   };
 
@@ -30,6 +31,12 @@ const Newsletter = () => {
         <div className="w-screen">
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              className="font-outfit font-medium outline-none p-3 mt-4 w-3/4 border-b-2 border-black dark:text-black"
+              {...register("name", { required: true })}
+            />
             <input
               type="email"
               placeholder="Enter Your Email Address"
@@ -48,6 +55,9 @@ const Newsletter = () => {
           </form>
           {errors.email?.type === "required" && (
             <p className="mt-1 text-red-500">Email is required.</p>
+          )}
+          {errors.name?.type === "required" && (
+            <p className="mt-1 text-red-500">Name is required.</p>
           )}
         </div>
       </section>
