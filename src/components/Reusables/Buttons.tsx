@@ -12,7 +12,7 @@ const Buttons = () => {
         to={`/search`}
         className="bg-white text-black hover:text-white hover:bg-slate-900 px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all text-center"
         onClick={() => {
-          dispatch(setSearchQuery("men sneakers"));
+          dispatch(setSearchQuery("sneakers"));
           dispatch(setFilters({ category: "Men" }));
         }}
       >
@@ -22,7 +22,7 @@ const Buttons = () => {
         to={`/search`}
         className="bg-white text-black hover:text-white hover:bg-slate-900 px-4 py-3 w-2/4 cursor-pointer rounded-md uppercase transition-all text-center"
         onClick={() => {
-          dispatch(setSearchQuery("women sneakers"));
+          dispatch(setSearchQuery("sneakers"));
           dispatch(setFilters({ category: "Women" }));
         }}
       >

@@ -16,6 +16,7 @@ const Breadcrumb = ({
   category,
 }: BreadcrumbProps) => {
   const dispatch = useAppDispatch();
+
   const handleProductCategoryLink = () => {
     dispatch(setSearchQuery(product));
     category === "men"
