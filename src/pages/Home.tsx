@@ -1,7 +1,7 @@
 import Footer from "../components/HomeComponents/Footer";
 import Gallery from "../components/GalleryComponents/Gallery";
 import Hero from "../components/HomeComponents/Hero";
-import JoinList from "../components/HomeComponents/JoinList";
+import Newsletter from "../components/HomeComponents/Newsletter";
 import { useQuery } from "@tanstack/react-query";
 import getImages from "../utilities/api/apiService";
 import Loader from "../components/Reusables/Loader";
@@ -49,7 +49,7 @@ const Home = () => {
           type="T-Shirts"
           product="t-shirts"
         />
-        <JoinList />
+        <Newsletter />
         <Footer />
       </main>
     </>
