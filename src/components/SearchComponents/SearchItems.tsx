@@ -37,7 +37,7 @@ const SearchItems = () => {
     dispatch(setPagination(1));
   }, [searchQueryValue, dispatch]);
 
-  const perPage = 10;
+  const perPage = 20;
   const orientation = "squarish";
 
   const searchQuery = useQuery({
@@ -109,7 +109,7 @@ const SearchItems = () => {
                   }}
                 >
                   <div>
-                    <img src={data.urls.regular} alt={data.alt_description} />
+                    <img loading="lazy" src={data.urls.regular} alt={data.alt_description} />
                   </div>
                   <div className="p-2 pb-5">
                     <p className="font-bold">
