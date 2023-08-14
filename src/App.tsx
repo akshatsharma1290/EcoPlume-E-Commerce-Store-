@@ -31,8 +31,6 @@ function App() {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
-        console.log(user);
-
         firstSession.current = false;
       } else {
         if (firstSession.current) {
@@ -52,7 +50,7 @@ function App() {
           dispatch(setLoading(false));
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   }, [dispatch, userId]);
@@ -60,7 +58,7 @@ function App() {
   useEffect(() => {
     if (userId && cartItems.length > 0) {
       storeData(userId, { cartItems }).catch((err) => {
-        console.log(err, "Data Not Stored.");
+        console.error(err, "Data Not Stored.");
       });
     }
   }, [cartItems, userId]);

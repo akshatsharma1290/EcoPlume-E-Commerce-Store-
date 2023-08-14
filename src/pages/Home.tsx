@@ -10,7 +10,7 @@ import { loadingSelector } from "../store/slices/loadingSlice";
 
 const Home = () => {
   const perPage = 6;
-  const orientation = "landscape";
+  const orientation = "squarish";
   const isLoading = useAppSelector(loadingSelector);
 
   const shoesQuery = useQuery({

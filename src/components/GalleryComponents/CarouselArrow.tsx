@@ -28,7 +28,6 @@ const CarouselArrow = ({ transformValue, setTransformValue }: ArrowProps) => {
   };
 
   const handleRightArrow = () => {
-    console.log(currentItem);
     if (itemsCanScroll.current) {
       if (currentItem > itemsCanScroll.current) return;
       setTransformValue(transformValue - itemSize);
