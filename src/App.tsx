@@ -31,6 +31,8 @@ function App() {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
+        console.log(user);
+
         firstSession.current = false;
       } else {
         if (firstSession.current) {

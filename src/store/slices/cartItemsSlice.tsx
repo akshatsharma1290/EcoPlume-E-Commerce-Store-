@@ -4,7 +4,7 @@ import { RootState } from "../store";
 export type CartItemsType = {
   title: string;
   size: string | number;
-  imgUrl?: string;
+  Imgurl?: string;
   price?: string;
   quantity?: number;
   product ?: string;

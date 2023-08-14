@@ -10,11 +10,10 @@ import { useAppDispatch } from "../../store/hooks";
 type GalleryProps = {
   data?: ApiResponse;
   galleryName: string;
-  type: string;
   product: string;
 };
 
-const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
+const Gallery = ({ data, galleryName, product }: GalleryProps) => {
   const dispatch = useAppDispatch();
   const [transformValue, setTransformValue] = useState(0);
   const title = randomTitle();
@@ -42,8 +41,7 @@ const Gallery = ({ data, galleryName, type, product }: GalleryProps) => {
                   onClick={() => {
                     dispatch(
                       setProductItems({
-                        url: data.urls.regular,
-                        type: type,
+                        Imgurl: data.urls.regular,
                         product: product,
                         title: title,
                         price: generatePrice(),
