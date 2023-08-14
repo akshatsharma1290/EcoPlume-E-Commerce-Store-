@@ -36,10 +36,10 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     try {
       if (authMode === "Sign Up") {
         await signUpWithEmailAndPassword(email, password);
+        dispatch(setLoading(false))
       } else {
         await signInWithEmailAndPassword(email, password);
       }
-
       reset();
     } catch (error) {
       console.error("Authentication Failed.", error);
