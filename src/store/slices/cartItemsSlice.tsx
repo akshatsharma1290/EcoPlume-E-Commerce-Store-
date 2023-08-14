@@ -7,6 +7,8 @@ export type CartItemsType = {
   imgUrl?: string;
   price?: string;
   quantity?: number;
+  product ?: string;
+  category ?: string
 };
 
 type RemoveCart = CartItemsType & {

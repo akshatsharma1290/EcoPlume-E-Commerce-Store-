@@ -20,6 +20,7 @@ const ProductPage = () => {
   const productItems = useAppSelector(productSelector);
   const { url, product, title, price } = productItems;
 
+
   const productCategory = `${toTitleCase(category)}'s ${toTitleCase(title)}`;
 
   return (
@@ -40,7 +41,7 @@ const ProductPage = () => {
               Imgurl={url}
               price={price}
             />
-            <SizeAndCartPanel price={price} />
+            <SizeAndCartPanel price={price} category={category} />
           </section>
         </>
       )}

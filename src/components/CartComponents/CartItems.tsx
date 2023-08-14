@@ -32,7 +32,7 @@ const CartItems = () => {
           const { title, size, imgUrl, price, quantity } = item;
           return index === 0 || item !== cartItemDetails[index - 1] ? (
             <React.Fragment key={String(title) + String(size)}>
-              <div className="flex items-center w-11/12 mt-6 gap-4 font-outfit relative border-b border-slate-400 pb-3">
+              <section className="flex items-center w-11/12 mt-6 gap-4 font-outfit relative border-b border-slate-400 pb-3">
                 <div>
                   <img
                     className="h-16 border-2 border-slate-900"
@@ -76,7 +76,7 @@ const CartItems = () => {
                     <p>{price}</p>
                   </div>
                 </div>
-              </div>
+              </section>
             </React.Fragment>
           ) : null;
         })}
