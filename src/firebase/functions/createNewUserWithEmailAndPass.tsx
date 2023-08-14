@@ -1,15 +1,28 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  EmailAuthProvider,
+  linkWithCredential,
+} from "firebase/auth";
 import { auth } from "../firebase";
-import { deleteAnonymousAccount } from "../functions/deleteAnonymous";
+import { logInWithEmailAndPassword } from "./logInWithEmailAndPass";
 
 export const createNewUserWithEmailAndPass = async (
   email: string,
   password: string
 ) => {
   const anonymousCred = auth.currentUser;
-  await createUserWithEmailAndPassword(auth, email, password);
+  const credential = EmailAuthProvider.credential(email, password);
 
-  if (anonymousCred && anonymousCred.isAnonymous) {
-    await deleteAnonymousAccount({ anonymousUser: anonymousCred });
+  if (anonymousCred) {
+    try {
+      const userCredential = await linkWithCredential(anonymousCred, credential);
+      const newUser = userCredential.user; // Extracting the user from AuthResult
+      console.log(newUser);
+
+      await logInWithEmailAndPassword(email, password);
+      console.log("Logged in successfully");
+    } catch (err) {
+      console.log("Failed to link or log in:", err);
+    }
   }
 };
+

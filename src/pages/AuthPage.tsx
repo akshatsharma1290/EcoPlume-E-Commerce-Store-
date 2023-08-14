@@ -18,7 +18,7 @@ const AuthPage = () => {
         <>
           <section className="mt-24 font-outfit text-black flex flex-col justify-center dark:text-white">
             <AuthForm authMode={authMode} />
-            {!auth.currentUser?.isAnonymous ? (
+            {auth.currentUser && !auth.currentUser?.isAnonymous ? (
               <UserDetails />
             ) : (
               <>

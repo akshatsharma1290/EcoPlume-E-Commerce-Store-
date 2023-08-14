@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebase";
 import {
@@ -9,6 +9,8 @@ import { useAppDispatch } from "../../store/hooks";
 import { setLoading } from "../../store/slices/loadingSlice";
 import { BsFillEyeSlashFill } from "react-icons/bs";
 import { BsFillEyeFill } from "react-icons/bs";
+import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
+import { FirebaseError } from "firebase/app";
 
 export type AuthInput = {
   email: string;
@@ -22,6 +24,7 @@ type AuthenticationForm = {
 const AuthForm = ({ authMode }: AuthenticationForm) => {
   const dispatch = useAppDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const errorRef = useRef<HTMLParagraphElement>(null);
 
   const {
     register,
@@ -36,17 +39,30 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     try {
       if (authMode === "Sign Up") {
         await signUpWithEmailAndPassword(email, password);
+        dispatch(setLoading(false));
       } else {
         await signInWithEmailAndPassword(email, password);
       }
-
       reset();
     } catch (error) {
-      console.error("Authentication Failed.", error);
+      if (error instanceof FirebaseError) {
+        // Handle Firebase-specific errors
+        console.error("Firebase Error:", error.code, error.message);
+
+        // You can use the error code to handle specific errors
+        if (error.code === "auth/user-not-found") {
+          alert("User not found. Please sign up.");
+        } else if (error.code === "auth/wrong-password") {
+          alert("Incorrect password. Please try again.");
+        } else {
+          alert("An unknown error occurred. Please try again later.");
+        }
+      } else {
+        alert("An unknown error occured. Please try again later.");
+      }
+
+      signInAnonymous();
       dispatch(setLoading(false));
-      setTimeout(() => {
-        alert("Authentication Failed.");
-      }, 300);
     }
   };
 
@@ -56,7 +72,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
 
   return (
     <>
-      {auth.currentUser?.isAnonymous ? (
+      {!auth.currentUser || auth.currentUser?.isAnonymous ? (
         <section className="flex flex-col w-full items-center">
           <h1 className="font-bold text-2xl">{authMode}</h1>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
@@ -114,6 +130,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                 Password must be 6 characters long.
               </span>
             )}
+            <p className="text-red-500 font-bold" ref={errorRef}></p>
           </div>
         </section>
       ) : null}
