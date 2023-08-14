@@ -10,15 +10,15 @@ import { loadingSelector } from "../store/slices/loadingSlice";
 import Loader from "../components/Reusables/Loader";
 
 const ProductPage = () => {
-  useEffect(() => {
-    window.scroll({ top: 0 });
-  }, []);
-
   const [searchParam] = useSearchParams();
   const category = searchParam.get("category") || "";
   const isLoading = useAppSelector(loadingSelector);
   const productItems = useAppSelector(productSelector);
-  const { url, product, title, price } = productItems;
+  const { Imgurl, product, title, price } = productItems;
+
+  useEffect(() => {
+    window.scroll({ top: 0 });
+  }, [productItems]);
 
   const productCategory = `${toTitleCase(category)}'s ${toTitleCase(title)}`;
 
@@ -37,10 +37,10 @@ const ProductPage = () => {
             <ProductDescription
               category={category}
               title={title}
-              Imgurl={url}
+              Imgurl={Imgurl}
               price={price}
             />
-            <SizeAndCartPanel price={price} />
+            <SizeAndCartPanel price={price} category={category} />
           </section>
         </>
       )}

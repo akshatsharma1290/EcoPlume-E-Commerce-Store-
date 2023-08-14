@@ -7,13 +7,14 @@ import { showCart } from "../../store/slices/cartPageTransform";
 
 type SizeAndCartPanelProps = {
   price: string;
+  category: string;
 };
 
-const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
+const SizeAndCartPanel = ({ price, category }: SizeAndCartPanelProps) => {
   const dispatch = useAppDispatch();
 
   const productItems = useAppSelector(productSelector);
-  const { url, title } = productItems;
+  const { Imgurl, title, product } = productItems;
 
   const size = [5, 6, 7, 8, 9, 10, 11];
 
@@ -33,9 +34,11 @@ const SizeAndCartPanel = ({ price }: SizeAndCartPanelProps) => {
         addCartItem({
           title,
           size: activeSize,
-          imgUrl: url,
+          Imgurl,
           price,
           quantity: 1,
+          product,
+          category,
         })
       );
       dispatch(showCart());

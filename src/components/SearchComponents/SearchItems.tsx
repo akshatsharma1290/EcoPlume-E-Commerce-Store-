@@ -99,8 +99,7 @@ const SearchItems = () => {
                   onClick={() => {
                     dispatch(
                       setProductItems({
-                        url: data.urls.regular,
-                        type: searchQueryValue,
+                        Imgurl: data.urls.regular,
                         product: searchQueryValue,
                         title: title,
                         price: price,
@@ -109,7 +108,11 @@ const SearchItems = () => {
                   }}
                 >
                   <div>
-                    <img loading="lazy" src={data.urls.regular} alt={data.alt_description} />
+                    <img
+                      loading="lazy"
+                      src={data.urls.regular}
+                      alt={data.alt_description}
+                    />
                   </div>
                   <div className="p-2 pb-5">
                     <p className="font-bold">

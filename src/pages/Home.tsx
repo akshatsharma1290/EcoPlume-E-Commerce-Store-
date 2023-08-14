@@ -40,13 +40,11 @@ const Home = () => {
         <Gallery
           data={shoesQuery.data}
           galleryName="Best Shoes"
-          type="shoes"
           product="sneaker"
         />
         <Gallery
           data={shirtQuery.data}
           galleryName="Best Clothes"
-          type="T-Shirts"
           product="t-shirts"
         />
         <Newsletter />

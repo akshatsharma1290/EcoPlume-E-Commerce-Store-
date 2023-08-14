@@ -1,9 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-type ProductState = {
-  url: string;
-  type: string;
+export type ProductState = {
+  Imgurl: string;
   product: string;
   title: string;
   price: string;
@@ -15,8 +14,7 @@ const getInitialProductState = (): ProductState => {
     return JSON.parse(storedState) as ProductState;
   }
   return {
-    url: "",
-    type: "",
+    Imgurl: "",
     product: "",
     title: "",
     price: "",
