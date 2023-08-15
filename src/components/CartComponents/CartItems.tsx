@@ -11,6 +11,7 @@ import {
 import { useAppDispatch } from "../../store/hooks";
 import { setProductItems } from "../../store/slices/productSlice";
 import { hideCart } from "../../store/slices/cartPageTransform";
+import toTitleCase from "../../utilities/SmallFunctions/titleCase";
 
 const CartItems = () => {
   const cartItemDetails = useAppSelector(cartItemsSelector);
@@ -57,7 +58,7 @@ const CartItems = () => {
                         to={`/products/${title}?category=${category}`}
                         className="underline font-bold tracking-wide"
                       >
-                        {title}
+                        {`${toTitleCase(category)} ${title}`}
                       </Link>
                     ) : null}
                     <h3 className="">Size : {size}</h3>
