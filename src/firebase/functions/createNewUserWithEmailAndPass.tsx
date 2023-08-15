@@ -1,7 +1,4 @@
-import {
-  EmailAuthProvider,
-  linkWithCredential,
-} from "firebase/auth";
+import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import { auth } from "../firebase";
 import { logInWithEmailAndPassword } from "./logInWithEmailAndPass";
 
@@ -14,7 +11,10 @@ export const createNewUserWithEmailAndPass = async (
 
   if (anonymousCred) {
     try {
-      const userCredential = await linkWithCredential(anonymousCred, credential);
+      const userCredential = await linkWithCredential(
+        anonymousCred,
+        credential
+      );
       const newUser = userCredential.user; // Extracting the user from AuthResult
       console.log(newUser);
 
@@ -25,4 +25,3 @@ export const createNewUserWithEmailAndPass = async (
     }
   }
 };
-
