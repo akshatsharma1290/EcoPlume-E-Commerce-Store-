@@ -30,8 +30,11 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<AuthInput>();
+
+  const watchedPassValue = watch("password", "");
 
   const onSubmit = async (data: AuthInput) => {
     const { email, password } = data;
@@ -108,7 +111,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   )}
                 </span>
               </label>
-              <PasswordPatterns password="Blue"/>
+              <PasswordPatterns password={watchedPassValue} />
             </div>
             <div className="flex justify-center">
               <button

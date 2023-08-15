@@ -8,14 +8,10 @@ type Password = {
 const PasswordPatterns = ({ password }: Password) => {
 
   const Criterias = [
-    { tester: /^.{12,}$/, message: "Must Contain Atleast 8 Characters." },
+    { tester: /^.{8,}$/, message: "Must Contain Atleast 8 Characters." },
     {
       tester: /[a-z]/,
       message: "Must Contain Atleast One Lowercase Letter.",
-    },
-    {
-      tester: /[A-Z]/,
-      message: "Must Contain Atleast One Uppercase Letter.",
     },
     {
       tester: /[A-Z]/,
@@ -33,7 +29,7 @@ const PasswordPatterns = ({ password }: Password) => {
     <p>Criterias - </p>
       {Criterias.map((pattern , index) => {
         return (
-          <section key={index} className="flex items-center gap-1 mt-1">
+          <section key={index} className="flex items-center gap-1">
             {pattern.tester.test(password) ? (
               <AiFillCheckCircle />
             ) : (
