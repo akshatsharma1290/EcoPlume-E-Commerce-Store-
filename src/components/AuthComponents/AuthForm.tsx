@@ -74,14 +74,13 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     setIsPasswordVisible((visibility) => !visibility);
   };
 
-  const isPassValid = () => {
+  const passwordValidation = () => {
     for (const pattern of Criterias) {
       if (!pattern.tester.test(watchedPassValue)) {
-        return false; // Return false immediately when a pattern test fails
+        return false;
       }
     }
-
-    return true; // Return true if all pattern tests pass
+    return true;
   };
 
   return (
@@ -112,7 +111,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   {...register("password", {
                     required: true,
                     minLength: 8,
-                    validate: isPassValid,
+                    validate: passwordValidation,
                   })}
                 />
                 <span
@@ -126,7 +125,9 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   )}
                 </span>
               </label>
-             {authMode === "Sign Up" ?  <PasswordPatterns password={watchedPassValue} /> : null}
+              {authMode === "Sign Up" ? (
+                <PasswordPatterns password={watchedPassValue} />
+              ) : null}
             </div>
             <div className="flex justify-center">
               <button
@@ -144,10 +145,8 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             {errors.password?.type === "required" && (
               <span className="text-red-500">Password is required.</span>
             )}
-            {errors.password?.type === "minLength" && (
-              <span className="text-red-500">
-                Password must be 8 characters long.
-              </span>
+            {errors.password?.type === "validate" && (
+              <span className="text-red-500">Password Is Invalid.</span>
             )}
           </div>
         </section>
