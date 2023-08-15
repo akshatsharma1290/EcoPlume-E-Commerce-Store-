@@ -24,6 +24,7 @@ const GalleryItem = ({ imageUrl, altText, title }: GalleryItemProps) => {
       <div className="item w-80 mx-1 overflow-hidden select-none rounded-md shadow-normal shadow-slate-300 dark:shadow-[#6b6b6bc4]">
         <picture>
           <img
+            loading="lazy"
             className="w-80 h-56 transition-all"
             src={imageUrl}
             alt={altText}
