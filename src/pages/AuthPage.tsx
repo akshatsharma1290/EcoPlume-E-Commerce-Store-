@@ -16,7 +16,7 @@ const AuthPage = () => {
         <Loader />
       ) : (
         <>
-          <section className="mt-24 font-outfit text-black flex flex-col justify-center dark:text-white">
+          <section className="mt-20 mb-10 font-outfit text-black flex flex-col justify-center dark:text-white">
             <AuthForm authMode={authMode} />
             {auth.currentUser && !auth.currentUser?.isAnonymous ? (
               <UserDetails />

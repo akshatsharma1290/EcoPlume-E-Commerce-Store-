@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebase";
 import {
@@ -11,6 +11,7 @@ import { BsFillEyeSlashFill } from "react-icons/bs";
 import { BsFillEyeFill } from "react-icons/bs";
 import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 import { FirebaseError } from "firebase/app";
+import PasswordPatterns from "./PasswordPatterns";
 
 export type AuthInput = {
   email: string;
@@ -24,7 +25,6 @@ type AuthenticationForm = {
 const AuthForm = ({ authMode }: AuthenticationForm) => {
   const dispatch = useAppDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const errorRef = useRef<HTMLParagraphElement>(null);
 
   const {
     register,
@@ -95,7 +95,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   className="mt-3 w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md pr-14"
                   type={isPasswordVisible ? "text" : "password"}
                   placeholder="Enter Password"
-                  {...register("password", { required: true, minLength: 6 })}
+                  {...register("password", { required: true, minLength: 8 })}
                 />
                 <span
                   className="toggleVisibility absolute top-12 right-4 text-2xl cursor-pointer"
@@ -108,6 +108,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   )}
                 </span>
               </label>
+              <PasswordPatterns password="Blue"/>
             </div>
             <div className="flex justify-center">
               <button
@@ -130,7 +131,6 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                 Password must be 6 characters long.
               </span>
             )}
-            <p className="text-red-500 font-bold" ref={errorRef}></p>
           </div>
         </section>
       ) : null}

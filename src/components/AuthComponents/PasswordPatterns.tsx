@@ -1,27 +1,50 @@
-const PasswordPatterns = () => {
+import { AiFillCheckCircle } from "react-icons/ai";
+import { FiXCircle } from "react-icons/fi";
 
-  const patterns = [
-    { tester: /^.{12,}$/, message: "Password Must Be 11 Character Long." },
+type Password = {
+  password: string;
+};
+
+const PasswordPatterns = ({ password }: Password) => {
+
+  const Criterias = [
+    { tester: /^.{12,}$/, message: "Must Contain Atleast 8 Characters." },
     {
       tester: /[a-z]/,
-      message: "Password Must Contain Atleast One Lowercase Letter.",
+      message: "Must Contain Atleast One Lowercase Letter.",
     },
     {
       tester: /[A-Z]/,
-      message: "Password Must Contain Atleast One Uppercase Letter.",
+      message: "Must Contain Atleast One Uppercase Letter.",
     },
     {
       tester: /[A-Z]/,
-      message: "Password Must Contain Atleast One Uppercase Letter.",
+      message: "Must Contain Atleast One Uppercase Letter.",
     },
-    { tester: /\d/, message: "Password Must Contain Atleast One Number." },
+    { tester: /\d/, message: "Must Contains Atleast One Number." },
     {
       tester: /[!@#$%^&*()_+[\]{};':"\\|,.<>?]/,
-      message: "Password Must Contain Atleast One Special Character.",
+      message: "Must Contains Atleast One Special Character.",
     },
   ];
 
-  return <></>;
+  return (
+    <>
+    <p>Criterias - </p>
+      {Criterias.map((pattern , index) => {
+        return (
+          <section key={index} className="flex items-center gap-1 mt-1">
+            {pattern.tester.test(password) ? (
+              <AiFillCheckCircle />
+            ) : (
+              <FiXCircle />
+            )}
+            <p className="text-sm">{pattern.message}</p>
+          </section>
+        );
+      })}
+    </>
+  );
 };
 
 export default PasswordPatterns;
