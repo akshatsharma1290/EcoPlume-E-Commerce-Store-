@@ -126,7 +126,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   )}
                 </span>
               </label>
-              <PasswordPatterns password={watchedPassValue} />
+             {authMode === "Sign Up" ?  <PasswordPatterns password={watchedPassValue} /> : null}
             </div>
             <div className="flex justify-center">
               <button
