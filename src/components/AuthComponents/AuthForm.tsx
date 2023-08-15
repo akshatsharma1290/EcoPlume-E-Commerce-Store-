@@ -12,6 +12,7 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { signInAnonymous } from "../../firebase/auth/anonymousAuth";
 import { FirebaseError } from "firebase/app";
 import PasswordPatterns from "./PasswordPatterns";
+import { Criterias } from "./PasswordPatterns.tsx";
 
 export type AuthInput = {
   email: string;
@@ -73,6 +74,16 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
     setIsPasswordVisible((visibility) => !visibility);
   };
 
+  const isPassValid = () => {
+    for (const pattern of Criterias) {
+      if (!pattern.tester.test(watchedPassValue)) {
+        return false; // Return false immediately when a pattern test fails
+      }
+    }
+
+    return true; // Return true if all pattern tests pass
+  };
+
   return (
     <>
       {!auth.currentUser || auth.currentUser?.isAnonymous ? (
@@ -98,7 +109,11 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   className="mt-3 w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md pr-14"
                   type={isPasswordVisible ? "text" : "password"}
                   placeholder="Enter Password"
-                  {...register("password", { required: true, minLength: 8 })}
+                  {...register("password", {
+                    required: true,
+                    minLength: 8,
+                    validate: isPassValid,
+                  })}
                 />
                 <span
                   className="toggleVisibility absolute top-12 right-4 text-2xl cursor-pointer"
@@ -131,7 +146,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
             )}
             {errors.password?.type === "minLength" && (
               <span className="text-red-500">
-                Password must be 6 characters long.
+                Password must be 8 characters long.
               </span>
             )}
           </div>
