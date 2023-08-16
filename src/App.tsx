@@ -26,6 +26,7 @@ function App() {
   const [userId, setUserId] = useState("");
   const firstSession = useRef(true);
   const isDataRetrieved = useRef(false)
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -44,6 +45,8 @@ function App() {
 
   useEffect(() => {
     if (userId) {
+      console.log("trying to retreive");
+
       retrieveData(userId)
         .then((data) => {
           const retrievedCartItems = data?.cartItems as CartItemsType[];
@@ -58,11 +61,15 @@ function App() {
   }, [dispatch, userId]);
 
   useEffect(() => {
-    if (userId && isDataRetrieved.current) {
+    if (!isFirstRender.current && userId && isDataRetrieved.current) {
       console.log("Storing" , cartItems);
       storeData(userId, { cartItems }).catch((err) => {
         console.error(err, "Data Not Stored.");
       });
+    }else{
+      if(isDataRetrieved.current){
+        isFirstRender.current = false;
+      }
     }
   }, [cartItems, userId]);
 
