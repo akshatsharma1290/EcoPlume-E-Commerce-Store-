@@ -27,25 +27,36 @@ function App() {
   const firstSession = useRef(true);
   const isDataRetrieved = useRef(false);
   const canStoreData = useRef(false);
-  const canRetrieveData = useRef(false);
+  const canRetrieveData = useRef(true);
+  const newUser = useRef(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const userId = auth.currentUser?.uid;
         userId ? setUserId(userId) : null;
+        if (!firstSession.current && !newUser.current) {
+          canRetrieveData.current = false;
+        } else if (newUser.current) {
+          dispatch(setLoading(false));
+          canStoreData.current = true;
+          isDataRetrieved.current = true;
+        }
         firstSession.current = false;
       } else {
         if (firstSession.current) {
+          newUser.current = true;
           signInAnonymous();
           firstSession.current = false;
         }
       }
     });
-  }, [userId]);
+  }, [userId, dispatch]);
 
   useEffect(() => {
-    if (userId) {
+    console.log(canRetrieveData.current);
+
+    if (userId && canRetrieveData.current) {
       console.log("trying to retreive");
       retrieveData(userId)
         .then((data) => {
@@ -61,17 +72,21 @@ function App() {
   }, [dispatch, userId]);
 
   useEffect(() => {
-    if (canStoreData.current && userId && isDataRetrieved.current) {
+    if (canStoreData.current && userId) {
       console.log("Storing", cartItems);
       storeData(userId, { cartItems }).catch((err) => {
         console.error(err, "Data Not Stored.");
       });
+      if (!canRetrieveData.current) {
+        dispatch(setLoading(false));
+        canRetrieveData.current = true;
+      }
     } else {
       if (isDataRetrieved.current) {
         canStoreData.current = true;
       }
     }
-  }, [cartItems, userId]);
+  }, [cartItems, userId, dispatch]);
 
   useEffect(() => {
     if ("theme" in localStorage) {
