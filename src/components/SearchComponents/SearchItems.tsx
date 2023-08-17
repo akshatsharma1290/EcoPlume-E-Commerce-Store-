@@ -110,6 +110,7 @@ const SearchItems = () => {
                   <div>
                     <img
                       loading="lazy"
+                      className="object-cover"
                       src={data.urls.regular}
                       alt={data.alt_description}
                     />
