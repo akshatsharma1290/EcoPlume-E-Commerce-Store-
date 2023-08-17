@@ -20,14 +20,18 @@ const Newsletter = () => {
 
   const onSubmit = async (data: SubscribeNewsletter) => {
     const { name, email, review } = data;
+    const subRef = subscribeRef.current;
+    subRef ? (subRef.innerHTML = "Bringing You Abroad..") : null;
     await subscribeToNewsletter(name, email, review).catch(() => {
       console.log("Failed To Subscribe!");
     });
     reset();
-    if (subscribeRef.current) {
-      subscribeRef.current.style.transform = "rotateX(360deg)";
-      subscribeRef.current.innerHTML = "Subscribed!!";
-      subscribeRef.current.disabled = true;
+    if (subRef) {
+      subRef.style.transform = "rotateX(360deg)";
+      subRef.innerHTML = "Subscribed!!";
+      subRef.disabled = true;
+      subRef.style.cursor = "not-allowed";
+      subRef.title = "Subscribed";
     }
   };
 
