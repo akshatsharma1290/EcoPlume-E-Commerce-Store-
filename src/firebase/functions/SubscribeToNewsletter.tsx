@@ -1,13 +1,18 @@
-import { collection, doc, setDoc } from "firebase/firestore"
-import { firestore } from "../firebase"
+import { collection, doc, setDoc } from "firebase/firestore";
+import { auth, firestore } from "../firebase";
 
-export const subscribeToNewsletter = async  (name : string , email : string , review : string) => {
-    try {
-        const docRef = doc(collection(firestore , "subscribed_users") , name)
-        const data = {name , email , review}
+export const subscribeToNewsletter = async (
+  name: string,
+  email: string,
+  review: string
+) => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const docRef = doc(collection(firestore, "subscribed_users"), uid);
+    const data = { name, email, review };
 
-        await setDoc(docRef , data)
-    } catch (error) {
-        console.error(error , "Failed Subscribing")
-    }
-}
+    await setDoc(docRef, data);
+  } catch (error) {
+    console.error(error, "Failed Subscribing");
+  }
+};
