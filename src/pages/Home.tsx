@@ -29,6 +29,14 @@ const Home = () => {
     staleTime: 300000,
   });
 
+  const heroImageQuery = useQuery({
+    queryKey: ["images", "Shoes With Views", perPage, orientation],
+    queryFn: () => getImages("Shoes With Views", perPage, orientation),
+    refetchOnWindowFocus: false,
+    retry: 2,
+    staleTime: 300000,
+  });
+
   if (isLoading || shoesQuery.isFetching || shirtQuery.isFetching) {
     return <Loader />;
   }
@@ -36,7 +44,7 @@ const Home = () => {
   return (
     <>
       <main>
-        <Hero />
+        {heroImageQuery.data ? <Hero data={heroImageQuery.data} /> : null}
         <Gallery
           data={shoesQuery.data}
           galleryName="Best Shoes"
