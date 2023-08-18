@@ -23,8 +23,6 @@ const Hero = ({ data }: HeroImage) => {
 
   useEffect(() => {
     const visibleItems = Math.ceil(window.innerWidth / 800);
-    console.log(visibleItems);
-
     const visibleImages = data.results.slice(0, visibleItems);
     setResults(visibleImages);
   }, [data.results]);
@@ -34,6 +32,7 @@ const Hero = ({ data }: HeroImage) => {
     <>
       <section className="hero relative">
         <picture className="flex overflow-hidden">
+          <aside className="absolute w-full h-full bg-[#00000070]"></aside>
           {results?.map((item) => {
             return (
               <img
