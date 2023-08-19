@@ -20,6 +20,7 @@ import { auth } from "./firebase/firebase";
 import { setLoading } from "./store/slices/loadingSlice";
 import { setTheme } from "./store/slices/themeSlice";
 import CheckoutPanel from "./components/CheckoutComponents/CheckoutPanel";
+import NotFound from "./components/StatusComponents/NotFound";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -118,6 +119,7 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/auth" element={<AuthPage />}></Route>
         <Route path="/checkout" element={<CheckoutPanel />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );
