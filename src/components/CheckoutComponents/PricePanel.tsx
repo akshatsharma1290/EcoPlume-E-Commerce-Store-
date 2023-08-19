@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { cartItemsSelector } from "../../store/slices/cartItemsSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
+import { cartItemsSelector } from "../../store/slices/cartItemsSlice.tsx";
 import {
   checkoutPriceSelector,
   setCheckoutPrice,
-} from "../../store/slices/checkoutPriceSlice";
-import StripeBuyButton from "../CheckoutComponents/BuyButton.tsx";
+} from "../../store/slices/checkoutPriceSlice.tsx";
+import { Link } from "react-router-dom";
+import { hideCart } from "../../store/slices/cartPageTransform.tsx";
 
-const CheckoutPanel = () => {
+const PricePanel = () => {
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
   const shippingPrice = checkoutPrice > 75 ? "Free" : "$10";
   const dispatch = useAppDispatch();
@@ -43,13 +44,16 @@ const CheckoutPanel = () => {
             </p>
           </div>
         </div>
-        <button className="w-[93vw] font-bold bg-slate-900 rounded-md text-white h-12 mt-4 self-center uppercase tracking-wide cursor-pointer dark:bg-white dark:text-black">
+        <Link
+          to={"/checkout"}
+          onClick={() => {dispatch(hideCart())}}
+          className="w-[93vw] grid place-items-center font-bold bg-slate-900 rounded-md text-white h-12 mt-4 self-center uppercase tracking-wide cursor-pointer dark:bg-white dark:text-black"
+        >
           Proceed to checkout
-        </button>
-        <StripeBuyButton />
+        </Link>
       </section>
     </>
   );
 };
 
-export default CheckoutPanel;
+export default PricePanel;

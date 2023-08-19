@@ -19,6 +19,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 import { setLoading } from "./store/slices/loadingSlice";
 import { setTheme } from "./store/slices/themeSlice";
+import CheckoutPanel from "./components/CheckoutComponents/CheckoutPanel";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -116,6 +117,7 @@ function App() {
         <Route path="/products/:productName" element={<ProductPage />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/auth" element={<AuthPage />}></Route>
+        <Route path="/checkout" element={<CheckoutPanel />}></Route>
       </Routes>
     </>
   );

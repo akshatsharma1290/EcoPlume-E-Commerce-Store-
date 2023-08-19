@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import AdditionalLinks from "../components/CartComponents/AdditionalLinks";
 import CartHeader from "../components/CartComponents/CartHeader";
 import CartItems from "../components/CartComponents/CartItems";
-import CheckoutPanel from "../components/CartComponents/CheckoutPanel";
+import PricePanel from "../components/CheckoutComponents/PricePanel";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { cartItemsSelector } from "../store/slices/cartItemsSlice";
 import { cartPageTransformSelector } from "../store/slices/cartPageTransform";
@@ -28,7 +28,7 @@ const CartPanel = () => {
       >
         <CartHeader />
         <CartItems />
-        {cartValue > 0 ? <CheckoutPanel /> : null}
+        {cartValue > 0 ? <PricePanel /> : null}
         <AdditionalLinks cartValue={cartValue} />
       </section>
     </>
