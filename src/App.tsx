@@ -21,6 +21,7 @@ import { setLoading } from "./store/slices/loadingSlice";
 import { setTheme } from "./store/slices/themeSlice";
 import CheckoutPanel from "./components/CheckoutComponents/CheckoutPanel";
 import NotFound from "./components/StatusComponents/NotFound";
+import PaymentSuccess from "./components/StatusComponents/PaymentSuccess";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -119,6 +120,7 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/auth" element={<AuthPage />}></Route>
         <Route path="/checkout" element={<CheckoutPanel />}></Route>
+        <Route path="/success" element={<PaymentSuccess />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
