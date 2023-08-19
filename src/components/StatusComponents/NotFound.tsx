@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <>
-      <section className="not-found flex flex-col mt-28 items-center font-outfit relative">
+      <section className="not-found flex flex-col mt-28 items-center font-outfit relative dark:text-white">
         <h1 className="font-bold text-8xl absolute">404</h1>
         <div className="-z-10">
           <img
-            className="h-[32rem] object-cover"
+            className="h-[32rem] object-cover dark:invert"
             src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
             alt="404 Image"
           />
