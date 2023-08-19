@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks";
+import { loadingSelector } from "../../store/slices/loadingSlice";
+import Loader from "../Reusables/Loader";
 
 const NotFound = () => {
+  const isLoading = useAppSelector(loadingSelector);
+
   return (
     <>
+      {isLoading ? <Loader /> : null}
       <section className="not-found flex flex-col mt-28 items-center font-outfit relative dark:text-white">
         <h1 className="font-bold text-8xl absolute">404</h1>
         <div className="-z-10">
