@@ -14,6 +14,9 @@ export type ApiResponse = {
 };
 
 type Orientation = "landscape" | "portrait" | "squarish";
+interface ImportMetaEnvWithUnsplashAccessKey extends ImportMetaEnv {
+  VITE_UNSPLASH_ACCESS_KEY: string;
+}
 
 export default async function getImages(
   query: string,
@@ -21,9 +24,6 @@ export default async function getImages(
   orientation: Orientation,
   pagination?: number
 ) {
-  interface ImportMetaEnvWithUnsplashAccessKey extends ImportMetaEnv {
-    VITE_UNSPLASH_ACCESS_KEY: string;
-  }
 
   const accessKey = import.meta.env as ImportMetaEnvWithUnsplashAccessKey;
   const unsplashAccessKey: string = accessKey.VITE_UNSPLASH_ACCESS_KEY;
