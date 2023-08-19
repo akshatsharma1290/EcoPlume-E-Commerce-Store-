@@ -30,8 +30,8 @@ const Home = () => {
   });
 
   const heroImageQuery = useQuery({
-    queryKey: ["images", "Shoes With Views", perPage, orientation],
-    queryFn: () => getImages("Shoes With Views", perPage, orientation),
+    queryKey: ["images", "Shoes and clothes", perPage, orientation],
+    queryFn: () => getImages("Shoes and clothes", perPage, orientation),
     refetchOnWindowFocus: false,
     retry: 2,
     staleTime: 300000,
