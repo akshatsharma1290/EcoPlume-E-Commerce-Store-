@@ -5,6 +5,7 @@ import {
   checkoutPriceSelector,
   setCheckoutPrice,
 } from "../../store/slices/checkoutPriceSlice";
+import StripeBuyButton from "../CheckoutComponents/BuyButton.tsx";
 
 const CheckoutPanel = () => {
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
@@ -45,6 +46,7 @@ const CheckoutPanel = () => {
         <button className="w-[93vw] font-bold bg-slate-900 rounded-md text-white h-12 mt-4 self-center uppercase tracking-wide cursor-pointer dark:bg-white dark:text-black">
           Proceed to checkout
         </button>
+        <StripeBuyButton />
       </section>
     </>
   );
