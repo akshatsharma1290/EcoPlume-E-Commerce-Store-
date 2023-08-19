@@ -2,9 +2,9 @@ import StripeBuyButton from "./BuyButton";
 
 const CheckoutPanel = () => {
   return (
-    <section className="flex flex-col justify-center items-center h-screen">
+    <section className="flex flex-col justify-center items-center h-screen dark:text-white">
       <StripeBuyButton />
-        <article className="text-center font-outfit font-medium px-2">
+        <article className="text-center font-outfit font-medium px-2 mt-4">
             <p>Kindly Fill Any Amount.</p>
             <p>This is a test payment you can use a test card to see it working</p>
             <p>Payment Intents And Live Mode Will Be Integerated Soon.</p>
