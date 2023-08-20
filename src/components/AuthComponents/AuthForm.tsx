@@ -110,7 +110,6 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   placeholder="Enter Password"
                   {...register("password", {
                     required: true,
-                    minLength: 8,
                     validate: passwordValidation,
                   })}
                 />
