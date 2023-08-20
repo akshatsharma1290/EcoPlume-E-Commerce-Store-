@@ -16,13 +16,12 @@ import {
 import { retrieveData, storeData } from "./firebase/functions/DataInterchange";
 import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, firestore } from "./firebase/firebase";
+import { auth } from "./firebase/firebase";
 import { setLoading } from "./store/slices/loadingSlice";
 import { setTheme } from "./store/slices/themeSlice";
 import CheckoutPanel from "./components/CheckoutComponents/CheckoutPanel";
 import NotFound from "./components/StatusComponents/NotFound";
 import PaymentSuccess from "./components/StatusComponents/PaymentSuccess";
-import { collection, doc, onSnapshot } from "firebase/firestore";
 
 function App() {
   const cartItems = useAppSelector(cartItemsSelector);
@@ -62,18 +61,6 @@ function App() {
       }
     });
   }, [userId, dispatch]);
-
-  useEffect(() => {
-    if (userId) {
-      const userDocRef = doc(collection(firestore, "users_data"), userId);
-      onSnapshot(userDocRef, (docSnapshot) => {
-        if (docSnapshot.exists()) {
-          const newCartItems = docSnapshot.data().cartItems as CartItemsType[];
-          dispatch(setCartItem(newCartItems));
-        }
-      });
-    }
-  }, [userId , dispatch]);
 
   useEffect(() => {
     // If User exists and retrieving data is allowed then the cart items will be fetched from the firestore.
