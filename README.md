@@ -39,4 +39,17 @@
 - Fast Loading
 - Accessibility
 
+## Screenshots
+
+![Home Page](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/assets/106374555/fab58bde-812c-46c5-bad5-65669e62ee8b)
+
+![Search Page](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/assets/106374555/2f65d4f4-d780-43b3-bb3f-5a1893117fbb)
+
+![Cart Panel](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/assets/106374555/88753462-db00-4133-af4a-0c3e88644a7e)
+
+![Auth Page](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/assets/106374555/ee02571f-d04b-4ebb-b98e-f752e5fc1b1a)
+
+
+
+
 
