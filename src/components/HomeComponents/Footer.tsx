@@ -1,13 +1,13 @@
+import IndianFlag from "../../assets/IndiaFlag.svg"
 
 const Footer = () => {
   return (
     <>
-    <section className="bg-slate-900 text-white flex flex-col gap-4 items-center font-outfit py-5">
-    <article className="mt-5 text-xl">
+    <section className="bg-slate-900 text-white flex flex-col gap-4 items-center font-outfit py-10">
+    <article className="text-xl flex flex-col items-center gap-2">
     &copy; 2023 , Made By Akshat Sharma
+    <p className="flex gap-4">Based In <img className="h-8" src={IndianFlag} alt="Flag Of India" /></p>
     </article>
-    <p className="text-base text-center px-3">Tech Stack And Tools Used - React.Js , Typescript , Firebase , Redux Toolkit , React-Query , Formik</p>
-    <p>For Images - Unsplash API</p>
     </section>
     </>
   )
