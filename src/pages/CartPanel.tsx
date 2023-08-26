@@ -20,6 +20,7 @@ const CartPanel = () => {
     });
     dispatch(setCartValue(totalCartItems));
   }, [cartItems, dispatch]);
+
   return (
     <>
       <section

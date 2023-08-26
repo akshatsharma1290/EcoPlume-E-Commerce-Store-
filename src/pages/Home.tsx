@@ -7,7 +7,6 @@ import getImages from "../utilities/api/apiService";
 import Loader from "../components/Reusables/Loader";
 import { useAppSelector } from "../store/hooks";
 import { loadingSelector } from "../store/slices/loadingSlice";
-import CartPanel from "./CartPanel";
 
 const Home = () => {
   const perPage = 6;
@@ -45,7 +44,6 @@ const Home = () => {
   return (
     <>
       <main>
-        <CartPanel />
         {heroImageQuery.data ? <Hero data={heroImageQuery.data} /> : null}
         <Gallery
           data={shoesQuery.data}
