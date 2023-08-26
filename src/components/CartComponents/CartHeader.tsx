@@ -1,16 +1,21 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { hideCart } from "../../store/slices/cartPageTransform";
+import {
+  cartPageTransformSelector,
+  hideCart,
+} from "../../store/slices/cartPageTransform";
 import { RxCross1 } from "react-icons/rx";
 import Cart from "./Cart";
 import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CartHeader = () => {
   const dispatch = useAppDispatch();
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
+  const transformValue = useAppSelector(cartPageTransformSelector);
   const freeShippingPrice = 75;
   const [shippingPrice, setshippingPrice] = useState(75);
   const [shippingPriceInPercent, setShippingPriceInPercent] = useState(0);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     freeShippingPrice > checkoutPrice
@@ -21,16 +26,25 @@ const CartHeader = () => {
       : setShippingPriceInPercent(100);
   }, [checkoutPrice]);
 
+  useEffect(() => {
+    if (transformValue !== 100) {
+      setTimeout(() => {
+        buttonRef.current ? buttonRef.current.focus() : null;
+      }, 10);
+    }
+  }, [transformValue]);
+
   return (
     <>
-      <span
+      <button
         className="cross absolute top-8 left-5 text-3xl cursor-pointer"
+        ref={buttonRef}
         onClick={() => {
           dispatch(hideCart());
         }}
       >
         <RxCross1 strokeWidth={1} />
-      </span>
+      </button>
       <div className="mt-7 gap-4 text-sm md:text-base flex flex-col items-center w-screen">
         <Cart />
         <p>
