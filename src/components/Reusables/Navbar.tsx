@@ -3,7 +3,6 @@ import { CiUser } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import Cart from "../CartComponents/Cart";
-import CartPanel from "../../pages/CartPanel";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { showCart } from "../../store/slices/cartPageTransform";
 import { BsMoonStarsFill } from "react-icons/bs";
@@ -55,7 +54,6 @@ const Navbar = () => {
             </button>
           </div>
         </nav>
-        <CartPanel />
       </header>
     </>
   );

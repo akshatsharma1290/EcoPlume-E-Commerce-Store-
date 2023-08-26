@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import Buttons from "../Reusables/Buttons";
-// import HeroImage1 from "../../assets/HeroImage1.jpg";
-// import HeroImage2 from "../../assets/HeroImage2.jpg";
-// import HeroImage3 from "../../assets/HeroImage3.jpg";
 import { ApiResponse } from "../../utilities/api/apiService";
 
 type HeroImage = {
