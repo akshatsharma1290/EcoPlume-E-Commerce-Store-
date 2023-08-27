@@ -4,6 +4,12 @@ import { BsArrowRight } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { filterSelector, setFilters } from "../../store/slices/filterSlice";
 import { RxCross1 } from "react-icons/rx";
+import {
+  FocusedElement,
+  clearFocus,
+  focusSliceSelector,
+  moveFocus,
+} from "../../store/slices/focusSlice";
 
 const SearchFilters = () => {
   const [isPanelVisible, setIsPanelVisible] = useState(false);
@@ -11,6 +17,8 @@ const SearchFilters = () => {
   const dispatch = useAppDispatch();
   const searchFilters = useAppSelector(filterSelector);
   const { category, price, shipping } = searchFilters;
+  const panelCloseButton = useRef<HTMLButtonElement>(null);
+  const focusedElement = useAppSelector(focusSliceSelector);
 
   const [filtersCount, SetFiltersCount] = useState(0);
 
@@ -24,7 +32,19 @@ const SearchFilters = () => {
     SetFiltersCount(totalFilters);
   }, [category, price, shipping]);
 
+  useEffect(() => {
+    if (focusedElement === "filterPanel") {
+      setTimeout(() => {
+        panelCloseButton.current ? panelCloseButton.current.focus() : null;
+      }, 10);
+      dispatch(clearFocus())
+    }
+  }, [focusedElement , dispatch]);
+
   const toggleFilterPanel = () => {
+    if (!isPanelVisible) {
+      dispatch(moveFocus(FocusedElement.FilterPanel));
+    }
     if (filterPanel.current) {
       filterPanel.current.style.display = isPanelVisible ? "none" : "flex";
       filterPanel.current.style.right = isPanelVisible ? "-160vw" : "0";
@@ -76,12 +96,13 @@ const SearchFilters = () => {
         ref={filterPanel}
       >
         <div className="bg-white w-2/3 px-4 h-screen shadow-cover space-y-4 font-medium overflow-y-auto dark:bg-slate-800">
-          <div
+          <button
             className="text-4xl py-3 border-b border-slate-500 cursor-pointer"
             onClick={toggleFilterPanel}
+            ref={panelCloseButton}
           >
             <BsArrowRight />
-          </div>
+          </button>
           <div className="border-b border-slate-500 pb-4">
             <div className="flex justify-between mb-1">
               <p className="text-xl font-bold">Filter By:</p>
@@ -200,6 +221,12 @@ const SearchFilters = () => {
               }`}
               onClick={() => {
                 dispatch(setFilters({ shipping: "Free" }));
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Tab") {
+                  e.preventDefault();
+                  dispatch(moveFocus(FocusedElement.FilterPanel));
+                }
               }}
             >
               Free

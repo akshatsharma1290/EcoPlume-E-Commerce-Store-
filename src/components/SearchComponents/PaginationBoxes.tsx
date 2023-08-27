@@ -18,7 +18,7 @@ const PaginationBoxes = () => {
     const boxes = [];
     for (let i = 1; i <= paginationLength; i++) {
       boxes.push(
-        <div
+        <button
           key={i}
           className={`${
             pagination === i ? "bg-white text-black" : "bg-black text-white"
@@ -28,7 +28,7 @@ const PaginationBoxes = () => {
           }}
         >
           {i}
-        </div>
+        </button>
       );
     }
     return boxes;
