@@ -1,20 +1,33 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState = {
-    focusedElement : ""
+export enum FocusedElement {
+  None = "",
+  CartPanel = "cartPanel",
 }
 
-const focusSlice = createSlice({
-    name: "booleanSlice",
-    initialState,
-    reducers: {
-      moveFocus : (state , action : PayloadAction<string>) => {
-        state.focusedElement = action.payload
-      }
-    },
-  });
+interface FocusState {
+  focusedElement: FocusedElement;
+}
 
-export const { moveFocus } = focusSlice.actions;
-export const focusSliceSelector = (state : RootState) => state.focus.focusedElement
-export default focusSlice.reducer
+const initialState: FocusState = {
+  focusedElement: FocusedElement.None,
+};
+
+const focusSlice = createSlice({
+  name: "focusSlice",
+  initialState,
+  reducers: {
+    moveFocus: (state, action: PayloadAction<FocusedElement>) => {
+      state.focusedElement = action.payload;
+    },
+    clearFocus: (state) => {
+      state.focusedElement = FocusedElement.None;
+    },
+  },
+});
+
+export const { moveFocus, clearFocus } = focusSlice.actions;
+export const focusSliceSelector = (state: RootState) =>
+  state.focus.focusedElement;
+export default focusSlice.reducer;

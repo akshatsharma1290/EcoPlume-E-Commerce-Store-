@@ -1,21 +1,21 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  cartPageTransformSelector,
   hideCart,
 } from "../../store/slices/cartPageTransform";
 import { RxCross1 } from "react-icons/rx";
 import Cart from "./Cart";
 import { checkoutPriceSelector } from "../../store/slices/checkoutPriceSlice";
 import { useEffect, useRef, useState } from "react";
+import { clearFocus, focusSliceSelector } from "../../store/slices/focusSlice";
 
 const CartHeader = () => {
   const dispatch = useAppDispatch();
   const checkoutPrice = useAppSelector(checkoutPriceSelector);
-  const transformValue = useAppSelector(cartPageTransformSelector);
   const freeShippingPrice = 75;
   const [shippingPrice, setshippingPrice] = useState(75);
   const [shippingPriceInPercent, setShippingPriceInPercent] = useState(0);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isFocused = useAppSelector(focusSliceSelector);
 
   useEffect(() => {
     freeShippingPrice > checkoutPrice
@@ -27,12 +27,13 @@ const CartHeader = () => {
   }, [checkoutPrice]);
 
   useEffect(() => {
-    if (transformValue !== 100) {
+    if (isFocused === "cartPanel") {
       setTimeout(() => {
         buttonRef.current ? buttonRef.current.focus() : null;
       }, 10);
+      dispatch(clearFocus())
     }
-  }, [transformValue]);
+  }, [isFocused , dispatch]);
 
   return (
     <>

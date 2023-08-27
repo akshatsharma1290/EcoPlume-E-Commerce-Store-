@@ -9,6 +9,7 @@ import { showCart } from "../../store/slices/cartPageTransform";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BsSunFill } from "react-icons/bs";
 import { setTheme, themeSelector } from "../../store/slices/themeSlice";
+import { FocusedElement, moveFocus } from "../../store/slices/focusSlice";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ const Navbar = () => {
             <button
               onClick={() => {
                 dispatch(showCart());
+                dispatch(moveFocus(FocusedElement.CartPanel))
               }}
             >
               <Cart />
