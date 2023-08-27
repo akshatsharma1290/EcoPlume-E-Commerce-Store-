@@ -64,7 +64,7 @@ const SearchFilters = () => {
       <section className="my-3 px-6 sm:px-[10%] flex justify-between">
         <p className="text-lg font-medium">{filtersCount} Filters Applied</p>
         <button
-          className="flex uppercase border-2 border-black rounded-full p-1 w-28 gap-3 justify-center text-sm font-bold cursor-pointer dark:border-white"
+          className="flex items-center uppercase border-2 border-black rounded-full p-1 w-28 gap-3 justify-center text-sm font-bold cursor-pointer dark:border-white"
           onClick={toggleFilterPanel}
         >
           Filters
