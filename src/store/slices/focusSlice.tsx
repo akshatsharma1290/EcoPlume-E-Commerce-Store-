@@ -4,6 +4,7 @@ import { RootState } from "../store";
 export enum FocusedElement {
   None = "",
   CartPanel = "cartPanel",
+  FilterPanel = "filterPanel"
 }
 
 interface FocusState {
