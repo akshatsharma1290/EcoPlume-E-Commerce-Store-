@@ -20,10 +20,11 @@ const CartPanel = () => {
     });
     dispatch(setCartValue(totalCartItems));
   }, [cartItems, dispatch]);
+
   return (
     <>
       <section
-        className="cartPage h-screen overflow-auto w-screen bg-white text-black absolute top-0 z-40 font-outfit transition-all pb-5 dark:bg-slate-700 dark:text-white"
+        className={`cartPage h-screen overflow-auto w-screen bg-white text-black absolute top-0 z-40 font-outfit transition-all pb-5 dark:bg-slate-700 dark:text-white ${transformValue === 100 ? "invisible" : "visible"}`}
         style={{ transform: `translateX(${transformValue}%)` }}
       >
         <CartHeader />
