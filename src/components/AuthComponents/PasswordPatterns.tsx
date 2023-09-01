@@ -25,7 +25,8 @@ export const Criterias = [
 const PasswordPatterns = ({ password }: Password) => {
   return (
     <>
-      <p>Criterias - </p>
+    <section className="space-y-3 bg-slate-100 p-2 rounded-md">
+      <h3>Criterias - </h3>
       {Criterias.map((pattern, index) => {
         return (
           <section key={index} className="flex items-center gap-1">
@@ -38,6 +39,7 @@ const PasswordPatterns = ({ password }: Password) => {
           </section>
         );
       })}
+      </section>
     </>
   );
 };
