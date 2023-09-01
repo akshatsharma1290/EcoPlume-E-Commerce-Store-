@@ -49,6 +49,9 @@
 
 ![Auth Page](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/assets/106374555/ee02571f-d04b-4ebb-b98e-f752e5fc1b1a)
 
+## License
+
+This project is licensed under [MIT License](https://github.com/akshatsharma1290/EcoPlume-E-Commerce-Store-/blob/main/LICENSE)
 
 
 
