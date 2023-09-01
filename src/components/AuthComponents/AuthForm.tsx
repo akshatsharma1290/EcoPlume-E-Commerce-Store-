@@ -26,6 +26,7 @@ type AuthenticationForm = {
 const AuthForm = ({ authMode }: AuthenticationForm) => {
   const dispatch = useAppDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [showPatterns, setShowPatterns] = useState(false);
 
   const {
     register,
@@ -106,11 +107,17 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                 Password :{" "}
                 <input
                   className="mt-3 w-full h-12 px-3 bg-slate-200 text-slate-800 outline-none text-lg rounded-md pr-14"
+                  onFocus={() => {
+                    setShowPatterns(true);
+                  }}
                   type={isPasswordVisible ? "text" : "password"}
                   placeholder="Enter Password"
                   {...register("password", {
                     required: true,
                     validate: passwordValidation,
+                    onBlur: () => {
+                      setShowPatterns(false);
+                    },
                   })}
                 />
                 <span
@@ -124,7 +131,7 @@ const AuthForm = ({ authMode }: AuthenticationForm) => {
                   )}
                 </span>
               </label>
-              {authMode === "Sign Up" ? (
+              {authMode === "Sign Up" && showPatterns ? (
                 <PasswordPatterns password={watchedPassValue} />
               ) : null}
             </div>
