@@ -16,7 +16,6 @@ type GalleryProps = {
 const Gallery = ({ data, galleryName, product }: GalleryProps) => {
   const dispatch = useAppDispatch();
   const [transformValue, setTransformValue] = useState(0);
-  const title = randomTitle();
 
   return (
     <>
@@ -35,6 +34,7 @@ const Gallery = ({ data, galleryName, product }: GalleryProps) => {
             style={{ transform: `translateX(${transformValue}px)` }}
           >
             {data?.results.map((data) => {
+              const title = randomTitle()
               return (
                 <div
                   key={data.id}
